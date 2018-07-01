@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python 文件处理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python文件操作学习。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 文件处理">
+<meta property="og:url" content="http://yoursite.com/2017/07/26/python文件处理/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Python文件操作学习。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-7-26/64221742.jpg">
+<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-7-26/17910483.jpg">
+<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-7-26/80429679.jpg">
+<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-7-26/78191643.jpg">
+<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-7-26/90575233.jpg">
+<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-7-26/46833136.jpg">
+<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-7-26/78603138.jpg">
+<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-7-26/5103583.jpg">
+<meta property="og:updated_time" content="2018-02-05T09:57:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 文件处理">
+<meta name="twitter:description" content="Python文件操作学习。">
+<meta name="twitter:image" content="http://opmi2ydgh.bkt.clouddn.com//17-7-26/64221742.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python文件处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/26/python文件处理/" class="article-date">
+  <time datetime="2017-07-26T05:20:46.000Z" itemprop="datePublished">2017-07-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程学习/">编程学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python 文件处理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>Python</code>文件操作学习。</p>
+<a id="more"></a>
+<p>时间 2017/7/26</p>
+<p>文件：python中文件是对象</p>
+<p>一切设备都可以称对象</p>
+<p>文件的打开方式</p>
+<p>open</p>
+<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-7-26/64221742.jpg" alt=""></p>
+<p>读</p>
+<p>read([size])方法         读取文件，读取size字节</p>
+<p>readline([size])      读取一行</p>
+<p>readlines([size])    读取完文件，返回每一行所组成的列表</p>
+<p>文件写入方式</p>
+<p>write(str) 将字符串写入文件</p>
+<p>writelines()      写多行到文本</p>
+<p>文件打开方式</p>
+<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-7-26/17910483.jpg" alt=""></p>
+<p>write写的时候，如果文件不存在可以创建。。</p>
+<pre><code>In [4]: f = open(&apos;1.txt&apos;)
+
+In [5]: c = f.read()
+
+In [6]: c
+Out[6]: &apos;111111111\n2222222\n333333333\n\n&apos;
+
+In [7]: f.write(&quot;test&quot;)
+---------------------------------------------------------------------------
+IOError                                   Traceback (most recent call last)
+&lt;ipython-input-7-ea377aa808ac&gt; in &lt;module&gt;()
+----&gt; 1 f.write(&quot;test&quot;)
+
+IOError: File not open for writing
+
+In [8]: f = open(&apos;2.txt&apos;,&apos;w&apos;)
+
+In [9]: f.write(&quot;test for write&quot;)
+
+In [10]: f.close()
+
+In [11]: ls
+1.txt  2.txt
+</code></pre><p>如果存在这个文件的话，以<code>w</code>的方式写的话，之前的内容会被清空。。。<br>追加的方式打开，之前的内容还会存在。。。</p>
+<pre><code>In [16]: f = open(&apos;1.txt&apos;,&apos;a&apos;)
+
+In [17]: f.write(&quot;test&quot;)
+
+In [18]: f.close()
+
+In [19]: cat 1.txt
+111111111
+2222222
+333333333
+
+test
+</code></pre><p>r+/w+ 即可读又可写</p>
+<pre><code>In [21]: f = open(&apos;1.txt&apos;,&apos;w+&apos;)
+
+In [22]: f.read()
+Out[22]: &apos;&apos;
+
+In [23]: f.write(&apos;write and read&apos;)
+
+In [24]: f.close()
+
+In [25]: cat 1.txt
+write and read
+In [26]: f = open(&apos;1.txt&apos;,&apos;r+&apos;)
+
+In [27]: f.read()
+Out[27]: &apos;write and read&apos;
+
+In [28]: f.write(&apos;2222222&apos;)
+
+In [29]: f.read()
+Out[29]: &apos;&apos;
+
+In [30]: f.close()
+In [31]: cat 1.txt
+write and read2222222
+</code></pre><p>二进制打开。。打开、读取、写入文件。。。</p>
+<ul>
+<li><p>文件的读取方式</p>
+<p>  readline(size)         len(line) &gt; size   return size</p>
+<pre><code>len(line) &lt; size   return len(line)
+</code></pre></li>
+</ul>
+<pre><code>In [47]: f = open(&apos;1.txt&apos;)
+
+In [48]: c = f.readlines()
+
+In [49]: c
+Out[49]: [&apos;write and read2222222111111111\n&apos;, &apos;222222222\n&apos;, &apos;3333333333\n&apos;]
+</code></pre><p>readlines() 读取缓存的</p>
+<p>iter跌代器对文件进行操作，一行的进行操作</p>
+<pre><code>In [1]: f = open(&apos;1.txt&apos;)
+
+In [2]: iter_f = iter(f)
+
+In [3]: lines = 0
+
+In [4]: for line in iter_f:
+   ...:     lines += 1
+   ...:     
+
+In [5]: lines
+Out[5]: 3
+</code></pre><p>文件的写入</p>
+<pre><code>In [7]: f = open(&apos;i.txt&apos;,&apos;w&apos;)
+
+In [8]: f.write(&apos;test write&apos;)
+
+In [9]: f.close()
+
+In [10]: cat i.txt
+test write
+In [11]: f = open(&apos;i.txt&apos;,&apos;w&apos;)
+
+In [12]: f.writelines(&apos;123456&apos;)
+
+In [13]: f.writelines((1,2,3,4,5))
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-13-5997f36e60df&gt; in &lt;module&gt;()
+----&gt; 1 f.writelines((1,2,3,4,5))
+
+TypeError: writelines() argument must be a sequence of strings
+
+In [14]: f.writelines((&apos;1&apos;,&apos;2&apos;,&apos;3&apos;))
+
+In [15]: f.writelines([&apos;1&apos;,&apos;2&apos;,&apos;3&apos;])
+</code></pre><p>写入的时候，要close()或者flush方法。。。</p>
+<p>写文件的过程</p>
+<pre><code>In [18]: f = open(&apos;i.txt&apos;,&apos;w&apos;)
+
+In [19]: f.write(&apos;test for write&apos;)
+
+In [20]: cat i.txt
+
+In [21]: f.flush()
+
+In [22]: cat i.txt
+test for write
+In [23]: f.close()
+</code></pre><p>缓冲的大小</p>
+<ul>
+<li>文件的关闭</li>
+</ul>
+<p>将缓存同步到磁盘</p>
+<p>Linux系统中每个进程打开文件的个数是有限的</p>
+<ul>
+<li>文件写入和读取问题</li>
+</ul>
+<p>写入文件后，必须打开才能读取写入内容</p>
+<p>读取文件后，无法重新再次读取读过的内容</p>
+<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-7-26/80429679.jpg" alt=""></p>
+<ul>
+<li><p>python文件指针操作</p>
+<p>  seek(offset,[,whence]): 移动文件指针</p>
+<pre><code>offset 偏移量，可以为负数
+whence:偏移相对位置
+os.SEEK_SET 相对文件起始位置  0
+os.SEEK_CUR 相对文件当前位置    1
+os.SEEK_END 相对文件结尾位置   2
+</code></pre></li>
+</ul>
+<p>tell()读取所在位置。。。</p>
+<pre><code>In [2]: f = open(&apos;1.txt&apos;,&apos;w&apos;)
+
+In [3]: f.write(&apos;0123456789abcdef&apos;)
+
+In [4]: f.close()
+
+In [5]: cat 1.txt
+0123456789abcdef
+In [6]: import os
+
+In [7]: f = open(&apos;1.txt&apos;,&apos;r+&apos;)
+
+In [8]: f.tell()
+Out[8]: 0L
+
+In [9]: f.read(3)
+Out[9]: &apos;012&apos;
+
+In [10]: f.read(3)
+Out[10]: &apos;345&apos;
+
+In [11]: f.tell()
+Out[11]: 6L
+In [13]: f.seek(0,os.SEEK_SET)
+
+In [14]: f.tell()
+Out[14]: 0L
+</code></pre><ul>
+<li><p>文件属性</p>
+<p>  file.fileno()   文件描述符<br>  file.mode()    文件打开权限<br>  file.encoding:文件编码格式<br>  file.closed:文件是否关闭<br>  文件标准输入： sys.stdin<br>  文件标准输出： sys.stdout<br>  文件标准错误： sys.stderr</p>
+<p>  In [22]: f = open(‘1.txt’)</p>
+<p>  In [23]: f.fileno<br>  Out[23]: <function fileno=""></function></p>
+<p>  In [24]: f.fileno()<br>  Out[24]: 7</p>
+<p>  In [25]: f.mode<br>  Out[25]: ‘r’</p>
+<p>  In [26]: f.closed<br>  Out[26]: False</p>
+</li>
+</ul>
+<pre><code>In [28]: import sys
+
+In [29]: type(sys.stdin)
+Out[29]: file
+
+In [30]: sys.stdin.mode
+Out[30]: &apos;r&apos;
+
+In [31]: sys.stdin.fileno()
+Out[31]: 0
+
+In [32]: a = raw_input(&quot;:&quot;)
+:00000
+
+In [33]: a
+Out[33]: &apos;00000&apos;
+
+In [34]: sys.stdout.mode
+Out[34]: &apos;w&apos;
+
+In [35]: sys.stdout.write(&apos;1000&apos;)
+1000
+In [36]: print &apos;1111111&apos;
+</code></pre><p>文件命令行参数</p>
+<pre><code>  1 #!/usr/bin/python
+  2 
+  3 import sys
+  4 if __name__ == &apos;__main__&apos;:
+  5     print len(sys.argv)
+  6     for arg in sys.argv:
+  7         print arg
+
+
+root@Ubuntu:~/show_me_code/XTeach/file# python arg.py 0 1 2 3
+5
+arg.py
+0
+1
+2
+3
+</code></pre><p>把汉字转换为utf-8,进行写入文件，，，</p>
+<pre><code>In [1]: a = unicode.encode(u&apos;木了&apos;,&apos;utf-8&apos;)
+
+In [2]: a
+Out[2]: &apos;\xe6\x9c\xa8\xe4\xba\x86&apos;
+</code></pre><p>使用codecs模块提供方法创建指定编码格式文件。。</p>
+<pre><code>open(fname,mode,encoding,errors,buffering):
+使用指定编码格式打开文件。。
+
+In [3]: import codecs
+
+In [4]: f = codecs.open(&apos;test.txt&apos;,&apos;w&apos;,&apos;utf-8&apos;)
+
+In [5]: f.write(u&apos;米&apos;)
+
+In [6]: f.close()
+
+In [7]: cat test.txt
+米
+</code></pre><ul>
+<li>Linux文件系统简介</li>
+</ul>
+<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-7-26/78191643.jpg" alt=""></p>
+<p>open、write、read</p>
+<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-7-26/90575233.jpg" alt=""></p>
+<ul>
+<li>os模块打开文件</li>
+</ul>
+<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-7-26/46833136.jpg" alt=""></p>
+<pre><code>In [8]: import os
+
+In [9]: fd = os.open(&apos;immo.txt&apos;,os.O_CREAT | os.O_RDWR)
+
+In [10]: ls
+1.txt  2.txt  arg.py  immo.txt*  i.txt  test.txt
+
+In [11]: n = os.write(fd,&apos;immo&apos;)
+
+In [12]: l = os.lseek(fd,0,os.SEEK_SET)
+
+In [13]: l
+Out[13]: 0L
+
+In [14]: str = os.read(fd,5)
+
+In [15]: str
+Out[15]: &apos;immo&apos;
+
+In [16]: os.close(fd)
+</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//17-7-26/78603138.jpg" alt=""></p>
+<p>os模块可以创建文件以及目录，类似底层命令的操作。。。</p>
+<ul>
+<li>os.path模块方法</li>
+</ul>
+<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-7-26/5103583.jpg" alt=""></p>
+<ul>
+<li>练习</li>
+</ul>
+<p><code>ConfigParser</code></p>
+<pre><code>In [26]: import ConfigParser
+
+In [27]: ConfigParser.
+ConfigParser.ConfigParser
+ConfigParser.DEFAULTSECT
+ConfigParser.DuplicateSectionError
+ConfigParser.Error
+ConfigParser.InterpolationDepthError
+ConfigParser.InterpolationError
+ConfigParser.InterpolationMissingOptionError
+ConfigParser.InterpolationSyntaxError
+ConfigParser.MAX_INTERPOLATION_DEPTH
+ConfigParser.MissingSectionHeaderError
+ConfigParser.NoOptionError
+ConfigParser.NoSectionError
+ConfigParser.ParsingError
+ConfigParser.RawConfigParser
+ConfigParser.SafeConfigParser
+ConfigParser.re
+
+In [27]: cfg = ConfigParser.ConfigParser()
+
+In [28]: cfg.
+cfg.OPTCRE          cfg.getfloat        cfg.read
+cfg.OPTCRE_NV       cfg.getint          cfg.readfp
+cfg.SECTCRE         cfg.has_option      cfg.remove_option
+cfg.add_section     cfg.has_section     cfg.remove_section
+cfg.defaults        cfg.items           cfg.sections
+cfg.get             cfg.options         cfg.set
+cfg.getboolean      cfg.optionxform     cfg.write
+
+In [28]: cfg.
+</code></pre><p>例子</p>
+<pre><code>In [30]: import ConfigParser
+
+In [31]: cfg = ConfigParser.ConfigParser()
+
+In [32]: cat 1.txt
+[userinfo]
+name = zhangsan
+pwd = abo
+
+[study]
+python_base = 15
+linux_base = 15
+
+
+In [33]: cfg.read(&apos;1.txt&apos;)
+Out[33]: [&apos;1.txt&apos;]
+In [35]: cfg.sections()
+Out[35]: [&apos;userinfo&apos;, &apos;study&apos;]
+
+In [36]: for se in cfg.sections():
+   ....:     print se
+   ....:     print cfg.items(se)
+   ....:     
+userinfo
+[(&apos;name&apos;, &apos;zhangsan&apos;), (&apos;pwd&apos;, &apos;abo&apos;)]
+study
+[(&apos;python_base&apos;, &apos;15&apos;), (&apos;linux_base&apos;, &apos;15&apos;)]
+</code></pre><p>修改内容</p>
+<pre><code>In [37]: cfg.set(&apos;userinfo&apos;,&apos;pwd&apos;,&apos;123456&apos;)
+
+In [38]: for se in cfg.sections():
+    print se
+    print cfg.items(se)
+   ....:     
+userinfo
+[(&apos;name&apos;, &apos;zhangsan&apos;), (&apos;pwd&apos;, &apos;123456&apos;)]
+study
+[(&apos;python_base&apos;, &apos;15&apos;), (&apos;linux_base&apos;, &apos;15&apos;)]
+</code></pre><p>可以插入。删除。。</p>
+<pre><code>In [39]: cfg.set(&apos;userinfo&apos;,&apos;email&apos;,&apos;123456@sina.com&apos;)
+
+In [40]: for se in cfg.sections():
+    print se
+    print cfg.items(se)
+   ....:     
+userinfo
+[(&apos;name&apos;, &apos;zhangsan&apos;), (&apos;pwd&apos;, &apos;123456&apos;), (&apos;email&apos;, &apos;123456@sina.com&apos;)]
+study
+[(&apos;python_base&apos;, &apos;15&apos;), (&apos;linux_base&apos;, &apos;15&apos;)]
+</code></pre><p>删除</p>
+<pre><code>In [41]: cfg.remove_option(&apos;userinfo&apos;,&apos;email&apos;)
+Out[41]: True
+
+In [42]: for se in cfg.sections():
+    print se
+    print cfg.items(se)
+   ....:     
+userinfo
+[(&apos;name&apos;, &apos;zhangsan&apos;), (&apos;pwd&apos;, &apos;123456&apos;)]
+study
+[(&apos;python_base&apos;, &apos;15&apos;), (&apos;linux_base&apos;, &apos;15&apos;)]
+</code></pre><p>一个小例子</p>
+<pre><code>1 [userinfo]
+2 name = mulibo
+3 pwd = 123456
+4 
+5 [study]
+6 python_base = 15
+7 linux_base = 15
+8 
+</code></pre><p>代码</p>
+<pre><code>#!/usr/bin/python
+# -*- coding:utf-8 -*-
+import os
+import os.path
+import ConfigParser
+
+&apos;&apos;&apos;
+1: dump ini
+2: del section
+3: del item
+4: modify item
+5: add section
+6: save modify
+&apos;&apos;&apos;
+
+class student_info(object):
+    def __init__(self,recordfile):
+        self.logfile = recordfile      #记录文件名字
+        self.cfg = ConfigParser.ConfigParser()   
+        #使用ConfigParser操作文件，创建对象
+
+    def cfg_load(self):
+        self.cfg.read(self.logfile)      
+
+    def cfg_dump(self):
+        se_list = self.cfg.sections()    #通过section把文件显示出来
+        print &quot;===============&gt;&quot;
+        for se in se_list:
+            print se
+            print self.cfg.items(se)
+        print &quot;&lt;================&quot;
+
+    def delete_item(self,section,key):
+        #删除一个条目
+        self.cfg.remove_option(section,key)
+
+    def delete_section(self,section):
+        #删除一个section
+        self.cfg.remove_section(section)
+
+    def add_section(self,section):
+        self.cfg.add_section(section)
+
+    def set_item(self,section,key,value):
+        self.cfg.set(section,key,value)
+
+    def save(self):
+        #保存文件
+        fp = open(self.logfile,&apos;w&apos;)
+        self.cfg.write(fp)
+        fp.close()
+
+if __name__ == &apos;__main__&apos;:
+    info = student_info(&apos;1.txt&apos;)
+    info.cfg_load()
+    info.cfg_dump()
+    info.set_item(&apos;userinfo&apos;,&apos;pwd&apos;,&apos;abc&apos;)
+    info.cfg_dump()
+    info.add_section(&apos;login&apos;)
+    info.set_item(&apos;login&apos;,&apos;2017-0726&apos;,&apos;20&apos;)
+    info.cfg_dump()
+    info.save()
+</code></pre><p>运行结果</p>
+<pre><code>root@Ubuntu:~/show_me_code/XTeach/file# python file.py 
+===============&gt;
+userinfo
+[(&apos;name&apos;, &apos;mulibo&apos;), (&apos;pwd&apos;, &apos;123456&apos;)]
+study
+[(&apos;python_base&apos;, &apos;15&apos;), (&apos;linux_base&apos;, &apos;15&apos;)]
+&lt;================
+===============&gt;
+userinfo
+[(&apos;name&apos;, &apos;mulibo&apos;), (&apos;pwd&apos;, &apos;abc&apos;)]
+study
+[(&apos;python_base&apos;, &apos;15&apos;), (&apos;linux_base&apos;, &apos;15&apos;)]
+&lt;================
+===============&gt;
+userinfo
+[(&apos;name&apos;, &apos;mulibo&apos;), (&apos;pwd&apos;, &apos;abc&apos;)]
+study
+[(&apos;python_base&apos;, &apos;15&apos;), (&apos;linux_base&apos;, &apos;15&apos;)]
+login
+[(&apos;2017-0726&apos;, &apos;20&apos;)]
+&lt;================
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/26/python文件处理/" data-id="cjj2ofdsp004brbxdpd9eqxqv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/31/Flask_movie/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Flask 构建微电影
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/19/Python错误异常处理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python 异常处理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/WAF/">WAF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全资料汇集/">Web安全资料汇集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全研究/">安全研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术研究/">技术研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/渗透技巧/">渗透技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与数据结构/">算法与数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jboss/">Jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Weblogic/">Weblogic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis-shortname/">iis-shortname</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-log/">ssh-log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bypasswaf/" style="font-size: 17.5px;">Bypasswaf</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Flask/" style="font-size: 15px;">Flask</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Jboss/" style="font-size: 10px;">Jboss</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi/" style="font-size: 20px;">SQLi</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts/" style="font-size: 12.5px;">Struts</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Weblogic/" style="font-size: 12.5px;">Weblogic</a> <a href="/tags/XSS/" style="font-size: 12.5px;">XSS</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iis-shortname/" style="font-size: 10px;">iis-shortname</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssh-log/" style="font-size: 10px;">ssh-log</a> <a href="/tags/翻译/" style="font-size: 17.5px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/28/Wordpress <= 4.9.6 任意文件删除漏洞/">Wordpress 任意文件删除</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/27/recursion_digui/">递归</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/23/链表/">链表</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/18/Weblogic反序列化漏洞(CVE-2018-2628)/">Weblogic反序列化漏洞(CVE-2018-2628)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/11/Web_collect/">Web安全资料汇集</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
