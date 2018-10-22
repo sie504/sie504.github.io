@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>提供推荐 | Sec-note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="根据群体偏好来为人们提供推荐。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提供推荐">
+<meta property="og:url" content="http://yoursite.com/2018/10/22/提供推荐/index.html">
+<meta property="og:site_name" content="Sec-note">
+<meta property="og:description" content="根据群体偏好来为人们提供推荐。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-22T13:47:25.095Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="提供推荐">
+<meta name="twitter:description" content="根据群体偏好来为人们提供推荐。">
+  
+    <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sec-note</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-提供推荐" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/22/提供推荐/" class="article-date">
+  <time datetime="2018-10-22T05:20:46.000Z" itemprop="datePublished">2018-10-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      提供推荐
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 根据群体偏好来为人们提供推荐。</p>
+<a id="more"></a>
+<h3 id="收集偏好"><a href="#收集偏好" class="headerlink" title="收集偏好"></a>收集偏好</h3><p>嵌套的字典表示一个人的偏好。</p>
+<h3 id="相似度评估值"><a href="#相似度评估值" class="headerlink" title="相似度评估值"></a>相似度评估值</h3><h4 id="欧几里德距离"><a href="#欧几里德距离" class="headerlink" title="欧几里德距离"></a>欧几里德距离</h4><p>以经过人们一致评价德物品为坐标轴，然后将参与的人绘制在图上，考察他们之间的距离。</p>
+<p>函数pow(n,2)对某数求平方，并使用sqrt函数求平方根。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(pow(<span class="number">4.5</span><span class="number">-4</span>,<span class="number">2</span>)+pow(<span class="number">1</span><span class="number">-2</span>,<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="number">1.118033988749895</span></span><br></pre></td></tr></table></figure>
+<p>上述可计算距离值，偏好相似的人，距离越短。需要一个函数计算偏好相似的情况下给出越大的值，可以将函数值加1(避免被0整除)，并取其倒数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>/(<span class="number">1</span>+sqrt(pow(<span class="number">4.5</span><span class="number">-4</span>,<span class="number">2</span>)+pow(<span class="number">1</span><span class="number">-2</span>,<span class="number">2</span>)))</span><br><span class="line"><span class="number">0.4721359549995794</span></span><br></pre></td></tr></table></figure>
+<p>这个函数总是返回0到1之间的值，返回1则表示两人具有一样的偏好。</p>
+<p>相似度函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> critics[<span class="string">'Lisa Rose'</span>]:</span><br><span class="line">	 <span class="keyword">print</span> item</span><br><span class="line">    </span><br><span class="line">Lady <span class="keyword">in</span> the Water</span><br><span class="line">Snakes on a Plane</span><br><span class="line">Just My Luck</span><br><span class="line">Superman Returns</span><br><span class="line">The Night Listener</span><br><span class="line">You, Me <span class="keyword">and</span> Dupree</span><br></pre></td></tr></table></figure>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-  </span></span><br><span class="line">  </span><br><span class="line">critics=&#123;<span class="string">'Lisa Rose'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">2.5</span>, <span class="string">'Snakes on a Plane'</span>: <span class="number">3.5</span>,  </span><br><span class="line"> <span class="string">'Just My Luck'</span>: <span class="number">3.0</span>, <span class="string">'Superman Returns'</span>: <span class="number">3.5</span>, <span class="string">'You, Me and Dupree'</span>: <span class="number">2.5</span>,  </span><br><span class="line"> <span class="string">'The Night Listener'</span>: <span class="number">3.0</span>&#125;,  </span><br><span class="line"><span class="string">'Gene Seymour'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">3.0</span>, <span class="string">'Snakes on a Plane'</span>: <span class="number">3.5</span>,  </span><br><span class="line"> <span class="string">'Just My Luck'</span>: <span class="number">1.5</span>, <span class="string">'Superman Returns'</span>: <span class="number">5.0</span>, <span class="string">'The Night Listener'</span>: <span class="number">3.0</span>,  </span><br><span class="line"> <span class="string">'You, Me and Dupree'</span>: <span class="number">3.5</span>&#125;,  </span><br><span class="line"><span class="string">'Michael Phillips'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">2.5</span>, <span class="string">'Snakes on a Plane'</span>: <span class="number">3.0</span>,  </span><br><span class="line"> <span class="string">'Superman Returns'</span>: <span class="number">3.5</span>, <span class="string">'The Night Listener'</span>: <span class="number">4.0</span>&#125;,  </span><br><span class="line"><span class="string">'Claudia Puig'</span>: &#123;<span class="string">'Snakes on a Plane'</span>: <span class="number">3.5</span>, <span class="string">'Just My Luck'</span>: <span class="number">3.0</span>,  </span><br><span class="line"> <span class="string">'The Night Listener'</span>: <span class="number">4.5</span>, <span class="string">'Superman Returns'</span>: <span class="number">4.0</span>,  </span><br><span class="line"> <span class="string">'You, Me and Dupree'</span>: <span class="number">2.5</span>&#125;,  </span><br><span class="line"><span class="string">'Mick LaSalle'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">3.0</span>, <span class="string">'Snakes on a Plane'</span>: <span class="number">4.0</span>,  </span><br><span class="line"> <span class="string">'Just My Luck'</span>: <span class="number">2.0</span>, <span class="string">'Superman Returns'</span>: <span class="number">3.0</span>, <span class="string">'The Night Listener'</span>: <span class="number">3.0</span>,  </span><br><span class="line"> <span class="string">'You, Me and Dupree'</span>: <span class="number">2.0</span>&#125;,  </span><br><span class="line"><span class="string">'Jack Matthews'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">3.0</span>, <span class="string">'Snakes on a Plane'</span>: <span class="number">4.0</span>,  </span><br><span class="line"> <span class="string">'The Night Listener'</span>: <span class="number">3.0</span>, <span class="string">'Superman Returns'</span>: <span class="number">5.0</span>, <span class="string">'You, Me and Dupree'</span>: <span class="number">3.5</span>&#125;,  </span><br><span class="line"><span class="string">'Toby'</span>: &#123;<span class="string">'Snakes on a Plane'</span>:<span class="number">4.5</span>,<span class="string">'You, Me and Dupree'</span>:<span class="number">1.0</span>,<span class="string">'Superman Returns'</span>:<span class="number">4.0</span>&#125;&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"></span><br><span class="line"><span class="comment">#返回一个有关person1和person2的基于距离的相识度评价</span></span><br><span class="line"><span class="comment"># 欧几里得算法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sim_distance</span><span class="params">(prefs,person1,person2)</span>:</span></span><br><span class="line">    <span class="comment"># prefs 字典</span></span><br><span class="line">    <span class="comment"># 得到shared_items 的列表</span></span><br><span class="line">    si = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> prefs[person1]:</span><br><span class="line">        <span class="keyword">if</span> item <span class="keyword">in</span> prefs[person2]:</span><br><span class="line">            si[item] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果两者没有共同之处，则返回 0</span></span><br><span class="line">    <span class="keyword">if</span> len(si) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算所有差值的平方和</span></span><br><span class="line">    sum_of_squares = sum([pow(prefs[person1][item]-prefs[person2][item],<span class="number">2</span>) <span class="keyword">for</span> item <span class="keyword">in</span> prefs[person1] <span class="keyword">if</span> item <span class="keyword">in</span> prefs[person2]])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> / (<span class="number">1</span>+sqrt(sum_of_squares))</span><br></pre></td></tr></table></figure>
+<p>计算两个人的相似度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> recommendations</span><br><span class="line">recommendations.sim_distance(recommendations.critics,<span class="string">'Lisa Rose'</span>,<span class="string">'Gene Seymour'</span>)</span><br><span class="line"><span class="number">0.29429805508554946</span></span><br></pre></td></tr></table></figure>
+<h4 id="皮尔逊相关度评价"><a href="#皮尔逊相关度评价" class="headerlink" title="皮尔逊相关度评价"></a>皮尔逊相关度评价</h4><p>判断两组数据与某一条直线拟合程度的相似度。</p>
+<p>如果两位评价者对所有的评分情况都相同，那么这条直线将成为对角线。</p>
+<p>首先会找出两位评论者都曾评价过的物品，然后计算两者的评分总和与平方和，并求得评分的乘积和。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"></span><br><span class="line">File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: sum expected at most <span class="number">2</span> arguments, got <span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#皮尔逊算法</span></span><br><span class="line"><span class="comment">#计算 p1和p2的相关系数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sim_person</span><span class="params">(prefs,p1,p2)</span>:</span></span><br><span class="line">    <span class="comment"># 得到双方都评价过的物品列表</span></span><br><span class="line">    si = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> prefs[p1]:</span><br><span class="line">        <span class="keyword">if</span> item <span class="keyword">in</span> prefs[p2]:</span><br><span class="line">            si[item] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 得到列表元素的个数</span></span><br><span class="line">    n = len(si)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#如果两者没有相同之处，则返回 1</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#对所有偏好求和</span></span><br><span class="line">    sum1 = sum([prefs[p1][it] <span class="keyword">for</span> it <span class="keyword">in</span> si])</span><br><span class="line">    sum2 = sum([prefs[p2][it] <span class="keyword">for</span> it <span class="keyword">in</span> si])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#求平方和</span></span><br><span class="line">    sum1Sq = sum([pow(prefs[p1][it],<span class="number">2</span>) <span class="keyword">for</span> it <span class="keyword">in</span> si])</span><br><span class="line">    sum2Sq = sum([pow(prefs[p2][it],<span class="number">2</span>) <span class="keyword">for</span> it <span class="keyword">in</span> si])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#求乘积和</span></span><br><span class="line">    pSum = sum(prefs[p1][it]*prefs[p2][it] <span class="keyword">for</span> it <span class="keyword">in</span> si)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#计算皮尔逊评价值</span></span><br><span class="line">    num = pSum - (sum1*sum2/n)</span><br><span class="line">    den = sqrt((sum1Sq-pow(sum1,<span class="number">2</span>)/n)*(sum2Sq-pow(sum2,<span class="number">2</span>)/n))</span><br><span class="line">    <span class="keyword">if</span> den == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    r = num/den</span><br><span class="line">    <span class="keyword">return</span> r</span><br></pre></td></tr></table></figure>
+<p>计算：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> recommendations</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>recommendations.sim_person(recommendations.critics,<span class="string">'Lisa Rose'</span>,<span class="string">'Gene Seymour'</span>)</span><br><span class="line"><span class="number">0.39605901719066977</span></span><br></pre></td></tr></table></figure>
+<p>寻找与自己有相似品味的影评者。以下的函数中的一个参数为可选的相似性参数，该参数指向一个实际的算法函数。</p>
+<p>Python 列表推导式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从反映偏好的字典中返回最匹配者。</span></span><br><span class="line"><span class="comment">#返回结果中的个数和相似度函数均为可选参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">topMatches</span><span class="params">(prefs,person,n=<span class="number">5</span>,similarity=sim_person)</span>:</span></span><br><span class="line">    scores = [(similarity(prefs,person,other),other) <span class="keyword">for</span> other <span class="keyword">in</span> prefs <span class="keyword">if</span> other!=person]</span><br><span class="line"></span><br><span class="line"><span class="comment">#对列表进行排序，评价值最高者排在前面</span></span><br><span class="line">    scores.sort()</span><br><span class="line">    scores.reverse()</span><br><span class="line">    <span class="keyword">return</span> scores[<span class="number">0</span>:n]</span><br></pre></td></tr></table></figure>
+<p>计算：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> recommendations</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>recommendations.topMatches(recommendations.critics,<span class="string">'Toby'</span>,n=<span class="number">3</span>)</span><br><span class="line">[(<span class="number">0.9912407071619299</span>, <span class="string">'Lisa Rose'</span>), (<span class="number">0.9244734516419049</span>, <span class="string">'Mick LaSalle'</span>), (<span class="number">0.8934051474415647</span>, <span class="string">'Claudia Puig'</span>)]</span><br></pre></td></tr></table></figure>
+<h4 id="推荐物品"><a href="#推荐物品" class="headerlink" title="推荐物品"></a>推荐物品</h4><p>通过一个加权的评价值为影片打分，评论者的评分结果因此而形成了先后的排名。</p>
+<p>首先取得所有其他评论者的评价结果，借此得到相似度后，在乘以他们为每部影片所给的评价值。</p>
+<p>Sum(相似度*评价值)/sum(相似度)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#推荐物品</span></span><br><span class="line"><span class="comment">#利用所有他人评价值的加权平均，为某人提供建议</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getRecommendations</span><span class="params">(prefs,person,similarity=sim_person)</span>:</span></span><br><span class="line">    totals = &#123;&#125;</span><br><span class="line">    simSums= &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> other <span class="keyword">in</span> prefs:</span><br><span class="line">        <span class="comment">#不和自己比较</span></span><br><span class="line">        <span class="keyword">if</span> other == person:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        sim=similarity(prefs,person,other)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#忽略评价值为零或小于零的情况</span></span><br><span class="line">        <span class="keyword">if</span> sim&lt;=<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> prefs[other]:</span><br><span class="line">            <span class="comment">#只对自己还未曾看过的电影进行评价</span></span><br><span class="line">            <span class="keyword">if</span> item <span class="keyword">not</span> <span class="keyword">in</span> prefs[person] <span class="keyword">or</span> prefs[person][item] == <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># 相似度 * 评价值</span></span><br><span class="line">                totals.setdefault(item,<span class="number">0</span>)</span><br><span class="line">                totals[item]+=prefs[other][item]*sim</span><br><span class="line">                <span class="comment">#相似度之和</span></span><br><span class="line">                simSums.setdefault(item,<span class="number">0</span>)</span><br><span class="line">                simSums[item]+=sim</span><br><span class="line"></span><br><span class="line">    <span class="comment">#建立一个归一化的列表</span></span><br><span class="line">    rankings = [(total/simSums[item],item) <span class="keyword">for</span> item,total <span class="keyword">in</span> totals.items()]</span><br><span class="line"></span><br><span class="line">    <span class="comment">#返回经过排序的列表</span></span><br><span class="line">    rankings.sort()</span><br><span class="line">    rankings.reverse()</span><br><span class="line">    <span class="keyword">return</span> rankings</span><br></pre></td></tr></table></figure>
+<p>计算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> recommendations</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>recommendations.getRecommendations(recommendations.critics,<span class="string">'Toby'</span>)</span><br><span class="line">[(<span class="number">3.3477895267131013</span>, <span class="string">'The Night Listener'</span>), (<span class="number">2.8325499182641614</span>, <span class="string">'Lady in the Water'</span>), (<span class="number">2.5309807037655645</span>, <span class="string">'Just My Luck'</span>)]</span><br></pre></td></tr></table></figure>
+<h4 id="匹配商品"><a href="#匹配商品" class="headerlink" title="匹配商品"></a>匹配商品</h4><p>那些商品是彼此相近的。</p>
+<p>可以通过哪些人喜欢某一特定物品，以及这些人喜欢哪些其他物品决定相似度。这和之前决定人和人之间相似度的方法是一样的—只需将人员和物品对换即可。</p>
+<p>现在以电影作为键，评论者和评分为值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#字典转换。键值转换</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transformPrefs</span><span class="params">(prefs)</span>:</span></span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> person <span class="keyword">in</span> prefs:</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> prefs[person]:</span><br><span class="line">            result.setdefault(item,&#123;&#125;)</span><br><span class="line"></span><br><span class="line">            <span class="comment">#将物品和人员对调</span></span><br><span class="line">            result[item][person] = prefs[person][item]</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> recommendations</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>movies = recommendations.transformPrefs(recommendations.critics)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>recommendations.topMatches(movies,<span class="string">'Superman Returns'</span>)</span><br><span class="line">[(<span class="number">0.6579516949597695</span>, <span class="string">'You, Me and Dupree'</span>), (<span class="number">0.4879500364742689</span>, <span class="string">'Lady in the Water'</span>), (<span class="number">0.11180339887498941</span>, <span class="string">'Snakes on a Plane'</span>), (<span class="number">-0.1798471947990544</span>, <span class="string">'The Night Listener'</span>), (<span class="number">-0.42289003161103106</span>, <span class="string">'Just My Luck'</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> movies</span><br><span class="line">&#123;<span class="string">'Lady in the Water'</span>: &#123;<span class="string">'Lisa Rose'</span>: <span class="number">2.5</span>, <span class="string">'Jack Matthews'</span>: <span class="number">3.0</span>, <span class="string">'Michael Phillips'</span>: <span class="number">2.5</span>, <span class="string">'Gene Seymour'</span>: <span class="number">3.0</span>, <span class="string">'Mick LaSalle'</span>: <span class="number">3.0</span>&#125;, <span class="string">'Snakes on a Plane'</span>: &#123;<span class="string">'Jack Matthews'</span>: <span class="number">4.0</span>, <span class="string">'Mick LaSalle'</span>: <span class="number">4.0</span>, <span class="string">'Claudia Puig'</span>: <span class="number">3.5</span>, <span class="string">'Lisa Rose'</span>: <span class="number">3.5</span>, <span class="string">'Toby'</span>: <span class="number">4.5</span>, <span class="string">'Gene Seymour'</span>: <span class="number">3.5</span>, <span class="string">'Michael Phillips'</span>: <span class="number">3.0</span>&#125;, <span class="string">'Just My Luck'</span>: &#123;<span class="string">'Claudia Puig'</span>: <span class="number">3.0</span>, <span class="string">'Lisa Rose'</span>: <span class="number">3.0</span>, <span class="string">'Gene Seymour'</span>: <span class="number">1.5</span>, <span class="string">'Mick LaSalle'</span>: <span class="number">2.0</span>&#125;, <span class="string">'Superman Returns'</span>: &#123;<span class="string">'Jack Matthews'</span>: <span class="number">5.0</span>, <span class="string">'Mick LaSalle'</span>: <span class="number">3.0</span>, <span class="string">'Claudia Puig'</span>: <span class="number">4.0</span>, <span class="string">'Lisa Rose'</span>: <span class="number">3.5</span>, <span class="string">'Toby'</span>: <span class="number">4.0</span>, <span class="string">'Gene Seymour'</span>: <span class="number">5.0</span>, <span class="string">'Michael Phillips'</span>: <span class="number">3.5</span>&#125;, <span class="string">'The Night Listener'</span>: &#123;<span class="string">'Jack Matthews'</span>: <span class="number">3.0</span>, <span class="string">'Mick LaSalle'</span>: <span class="number">3.0</span>, <span class="string">'Claudia Puig'</span>: <span class="number">4.5</span>, <span class="string">'Lisa Rose'</span>: <span class="number">3.0</span>, <span class="string">'Gene Seymour'</span>: <span class="number">3.0</span>, <span class="string">'Michael Phillips'</span>: <span class="number">4.0</span>&#125;, <span class="string">'You, Me and Dupree'</span>: &#123;<span class="string">'Jack Matthews'</span>: <span class="number">3.5</span>, <span class="string">'Mick LaSalle'</span>: <span class="number">2.0</span>, <span class="string">'Claudia Puig'</span>: <span class="number">2.5</span>, <span class="string">'Lisa Rose'</span>: <span class="number">2.5</span>, <span class="string">'Toby'</span>: <span class="number">1.0</span>, <span class="string">'Gene Seymour'</span>: <span class="number">3.5</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="基于物品的过滤"><a href="#基于物品的过滤" class="headerlink" title="基于物品的过滤"></a>基于物品的过滤</h4><p>对于一个大型的网站，将一个用户和其他用户进行比较，然后对每位用户评过分的商品进行比较，其速度太慢。之前是采用<strong>基于用户的协作过滤</strong>,还有一种<strong>基于物品的协作过滤</strong>。在拥有大量数据集的情况下，基于物品的协作过滤能够得出更好的结论，且允许将大量计算任务预先执行，从而给需要推荐的用户更快得到想要的结果。</p>
+<p>思路，为每件物品预先计算好最为相近的其他物品。为某位用户提供推荐时，查看他曾经评价过的物品，从中选出排位靠前者，再构造一个加权列表，其中包含了与这些选中物品最为相近的其他物品。物品的比较不会向用户间的比较那么频繁变化。</p>
+<h4 id="构建物品比较数据集"><a href="#构建物品比较数据集" class="headerlink" title="构建物品比较数据集"></a>构建物品比较数据集</h4><p>构建一个包含相近物品的完整数据集。构建完后，可以重复使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def calculateSimilarItems(prefs,n=10):</span><br><span class="line">    #建议字典，以给出与这些物品最为相近的其他物品</span><br><span class="line">    result = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    #以物品为中心对偏好矩阵实施倒置处理</span><br><span class="line">    itemPrefs = transformPrefs(prefs)</span><br><span class="line">    c = 0</span><br><span class="line">    for item in itemPrefs:</span><br><span class="line">        #根据大数据集更新状态变量</span><br><span class="line">        c+=1</span><br><span class="line">        if c%100==0:</span><br><span class="line">            print &quot;%d / %d&quot; % (c,len(itemPrefs))</span><br><span class="line"></span><br><span class="line">        #寻找最为相近的物品</span><br><span class="line">        scores = topMatches(itemPrefs,item,n=n,similarity=sim_distance)</span><br><span class="line">        result[item]=scores</span><br><span class="line">    return result</span><br></pre></td></tr></table></figure>
+<p>该函数首先利用此前定义过的<code>transformPrefs</code>函数，对反映评价值的字典进行倒置处理，从而得到有关物品及其用户评价情况的列表。程序又循环遍历每项物品，并将转换的字典传入<code>topMatches</code>函数中，求得最为先进的物品及其相似度评价值。最后建立了一个包含物品及其最相近物品列表的字典。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> recommendations</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>itemsim = recommendations.calculateSimilarItems(recommendations.critics)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>itemsim</span><br><span class="line">&#123;<span class="string">'Lady in the Water'</span>: [(<span class="number">0.4494897427831781</span>, <span class="string">'You, Me and Dupree'</span>), (<span class="number">0.38742588672279304</span>, <span class="string">'The Night Listener'</span>), (<span class="number">0.3483314773547883</span>, <span class="string">'Snakes on a Plane'</span>), (<span class="number">0.3483314773547883</span>, <span class="string">'Just My Luck'</span>), (<span class="number">0.2402530733520421</span>, <span class="string">'Superman Returns'</span>)],</span><br><span class="line"> <span class="string">'Snakes on a Plane'</span>: [(<span class="number">0.3483314773547883</span>, <span class="string">'Lady in the Water'</span>), (<span class="number">0.32037724101704074</span>, <span class="string">'The Night Listener'</span>), (<span class="number">0.3090169943749474</span>, <span class="string">'Superman Returns'</span>), (<span class="number">0.2553967929896867</span>, <span class="string">'Just My Luck'</span>), (<span class="number">0.1886378647726465</span>, <span class="string">'You, Me and Dupree'</span>)],</span><br><span class="line"> <span class="string">'Just My Luck'</span>: [(<span class="number">0.3483314773547883</span>, <span class="string">'Lady in the Water'</span>), (<span class="number">0.32037724101704074</span>, <span class="string">'You, Me and Dupree'</span>), (<span class="number">0.2989350844248255</span>, <span class="string">'The Night Listener'</span>), (<span class="number">0.2553967929896867</span>, <span class="string">'Snakes on a Plane'</span>), (<span class="number">0.20799159651347807</span>, <span class="string">'Superman Returns'</span>)], </span><br><span class="line"> <span class="string">'Superman Returns'</span>: [(<span class="number">0.3090169943749474</span>, <span class="string">'Snakes on a Plane'</span>), (<span class="number">0.252650308587072</span>, <span class="string">'The Night Listener'</span>), (<span class="number">0.2402530733520421</span>, <span class="string">'Lady in the Water'</span>), (<span class="number">0.20799159651347807</span>, <span class="string">'Just My Luck'</span>), (<span class="number">0.1918253663634734</span>, <span class="string">'You, Me and Dupree'</span>)], <span class="string">'You, Me and Dupree'</span>: [(<span class="number">0.4494897427831781</span>, <span class="string">'Lady in the Water'</span>), (<span class="number">0.32037724101704074</span>, <span class="string">'Just My Luck'</span>), (<span class="number">0.29429805508554946</span>, <span class="string">'The Night Listener'</span>), (<span class="number">0.1918253663634734</span>, <span class="string">'Superman Returns'</span>), (<span class="number">0.1886378647726465</span>, <span class="string">'Snakes on a Plane'</span>)], <span class="string">'The Night Listener'</span>: [(<span class="number">0.38742588672279304</span>, <span class="string">'Lady in the Water'</span>), (<span class="number">0.32037724101704074</span>, <span class="string">'Snakes on a Plane'</span>), (<span class="number">0.2989350844248255</span>, <span class="string">'Just My Luck'</span>), (<span class="number">0.29429805508554946</span>, <span class="string">'You, Me and Dupree'</span>), (<span class="number">0.252650308587072</span>, <span class="string">'Superman Returns'</span>)]&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="获得推荐"><a href="#获得推荐" class="headerlink" title="获得推荐"></a>获得推荐</h4><p>取得用户评价过的所有商品，找出其相近物品，并根据相似度来进行加权。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">def getRecommendedItems(prefs,itemMatch,user):</span><br><span class="line">    userRatings = prefs[user]</span><br><span class="line">    scores = &#123;&#125;</span><br><span class="line">    totalSim = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    #循环遍历由当前用户评分的物品</span><br><span class="line">    for (item,rating) in userRatings.items():</span><br><span class="line">        #循环遍历与当前物品相近的物品</span><br><span class="line">        for(similarity,item2) in itemMatch[item]:</span><br><span class="line">            #如果该用户已经对当前物品做过评价，则将其忽略</span><br><span class="line">                if item2 in userRatings: continue</span><br><span class="line"></span><br><span class="line">                #评价值与相似度的加权之和</span><br><span class="line">                scores.setdefault(item2,0)</span><br><span class="line">                scores[item2]+= similarity*rating</span><br><span class="line"></span><br><span class="line">                #全部相似度之和</span><br><span class="line">                totalSim.setdefault(item2,0)</span><br><span class="line">                totalSim[item2]+= similarity</span><br><span class="line"></span><br><span class="line">    #将每个合计值除以加权和，求出平均值</span><br><span class="line">    rankings = [(score/totalSim[item],item) for item,score in scores.items()]</span><br><span class="line"></span><br><span class="line">    #按最高值到最低值的顺序，返回平均值</span><br><span class="line">    rankings.sort()</span><br><span class="line">    rankings.reverse()</span><br><span class="line">    return rankings</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/10/22/提供推荐/" data-id="cjnkcwao50051xtxd3wc84who" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/23/业务安全之密码重置和爆破/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">密码重置学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/WAF/">WAF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全资料汇集/">Web安全资料汇集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全研究/">安全研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术研究/">技术研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/渗透技巧/">渗透技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与数据结构/">算法与数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jboss/">Jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Weblogic/">Weblogic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis-shortname/">iis-shortname</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-log/">ssh-log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/业务逻辑安全/">业务逻辑安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bypasswaf/" style="font-size: 17.5px;">Bypasswaf</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Flask/" style="font-size: 15px;">Flask</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Jboss/" style="font-size: 10px;">Jboss</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi/" style="font-size: 20px;">SQLi</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts/" style="font-size: 12.5px;">Struts</a> <a href="/tags/Tomcat/" style="font-size: 12.5px;">Tomcat</a> <a href="/tags/Weblogic/" style="font-size: 12.5px;">Weblogic</a> <a href="/tags/XSS/" style="font-size: 12.5px;">XSS</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iis-shortname/" style="font-size: 10px;">iis-shortname</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssh-log/" style="font-size: 10px;">ssh-log</a> <a href="/tags/业务逻辑安全/" style="font-size: 10px;">业务逻辑安全</a> <a href="/tags/翻译/" style="font-size: 17.5px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/22/提供推荐/">提供推荐</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/23/业务安全之密码重置和爆破/">密码重置学习</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/18/Apache_tomcat/">Apache_tomcat 安全问题</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/28/Wordpress <= 4.9.6 任意文件删除漏洞/">Wordpress 任意文件删除</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/27/recursion_digui/">递归</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Sec-note<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
