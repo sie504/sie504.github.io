@@ -14,18 +14,18 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="PHP文件上传漏洞的浅析。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-26/45126086.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-26/2238421.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-30/40661043.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/79648453.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/83332319.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/86380888.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-25/70842861.jpg">
-<meta property="og:updated_time" content="2018-01-15T08:47:44.000Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-26/45126086.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-26/2238421.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-30/40661043.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/79648453.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/83332319.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/86380888.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/70842861.jpg">
+<meta property="og:updated_time" content="2018-12-11T12:38:53.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP文件上传漏洞浅析">
 <meta name="twitter:description" content="PHP文件上传漏洞的浅析。">
-<meta name="twitter:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-26/45126086.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-26/45126086.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -138,19 +138,19 @@ if($error==UPLOAD_ERR_OK){
 
 }
 </code></pre><p>上面是实现文件上传的测试代码，对上传文件没有进行任何的限制，可以进行任意文件的上传，比如以下上传一个<code>php</code>文件。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-26/45126086.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-26/45126086.jpg" alt=""></p>
 <p>上传一个php文件，会显示文件test.php上传成功。然后访问该文件。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-26/2238421.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-26/2238421.jpg" alt=""></p>
 <p>上面是只是一个理想的测试环境，来实现一下由于文件上传存在的一些漏洞。可能在实际环境中有多种的限制，比如对上传文件黑/白名单的限制、上传后文件名的重命名、可写目录没有执行权限等。</p>
 <p>接下来复现<code>phpCollab 2.5.1</code>任意文件上传的漏洞，学习一下其中的原理。</p>
 <p><strong>phpCollab 2.5.1 - Arbitrary File Upload</strong></p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-30/40661043.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-30/40661043.jpg" alt=""></p>
 <p>下载对应的版本，安装。登录后台里面。在客户–&gt;客户组织–&gt;标志处，上传文件的地方存在任意文件上传漏洞。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-12/79648453.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/79648453.jpg" alt=""></p>
 <p>在标志处可以进行任意文件上传，我们上传一个<code>php</code>后缀的文件，然后通过前端调试分析，可知上传后的文件路径以及名字。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-12/83332319.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/83332319.jpg" alt=""></p>
 <p>最后，可以访问到上传后的文件。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-12/86380888.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/86380888.jpg" alt=""></p>
 <p>其中漏洞点在<code>/clients/editclient.php</code>文件的第63~70行。</p>
 <pre><code>$extension = strtolower( substr( strrchr($_FILES[&apos;upload&apos;][&apos;name&apos;], &quot;.&quot;) ,1) ); // 后缀名字 substr(string,start,length)
 
@@ -258,7 +258,7 @@ if($error==UPLOAD_ERR_OK){
 <p>4：提交这个请求</p>
 <p>5：从目标服务器上下载上传的我呢件，验证它是否包含有效的载荷。是否在目标服务器上能成功执行。</p>
 </blockquote>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-25/70842861.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/70842861.jpg" alt=""></p>
 <p><strong>验证上传文件</strong></p>
 <p>不管你在上一步使用什么方法(EXIF或修改Burp请求)，校验一个本地上传的和上传到目标服务器的文件，是否匹配。</p>
 <h5 id="服务器端命令执行技术"><a href="#服务器端命令执行技术" class="headerlink" title="服务器端命令执行技术"></a>服务器端命令执行技术</h5><p>如果能成功上传一个<code>shell</code>到目标的web服务器上，你可以尝试以下技术来执行上传的<code>shell</code>。</p>
@@ -282,7 +282,7 @@ if($error==UPLOAD_ERR_OK){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/01/文件上传漏洞分析/" data-id="cjnkdsvlu005408xdq5l2i3qd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/01/文件上传漏洞分析/" data-id="cjpjt0n6f004v4dxduvcm8bhf" class="article-share-link">Share</a>
       
       
     </footer>

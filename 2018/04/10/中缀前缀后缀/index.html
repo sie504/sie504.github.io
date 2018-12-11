@@ -14,17 +14,17 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="栈的应用，中缀前缀和后缀。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-4-10/62655936.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-4-10/41825358.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-4-10/47250640.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-4-10/5765312.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-4-17/4499705.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-4-17/7460087.jpg">
-<meta property="og:updated_time" content="2018-04-19T05:14:30.000Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-10/62655936.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-10/41825358.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-10/47250640.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-10/5765312.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-17/4499705.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-17/7460087.jpg">
+<meta property="og:updated_time" content="2018-12-11T12:38:53.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="中缀前缀和后缀">
 <meta name="twitter:description" content="栈的应用，中缀前缀和后缀。">
-<meta name="twitter:image" content="http://opmi2ydgh.bkt.clouddn.com//18-4-10/62655936.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-10/62655936.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -117,12 +117,12 @@
 </code></pre><h5 id="中缀表达式转换前缀和后缀"><a href="#中缀表达式转换前缀和后缀" class="headerlink" title="中缀表达式转换前缀和后缀"></a>中缀表达式转换前缀和后缀</h5><p>使用特定方法可以让中缀转换为前缀和后缀。考虑使用算法来执行转换，允许任何复杂表达式转换。</p>
 <p>使用的方法是用完全括号表达式的概念。比如 <code>A + B * C</code>写成 <code>(A + (B * C))</code>，明确标识乘法优先于加法。每个括号对还表示操作数对的开始和结束，中间有相应的运算符。</p>
 <p>看到 <code>(B * C)</code>的右括号。将乘法移到那个位置，并删除对应的左括号。得到 <code>B C *</code>，实际上已经将其转换为后缀符号。如果加法运算符也移动到相应的位置并且删除匹配的左括号，将得到后缀表达式。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-4-10/62655936.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-10/62655936.jpg" alt=""></p>
 <p>如果不是将符号移动到右括号的位置，将其向左移动，得到前缀符号。圆括号的位置实际是包含的运算符的最终位置的线索。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-4-10/41825358.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-10/41825358.jpg" alt=""></p>
 <p>为了转换表达式，无论对前缀还是后缀，先根据操作的顺序把表达式转换成完全括号表达式。然后将包含的运算符移到左或右括号的位置，取决于需要前缀或后缀符号。</p>
 <p>这里面有个更复杂的例子, <code>(A + B) * C - (D - E) * (F + G)</code> ， 以下显示了如何转换为后缀和前缀。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-4-10/47250640.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-10/47250640.jpg" alt=""></p>
 <h5 id="中缀转后缀通用法"><a href="#中缀转后缀通用法" class="headerlink" title="中缀转后缀通用法"></a>中缀转后缀通用法</h5><p>开发一个算法将任何中缀表达式转换为后缀表达式。</p>
 <p><code>A + B * C</code> 转换为后缀为 <code>A B C * +</code>。</p>
 <p>在后缀表达式中，+在结束位置，因为下一个运算符 *优先于加法。原始表达式中的运算符的顺序在生成的后缀表达式中相反。</p>
@@ -147,7 +147,7 @@
 </li>
 </ol>
 <p>对表达式<code>A * B + C * D</code> 的转换算法。注意，第一个 <em> 在看到 + 运算符时被删除。另外，当第二个 </em> 出现时， + 保留在栈中，因为乘法优先级高于加法。在中缀表达式的末尾，栈被弹出两次，删除两个运算符，并将 + 作为后缀表达式中的最后一个运算符。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-4-10/5765312.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-10/5765312.jpg" alt=""></p>
 <p>使用一个名为<code>prec</code>的字典来保存运算符的优先级。这个字典将每个运算符映射到一个整数，可以与其他运算符的优先级进行比较。左括号被赋予最低值。这样与其进行比较的任何运算符都将具有更高的优先级，将放置它的顶部。</p>
 <p>栈类</p>
 <pre><code># -*- coding:utf-8 -*-
@@ -223,10 +223,10 @@ print infixToPostfix(&quot;A * B + C * D&quot;)
 <p>后缀表达式  <code>4 5 6 * +</code></p>
 <p>首先的操作数是 4 和 5，此时不确定如何处理，直到看到下一个符号，将其放置到栈上，确保它们在下一个运算符出现时可用。</p>
 <p>4 和 5之后，下一个符号是操作数，放入栈中，压栈，并检测下一个符号，直到看到是 <code>*</code>，将栈中最近的操作数相乘。通过弹出两次栈，得到正确的操作数，然后执行乘法。 5 * 6 =30 </p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-4-17/4499705.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-17/4499705.jpg" alt=""></p>
 <p>稍微复杂的示例。</p>
 <p><code>7 8 + 3 2 + /</code><br>后缀表达式的运算符的顺序没有改变，只是位置变了。当用于除法的操作数从栈弹出时，它们需要反转。 <code>15/5</code>和<code>5/15</code>不同，必须保证操作数的顺序不会变。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-4-17/7460087.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-17/7460087.jpg" alt=""></p>
 <p>算法构思</p>
 <p>假设后缀表达式是一个由空格分隔的标记字符串。运算符为 <code>*,/,+和 -</code>，操作数假定为单个整数值，输出是一个整数结果。</p>
 <ol>
@@ -270,7 +270,7 @@ else:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/10/中缀前缀后缀/" data-id="cjnkdsvl3004208xdru0s6co6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/10/中缀前缀后缀/" data-id="cjpjt0n6c004o4dxdppmg3rwp" class="article-share-link">Share</a>
       
       
     </footer>

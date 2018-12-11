@@ -15,11 +15,11 @@
 <meta property="og:description" content="XXE漏洞学习。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p2.qhimg.com/t01c0144f2f69a0c5ab.png">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-8-31/58658848.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-9-5/63739933.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-9-5/81480846.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-9-7/66825030.jpg">
-<meta property="og:updated_time" content="2018-03-12T08:09:36.000Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-8-31/58658848.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-5/63739933.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-5/81480846.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-7/66825030.jpg">
+<meta property="og:updated_time" content="2018-12-11T12:38:53.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XXE 漏洞学习">
 <meta name="twitter:description" content="XXE漏洞学习。">
@@ -121,7 +121,7 @@
 <p>由于DTD，不同组织的人可以使用一个通用DTD来交换数据</p>
 <p>应用程序可以使用一个标准DTD校验从外部世界接收来的XML数据是否有效。。(作为一个标准，校验从外部接收的XML数据是否合法)</p>
 <h5 id="XML实体"><a href="#XML实体" class="headerlink" title="XML实体"></a>XML实体</h5><p>XML实体可以分为：普通实体，参数实体</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-8-31/58658848.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-8-31/58658848.jpg" alt=""></p>
 <p>DTD标签的解析。文档类型定义。  DTD–解释XML。。</p>
 <ul>
 <li><p>内部DTD文档  </p>
@@ -221,9 +221,9 @@ Find the secret URL using the previous bug
 Login as the user admin using the arbitrary file access
 </code></pre><p>检测是否存在XXE，一是是否解析XML文件，而是是否可以引用外部实体。</p>
 <p>请求一下外部实体</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-9-5/63739933.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-5/63739933.jpg" alt=""></p>
 <p>外部实体的日志信息</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-9-5/81480846.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-5/81480846.jpg" alt=""></p>
 <p>通过找本地服务器的监听内容，表明目标服务器会解析XML内容，并发出了外部实体请求。</p>
 <ul>
 <li>任意文件读取</li>
@@ -324,7 +324,7 @@ function translate($str){
     }
 ?&gt;
 </code></pre><p>访问一下</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-9-7/66825030.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-7/66825030.jpg" alt=""></p>
 <hr>
 <p><a href="https://secure.php.net/function.simplexml-load-string" target="_blank" rel="noopener">simplexml_load_string</a></p>
 <hr>
@@ -361,7 +361,7 @@ function translate($str){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/04/XXE漏洞学习/" data-id="cjnkdsvks003m08xd92g0rizc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/04/XXE漏洞学习/" data-id="cjpjt0n6600494dxd3wumhppg" class="article-share-link">Share</a>
       
       
     </footer>

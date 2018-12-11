@@ -14,15 +14,15 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="目录遍历漏洞浅析.">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-9-26/49268546.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-9-26/46312537.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-9-26/5696115.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//17-9-26/35567905.jpg">
-<meta property="og:updated_time" content="2018-01-15T08:53:08.000Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-26/49268546.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-26/46312537.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-26/5696115.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-26/35567905.jpg">
+<meta property="og:updated_time" content="2018-12-11T12:38:53.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="目录遍历漏洞浅析">
 <meta name="twitter:description" content="目录遍历漏洞浅析.">
-<meta name="twitter:image" content="http://opmi2ydgh.bkt.clouddn.com//17-9-26/49268546.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-26/49268546.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -120,15 +120,15 @@ if($filename){
 ?&gt;
 </code></pre><h5 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h5><p><strong>正常请求1</strong></p>
 <pre><code>192.168.145.225/dir.php?filename=test.txt
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//17-9-26/49268546.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-26/49268546.jpg" alt=""></p>
 <p><strong>攻击—1</strong></p>
 <p>payload</p>
 <pre><code>192.168.145.225/dir.php?filename=../waf.txt
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//17-9-26/46312537.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-26/46312537.jpg" alt=""></p>
 <p><strong>攻击—2</strong></p>
 <p>payload</p>
 <pre><code>192.168.145.225/dir.php?filename=../../../etc/passwd
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//17-9-26/5696115.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-26/5696115.jpg" alt=""></p>
 <p><strong>攻击—3</strong></p>
 <pre><code>http://192.168.86.208/dir.php?filename=.\./.\./etc/passwd
 </code></pre><p>这一种的<code>payload</code>在特殊的场景下可以执行成功，是因为该程序在代码方面对其中的<code>\</code>或者其他字符有过滤或者其他操作。</p>
@@ -147,7 +147,7 @@ else{
         echo $content;
         }
     }
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//17-9-26/35567905.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-26/35567905.jpg" alt=""></p>
 <p>以上只是简单的测试，严格的生产环境需要特殊来设置。</p>
 <h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://www.lijiejie.com/python-django-directory-traversal/" target="_blank" rel="noopener">python和django的目录遍历漏洞(任意文件读取)</a></p>
 <p><a href="http://yttitan.blog.51cto.com/70821/1576526" target="_blank" rel="noopener">目录遍历攻击</a></p>
@@ -157,7 +157,7 @@ else{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/26/目录遍历漏洞浅析/" data-id="cjnkdsvla004e08xdhchbqy88" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/26/目录遍历漏洞浅析/" data-id="cjpjt0n57002c4dxdcg47idgj" class="article-share-link">Share</a>
       
       
     </footer>

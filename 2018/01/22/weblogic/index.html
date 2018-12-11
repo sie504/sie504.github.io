@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="Weblogic漏洞被利用来挖矿，客户受到了影响。学习一下其中的原理。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-22/59187743.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-22/71865798.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-22/13275873.jpg">
-<meta property="og:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-22/34403717.jpg">
-<meta property="og:updated_time" content="2018-01-26T02:23:12.000Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-22/59187743.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-22/71865798.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-22/13275873.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-22/34403717.jpg">
+<meta property="og:updated_time" content="2018-12-11T12:38:53.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Weblogic 漏洞被利用挖矿">
 <meta name="twitter:description" content="Weblogic漏洞被利用来挖矿，客户受到了影响。学习一下其中的原理。">
-<meta name="twitter:image" content="http://opmi2ydgh.bkt.clouddn.com//18-1-22/59187743.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-22/59187743.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -101,10 +101,10 @@
 <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>2017年12月中旬，安全研究者爆出未打补丁的<code>WebLogic</code>版本存在的漏洞，可能被<code>watch-smarted</code>挖矿恶意软件利用。</p>
 <p>攻击者利用<code>Weblogic WLS</code>组件漏洞(<code>CVE-2017-10271</code>)，构造<code>payload</code>下载并执行虚拟币挖矿程序，对<code>Weblogic</code>中间件主机进行攻击。</p>
 <p><strong>影响版本</strong></p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-22/59187743.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-22/59187743.jpg" alt=""></p>
 <h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><p><a href="http://blog.csdn.net/acmman/article/details/70093877" target="_blank" rel="noopener">安装Webloginc</a></p>
 <p>访问 <code>7001</code>端口</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-22/71865798.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-22/71865798.jpg" alt=""></p>
 <p>脚本弹计算器。就是一个请求，把其中的恶意代码写在了<code>POST</code>的<code>xml</code>里面。关键是其中的利用代码的编写。</p>
 <pre><code>#! -*- coding:utf-8 -*-
 import requests
@@ -139,9 +139,9 @@ r =requests.post(url,headers={&apos;Content-Type&apos;:&apos;text/xml&apos;,&apo
 print r.status_code
 
 print r.text
-</code></pre><p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-22/13275873.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-22/13275873.jpg" alt=""></p>
 <p>抓包修改</p>
-<p><img src="http://opmi2ydgh.bkt.clouddn.com//18-1-22/34403717.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-22/34403717.jpg" alt=""></p>
 <h4 id="挖矿分析"><a href="#挖矿分析" class="headerlink" title="挖矿分析"></a>挖矿分析</h4><p>使用<code>top</code>命令查看<code>CPU</code>利用情况。</p>
 <p>通过<code>POC</code>可以知道，在xml中的string标签的字符串为远程执行的命令内容。攻击者首先下载<code>setup-watch</code>的<code>shell</code>脚本，其作用是下载并运行<code>watch-smartd</code>挖矿程序。</p>
 <h4 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h4><p>找了两篇从代码层面的分析文章，学习一下其中的原理。</p>
@@ -162,7 +162,7 @@ rm -rf/home/WebLogic/Oracle/Middleware/user_projects/domains/base_domain/servers
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/22/weblogic/" data-id="cjnkdsvjf002408xd53uyvio8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/22/weblogic/" data-id="cjpjt0n5300204dxd0qyu0ta3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Weblogic/">Weblogic</a></li></ul>
