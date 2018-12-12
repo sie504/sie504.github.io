@@ -14,21 +14,21 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="wordpress 任意文件删除漏洞">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-27/91545652.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-27/81545083.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/38508483.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/94878995.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/17223918.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/19265580.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/2843462.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/75307871.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/80117267.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-27/19731694.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.089Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-27/91545652.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-27/81545083.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/38508483.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/94878995.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/17223918.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/19265580.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/2843462.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/75307871.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/80117267.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-27/19731694.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wordpress 任意文件删除">
 <meta name="twitter:description" content="wordpress 任意文件删除漏洞">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-27/91545652.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-27/91545652.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -114,20 +114,20 @@
 </ul>
 <h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>用户输入的内容没有经过处理，传递给文件删除函数时，造成了任意文件删除漏洞。可谓“一切输入点都是不可信的”。在PHP中，当调用unlink()函数，并且用户输入可能影响部分或这个filename参数时，会发生这种情况。没有进行适当的过滤，会删除该路径的文件。</p>
 <p>漏洞代码触发点在<code>wp-includes/post.php</code>文件。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-27/91545652.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-27/91545652.jpg" alt=""></p>
 <p> 在上面显示的<code>wp_delete_attachement()</code>函数中，<code>$ meta [&#39;thumb&#39;]</code>的内容在未经任何过滤的情况下用于unlink()调用。这段代码的目的是在删除图像的同时删除图像的缩略图。在Wordpress中通过媒体管理器上传的图像被表示为附属类型的帖子。值$ meta [‘thumb’]从数据库中检索，并保存为表示图像的文章的自定义字段。因此，在从数据库中检索到危险函数调用unlink()之间，表示缩略图文件名的值不会进行任何清理或检查。</p>
 <p>如果该值在保存到数据库之前也没有经过任何或其他的安全措施，将在下一段代码中看到这种情况，会造成任意文件删除漏洞。</p>
 <p><code>/wp-admin/post.php</code>文件：</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-27/81545083.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-27/81545083.jpg" alt=""></p>
 <p>在<code>/wp-admin/post.php</code>代码中，表示属于附件的缩略图的文件名如何保存到数据库。</p>
 <p>在从<code>$ _POST [&#39;thumb&#39;]</code>参数中的用户输入检索并通过<code>wp_update_attachment_metadata()</code>函数保存到数据库之间，没有适当的安全措施来确保该值真正代表正在编辑的附件的缩略图。</p>
 <p><code>$ _POST [&#39;thumb&#39;]</code>的值可以将任何文件的路径保存到<code>WordPress</code>上传目录相对路径中，当附件被删除时，该文件将被删除，如第一列表中所示。</p>
 <h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>登陆后台，在上传图片处。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/38508483.jpg" alt=""></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/94878995.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/38508483.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/94878995.jpg" alt=""></p>
 <p>然后 edit。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/17223918.jpg" alt=""></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/19265580.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/17223918.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/19265580.jpg" alt=""></p>
 <p>setThumbToConfig(‘5’,’15674852ce’)</p>
 <p>15674852ce</p>
 <p>wordpress_545eb34dbe34d45133a1144980b6420a=admin%7C1530557799%7CkcziMOkFc2vgz438WlciwwcHAa0E8vwNaomgS1LQc6y%7C225d0e7e8cd972694c91ac26fed2c53ec66c1c68b1d9ccf569bae2b339c94ce0; wordpress_test_cookie=WP+Cookie+check; wordpress_logged_in_545eb34dbe34d45133a1144980b6420a=admin%7C1530557799%7CkcziMOkFc2vgz438WlciwwcHAa0E8vwNaomgS1LQc6y%7Cbc7998bd236a149fec254d82bb97e066750b5af74a1f2336e1689b572a9ec6ac; wp-settings-time-1=1530394704</p>
@@ -143,13 +143,13 @@
 </blockquote>
 </li>
 </ul>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/2843462.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/2843462.jpg" alt=""></p>
 <p>现在点击Delete Permanently即可。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/75307871.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/75307871.jpg" alt=""></p>
 <p>跳转到安装界面了。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-28/80117267.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-28/80117267.jpg" alt=""></p>
 <h2 id="暂缓措施"><a href="#暂缓措施" class="headerlink" title="暂缓措施"></a>暂缓措施</h2><p>在写此文章的时候，该漏洞还未被修复。以下的代码只是一个临时的修补措施。通过将修补程序添加到当前活动的主题/子主题的functions.php文件中，就是将修补程序集成到现有的WordPress安装代码中，来防御该漏洞。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-6-27/19731694.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-6-27/19731694.jpg" alt=""></p>
 <p>提供的所有修补程序都会链接到<code>wp_update_attachement_metadata()</code>调用中，并确保为元值提供的数据不包含任何涉及到路径遍历的内容，因而不会删除与安全相关的文件。</p>
 <p>以上提供的修复方案只是临时的，不能保证兼容Wordpress以后的版本和插件。建议你还是时刻关注Wordpress的修补措施。</p>
 <h2 id="时间线"><a href="#时间线" class="headerlink" title="时间线"></a>时间线</h2><ul>
@@ -172,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/28/Wordpress <= 4.9.6 任意文件删除漏洞/" data-id="cjpjt0n6300434dxd6pq7kxop" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/28/Wordpress <= 4.9.6 任意文件删除漏洞/" data-id="cjpki3m880043wgxdgr2j4fjp" class="article-share-link">Share</a>
       
       
     </footer>

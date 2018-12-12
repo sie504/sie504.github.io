@@ -15,18 +15,18 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="日志污染结合文件漏洞进行利用。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/80365472.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/35522367.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/53599383.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/4306620.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/76389039.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/61569392.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/41690106.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.102Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/80365472.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/35522367.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/53599383.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/4306620.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/76389039.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/61569392.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/41690106.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh_log">
 <meta name="twitter:description" content="日志污染结合文件漏洞进行利用。">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/80365472.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/80365472.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -104,25 +104,25 @@
 <h5 id="文件包含-日志污染"><a href="#文件包含-日志污染" class="headerlink" title="文件包含+日志污染"></a>文件包含+日志污染</h5><p>PHP等脚本语言能够从外部文件读取脚本源码的一部分。PHP中对应的函数有require、require_once、include、include_once。</p>
 <p>如果外界能够指定include的对象文件名，就可能会发生意料之外的文件被include而遭到攻击。这被称为文件包含漏洞。</p>
 <p>测试：含有本地文件包含的代码。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/80365472.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/80365472.jpg" alt=""></p>
 <p>在同级目录下，包含一个lfi.txt。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/35522367.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/35522367.jpg" alt=""></p>
 <p>浏览器访问，可以看到执行成功。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/53599383.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/53599383.jpg" alt=""></p>
 <p>ssh污染日志可以写入攻击代码。<br>用ssh连接目标机(192.168.145.191)，同时写入攻击代码，密码任意填入，是错误的密码。<br>root@kali:/var/log# ssh ‘&lt;?php system($_GET[c]); ?&gt;<a href="mailto:&#39;@192.168.145.191" target="_blank" rel="noopener">&#39;@192.168.145.191</a><br>在目标机/var/log/auth.log登录日志可以看到写入的代码。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/4306620.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/4306620.jpg" alt=""></p>
 <p>日志中的攻击代码是否可以执行成功，得看/var/log/auth.log文件的权限，如果它对其他用户具有读权限，则可以成功，否则，不可以。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/76389039.jpg" alt=""></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/61569392.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/76389039.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/61569392.jpg" alt=""></p>
 <p>下图可以看到可以执行成功。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-15/41690106.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-15/41690106.jpg" alt=""></p>
 <h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://www.hackingarticles.in/web-server-exploitation-ssh-log-poisoning-lfi/" target="_blank" rel="noopener">http://www.hackingarticles.in/web-server-exploitation-ssh-log-poisoning-lfi/</a></p>
 <p><a href="http://www.cnbraid.com/2017/ssh-poison-lfi-shell.html" target="_blank" rel="noopener">http://www.cnbraid.com/2017/ssh-poison-lfi-shell.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/01/ssh-log/" data-id="cjpjt0n4z001p4dxdlhomvesw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/01/ssh-log/" data-id="cjpki3m6p001lwgxdsyycqo11" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh-log/">ssh-log</a></li></ul>

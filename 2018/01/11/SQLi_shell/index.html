@@ -15,18 +15,18 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="之前遇到sql注入，且是root权限后，很容易直接写进去shell。现在的Mysql数据库的安全性也高了，即使注入得到mysql的root权限，有时候还是写不进去shell。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/29934024.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/90894676.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/49908215.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/47520310.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/49908215.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/75606276.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/87593369.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.065Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/29934024.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/90894676.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/49908215.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/47520310.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/49908215.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/75606276.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/87593369.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入写shell不成功后">
 <meta name="twitter:description" content="之前遇到sql注入，且是root权限后，很容易直接写进去shell。现在的Mysql数据库的安全性也高了，即使注入得到mysql的root权限，有时候还是写不进去shell。">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/29934024.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/29934024.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -102,11 +102,11 @@
         <p>之前遇到<code>sql</code>注入，且是<code>root</code>权限后，很容易直接写进去<code>shell</code>。现在的<code>Mysql</code>数据库的安全性也高了，即使注入得到<code>mysql</code>的<code>root</code>权限，有时候还是写不进去<code>shell</code>。</p>
 <a id="more"></a>
 <h5 id="SQL-注入写-shell"><a href="#SQL-注入写-shell" class="headerlink" title="SQL 注入写 shell"></a>SQL 注入写 shell</h5><pre><code>http://127.0.0.1:8000/waf/test.php?id=-1&apos; union select 1,2,3 --+
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/29934024.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/29934024.jpg" alt=""></p>
 <p><code>root</code>权限</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/90894676.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/90894676.jpg" alt=""></p>
 <p>写一句话的时候，报错。如果能进入<code>phpmyadmin</code>后台，可以试试一个方法。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/49908215.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/49908215.jpg" alt=""></p>
 <p>就是<code>--secure-file-priv</code>的问题。</p>
 <p>本地测试。</p>
 <p><code>Mysql</code>导出文件时报错</p>
@@ -142,13 +142,13 @@ ERROR 1238 (HY000): Variable &apos;secure_file_priv&apos; is a read only variabl
 <p>在<code>phpmyadmin</code>后台中，查看全局变量：找到<code>general log file</code>和<code>general log</code></p>
 <p>将<code>general log</code>设置为<code>ON</code></p>
 <p><code>general log file</code> 设置为<code>shell</code>的物理地址。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/47520310.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/47520310.jpg" alt=""></p>
 <p>再执行一个写一句话的<code>SQL</code>语句。虽然还有报错，但是已经写入进去了。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/49908215.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/49908215.jpg" alt=""></p>
 <p>在<code>D:\phpStudy\www\waf\phpinfo.php</code>中可以看到写入的<code>php</code>代码。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/75606276.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/75606276.jpg" alt=""></p>
 <p>访问。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-11/87593369.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-11/87593369.jpg" alt=""></p>
 <pre><code>general_log
 Command-Line Format    --general-log
 System Variable    Name    general_log
@@ -206,7 +206,7 @@ localhost
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/SQLi_shell/" data-id="cjpjt0n4i000j4dxd2hkq1n5u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/SQLi_shell/" data-id="cjpki3m64000hwgxdvh7noycs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLi/">SQLi</a></li></ul>

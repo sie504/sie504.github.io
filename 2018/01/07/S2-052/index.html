@@ -15,18 +15,18 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="S2-052复现学习。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/47545651.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/28264187.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/24779918.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/90458560.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/7155368.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/98041686.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/98290863.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.060Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/47545651.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/28264187.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/24779918.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/90458560.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/7155368.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/98041686.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/98290863.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="S2-052 复现学习">
 <meta name="twitter:description" content="S2-052复现学习。">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/47545651.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/47545651.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -110,26 +110,26 @@ Windows Service Installer很明显就是Windows下的Install程序，双击后�
 </code></pre><p>高级系统设置–&gt;环境变量–&gt;系统变量–&gt;添加 变量名:TOMCAT_HOME<br>变量值:你的TOMCAT所在目录</p>
 <p>从官网下载<a href="https://archive.apache.org/dist/struts/2.5/struts-2.5-all.zip" target="_blank" rel="noopener">Struts</a>下载所有源码包，找到<code>struts2-rest-showcase.war</code>直接部署到<code>tomcat</code>的<code>webapps</code>目录下。</p>
 <p>访问环境</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/47545651.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/47545651.jpg" alt=""></p>
 <h5 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h5><p>官方描述为：</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/28264187.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/28264187.jpg" alt=""></p>
 <p><code>The REST Plugin is using a XStreamHandler with an instance of XStream for deserialization without any type filtering and this can lead to Remote Code Execution when deserializing XML payloads.</code></p>
 <p>其描述信息为，<code>REST</code>插件使用到<code>XStreamHandler</code>处理<code>xml</code>数据，由于未对<code>xml</code>数据做任何过滤，在进行发序列<code>xml</code>数据转换为<code>Object</code>时导致<code>RCE</code>。</p>
 <p>查看<code>rest</code>插件的相关配置。</p>
 <pre><code>\plugins\rest\src\main\resources\struts-plugin.xml
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/24779918.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/24779918.jpg" alt=""></p>
 <p>从这个文件中可以看到<code>XStreamHanler</code>就是<code>Content-Type:xml</code>的默认处理语句，而且看到<code>xml</code>是默认支持格式，也就是说存在<code>rest</code>插件就会存在反序列化漏洞。</p>
 <p>看官方的补丁。</p>
 <p><a href="https://github.com/apache/struts/commit/19494718865f2fb7da5ea363de3822f87fbda264" target="_blank" rel="noopener">https://github.com/apache/struts/commit/19494718865f2fb7da5ea363de3822f87fbda264</a></p>
 <p>在官方的修复方案中,主要就是将xml中的数据白名单化，把Collection和Map，一些基础类，时间类放在白名单中，这样就能阻止XStream反序列化的过程中带入一些有害类。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/90458560.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/90458560.jpg" alt=""></p>
 <p>在9月6号的<code>STRUTS_2_3_34</code>版本中的<br><code>struts-STRUTS_2_3_34\plugins\rest\src\main\java\org\apache\struts2\rest\handler</code>的<code>org.apache.struts2.rest.handler</code>包下多了几个类文件。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/7155368.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/7155368.jpg" alt=""></p>
 <p>XStreamHandler类修改了createXStream方法，同时增加了几个方法，作用是拒绝不安全的类执行。</p>
 <p><strong>由补丁</strong>发现REST插件将XStream处理的数据进行了处理，在调用 “xstream.fromXML(in, target);” 反序列化之前对其进行了检查。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/98041686.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/98041686.jpg" alt=""></p>
 <h5 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h5><p>点击编辑，进入修改页面，点击”提交”抓包，然后修改<code>Content-Type: application/xml</code>格式，post数据替换为poc中的data即可弹出计算器了。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-12-4/98290863.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-12-4/98290863.jpg" alt=""></p>
 <p>##### </p>
 <h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://xxlegend.com/2017/09/06/S2-052%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E5%8F%8A%E5%AE%98%E6%96%B9%E7%BC%93%E8%A7%A3%E6%8E%AA%E6%96%BD%E6%97%A0%E6%95%88%E9%AA%8C%E8%AF%81/" target="_blank" rel="noopener">S2-052漏洞分析及官方缓解措施无效验证</a></p>
 <p><a href="https://github.com/apache/struts/releases" target="_blank" rel="noopener">struts各版本</a></p>
@@ -141,7 +141,7 @@ Windows Service Installer很明显就是Windows下的Install程序，双击后�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/07/S2-052/" data-id="cjpjt0n4g000h4dxdb5aoath6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/07/S2-052/" data-id="cjpki3m63000fwgxdxp4n06t9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts/">Struts</a></li></ul>

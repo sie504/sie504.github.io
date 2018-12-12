@@ -14,16 +14,16 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="Windows一个API引起PHP函数的bug，可导致猜测一些文件。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-14/57805822.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-14/73761705.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-13/13219180.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-15/44515029.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-15/47775715.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.096Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-14/57805822.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-14/73761705.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-13/13219180.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-15/44515029.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-15/47775715.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP和Windows文件通配符">
 <meta name="twitter:description" content="Windows一个API引起PHP函数的bug，可导致猜测一些文件。">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-14/57805822.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-14/57805822.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -135,8 +135,8 @@ aaaaaaaaaa  1.ph&gt;
 aaaaaaaaaa  1.phP
 aaaaaaaaaa  1.php
 </code></pre><p>单独访问该文件的时候，是访问不到的。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-14/57805822.jpg" alt=""></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-14/73761705.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-14/57805822.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-14/73761705.jpg" alt=""></p>
 <p>都能得到返回。后两个结果是可以理解的(因为<code>windows</code>的文件系统支持大小写转换的机制)，但是前两种应该是个<code>bug</code>，影响windows+php版本。</p>
 <p><strong>测试代码-2</strong></p>
 <p>对上面的代码修改一下。</p>
@@ -234,7 +234,7 @@ if(extension_loaded(&apos;gd&apos;) &amp;&amp; $txt ) {
 ?&gt;
 </code></pre><p>安装完之后，没有在<code>\caches\bakup\default\</code>目录下面发现备份的<code>sql</code>文件，那是因为没有进行备份操作。</p>
 <p>在后台的，扩展-&gt;数据库工具里面有备份操作，备份后就可以在相应目录下面生成备份文件了。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-13/13219180.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-13/13219180.jpg" alt=""></p>
 <p>分析其中的<code>sql</code>备份文件的格式为<code>4eu9poz8ehqe1gq1o69o_db_20180313_1.sql</code>，前二十位为数字和字母的结合，然后<code>_db_</code>固定，8位数字日期，以<code>_1.sql</code>结尾。</p>
 <pre><code># -*- coding:utf-8 -*-
 # author DYSRC
@@ -298,10 +298,10 @@ if __name__ == &quot;__main__&quot;:
     url = &quot;http://127.0.0.1:8000/phpcms6&quot;
     guest(url)
 </code></pre><p>将其中的执行流程分析一下。通过访问<code>url</code>的返回结果来判断是否存在该文件。如果返回结果里面包含<code>Cannot Initialize new GD image stream</code>，则不存在这个备份文件。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-15/44515029.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-15/44515029.jpg" alt=""></p>
 <p><code>POC</code>执行过程。</p>
 <p>第一位先猜测数字从<code>1-9</code>，如果不是，则字母从<code>a-z</code>开始，一次次的循环数字和字母进行猜测。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-15/47775715.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-15/47775715.jpg" alt=""></p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://www.webmaster5u.com/html/article_3094.html" target="_blank" rel="noopener">phpcms v9数据库备份文件存在哪里(数据备份，恢复、优化、修复等常用操作)</a></p>
 <p><a href="https://mochazz.github.io/2018/03/09/phpcms_v9_sql%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E5%90%8D%E7%88%86%E7%A0%B4/" target="_blank" rel="noopener">phpcms v9 sql备份文件名爆破</a></p>
 <p><a href="http://avfisher.win/archives/888" target="_blank" rel="noopener">PHP源码调试之WINDOWS文件通配符分析</a></p>
@@ -313,7 +313,7 @@ if __name__ == &quot;__main__&quot;:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/14/php和WINDOWS文件通配符/" data-id="cjpjt0n68004f4dxdvrr5uo37" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/14/php和WINDOWS文件通配符/" data-id="cjpki3m8d004hwgxd2x7eh3q7" class="article-share-link">Share</a>
       
       
     </footer>

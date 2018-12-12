@@ -14,18 +14,18 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="PHP反序列化学习整理。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-29/62475027.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-29/17175231.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-11/13964682.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-11/5998660.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-11/5650092.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-11/36492604.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-12/99020558.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.057Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-29/62475027.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-29/17175231.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-11/13964682.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-11/5998660.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-11/5650092.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-11/36492604.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-12/99020558.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP反序列化">
 <meta name="twitter:description" content="PHP反序列化学习整理。">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-29/62475027.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-29/62475027.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -114,7 +114,7 @@ $class1 = new secnote;
 $class1_ser = serialize($class1);
 print_r($class1_ser);
 ?&gt;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-29/62475027.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-29/62475027.jpg" alt=""></p>
 <pre><code>O:7:&quot;secnote&quot;:1:{s:4:&quot;test&quot;;s:8:&quot;sec-note&quot;;}
 </code></pre><p>其中的O代表的是存储的是对象(object).7代表对象的名称有7个字符，<code>secnote</code>表示对象的名称，1表示有一个值，<code>{s:4:&quot;test&quot;;s:8:&quot;sec-note&quot;;}</code>中，s表示字符串，4表示其中的长度，’test’ 表示字符串的名称。</p>
 <p><strong><a href="http://php.net/manual/zh/function.unserialize.php" target="_blank" rel="noopener">反序列化unserialize</a></strong></p>
@@ -136,7 +136,7 @@ print_r($class2_unser);
 
 
 ?&gt;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-9-29/17175231.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-29/17175231.jpg" alt=""></p>
 <pre><code>O:7:&quot;secnote&quot;:1:{s:4:&quot;test&quot;;s:8:&quot;sec-note&quot;;}
 secnote Object ( [test] =&gt; sec-note )
 </code></pre><p>unserialize() 会检查是否存在一个 <strong>wakeup() 方法。如果存在，则会先调用 </strong>wakeup 方法，预先准备对象需要的资源。</p>
@@ -157,7 +157,7 @@ $b = new Secnote();
 //调用方法
 $b-&gt;iprint();
 ?&gt;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-11/13964682.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-11/13964682.jpg" alt=""></p>
 <p>上面是一个正常的实例化和方法的调用过程。有一些<a href="https://secure.php.net/manual/zh/language.oop5.magic.php" target="_blank" rel="noopener">魔术方法</a>在特定的情况下会自动调用。</p>
 <p><code>PHP</code> 将所有以 <code>__</code>（两个下划线）开头的类方法保留为魔术方法。</p>
 <pre><code>__construct() 方法在每次创建新对象时会被自动调用
@@ -199,7 +199,7 @@ echo $b;
 //脚本结束时，__destruct被调用
 ?&gt;
 </code></pre><p>结果</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-11/5998660.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-11/5998660.jpg" alt=""></p>
 <p>序列化和反序列化时的魔术方法。<code>__sleep()</code>和<code>__wakeup</code></p>
 <pre><code>__sleep()： serialize() 函数会检查类中是否存在一个魔术方法 __sleep()。如果存在，该方法会先被调用，然后才执行序列化操作。
 __wakeup： unserialize() 会检查是否存在一个 __wakeup() 方法。如果存在，则会先调用 __wakeup 方法，预先准备对象需要的资源。
@@ -247,7 +247,7 @@ $d -&gt;iprint();
 
 ?&gt;
 </code></pre><p>结果</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-11/5650092.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-11/5650092.jpg" alt=""></p>
 <h5 id="反序列化漏洞"><a href="#反序列化漏洞" class="headerlink" title="反序列化漏洞"></a>反序列化漏洞</h5><p>反序列化参数可控，<code>unserialize()</code>反序列化后会直接调用<code>__wakeup()</code>或<code>__destruct()</code>，这时魔术方法，本身就存在的。如果你重写了这些魔术方法，且其中存在漏洞，使用可控的序列化参数构造<code>payload</code>去触发这个漏洞。</p>
 <p>参考<a href="https://zhuanlan.zhihu.com/p/33426188" target="_blank" rel="noopener">案例一</a></p>
 <p>反序列化漏洞需要满足的条件。</p>
@@ -308,7 +308,7 @@ $d -&gt;iprint();
 </code></pre><p>生成序列化之后的<code>payload</code>。</p>
 <pre><code>O%3A7%3A%22example%22%3A1%3A%7Bs%3A6%3A%22handle%22%3BO%3A7%3A%22process%22%3A1%3A%7Bs%3A3%3A%22pid%22%3Bs%3A10%3A%22phpinfo%28%29%3B%22%3B%7D%7D
 </code></pre><p>在可控参数上输入<code>payload</code>。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-11/36492604.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-11/36492604.jpg" alt=""></p>
 <p>序列化的字符串进行反序列化时就会安照设定生成一个<code>example</code>类实例化，这时候已经反序列化之后了，按照<code>unser.php</code>文件中的代码逻辑执行，脚本结束后自动调用<code>__destruct()</code>函数，然后调用<code>shutdown()</code>函数，此时<code>$handle</code>为类<code>process</code>的类实例化对象，所以接下来会调用<code>process</code>的<code>close()</code>函数，<code>eval()</code>就会执行，其中的<code>pid</code>在<code>POC</code>代码中的构造函数中已经设置，造成了代码执行。</p>
 <p>攻击线路称为<code>ROP(（Return-oriented programming）)</code>面向返回编程：</p>
 <p><a href="https://www.owasp.org/images/9/9e/Utilizing-Code-Reuse-Or-Return-Oriented-Programming-In-PHP-Application-Exploits.pdf" target="_blank" rel="noopener">Utilizing Code Reuse/ROP in PHP Application Exploits - owasp</a></p>
@@ -349,7 +349,7 @@ print_r($b_ser);
 </code></pre><p>序列化的结果</p>
 <pre><code>O:7:&quot;secnote&quot;:1:{s:1:&quot;a&quot;;s:19:&quot;&lt;?php phpinfo(); ?&gt;&quot;;}
 </code></pre><p>利用</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-4-12/99020558.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-4-12/99020558.jpg" alt=""></p>
 <p>其他的利用方法，有时候在<code>__wakeup()</code>或者析构函数中不存在漏洞，但是它又调用了其他的对象，向上溯源，利用一次次的<code>gadget</code>找到漏洞点。</p>
 <blockquote>
 <p>Makes use of POP (Property-oriented Programming) chains<br>Similar to ROP; reuse existing code (POP gadgets)</p>
@@ -372,7 +372,7 @@ print_r($b_ser);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/11/PHP反序列化/" data-id="cjpjt0n5x003p4dxdr55ecy6x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/11/PHP反序列化/" data-id="cjpki3m7y003mwgxdx6gcdvzb" class="article-share-link">Share</a>
       
       
     </footer>

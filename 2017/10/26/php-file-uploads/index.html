@@ -15,17 +15,17 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="学习一下PHP中文件上传的基本方法。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/27422064.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/89389181.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/50712806.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/90170854.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/34019909.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/73731988.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.094Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/27422064.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/89389181.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/50712806.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/90170854.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/34019909.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/73731988.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP 文件处理">
 <meta name="twitter:description" content="学习一下PHP中文件上传的基本方法。">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/27422064.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/27422064.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -140,7 +140,7 @@ print_r($_FILES);
         )
 
 )
-</code></pre><h5 id="FILES-HTTP文件上传变量"><a href="#FILES-HTTP文件上传变量" class="headerlink" title="$FILES:HTTP文件上传变量"></a>$FILES:HTTP文件上传变量</h5><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/27422064.jpg" alt=""></p>
+</code></pre><h5 id="FILES-HTTP文件上传变量"><a href="#FILES-HTTP文件上传变量" class="headerlink" title="$FILES:HTTP文件上传变量"></a>$FILES:HTTP文件上传变量</h5><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/27422064.jpg" alt=""></p>
 <p>将临时文件移动到指定目录下</p>
 <p><code>move_uploaded_file</code></p>
 <p><code>copy()</code></p>
@@ -160,9 +160,9 @@ move_uploaded_file($tmp_name,&quot;uploads/&quot;.$filename);
 </code></pre><h5 id="文件上传配置以及解析"><a href="#文件上传配置以及解析" class="headerlink" title="文件上传配置以及解析"></a>文件上传配置以及解析</h5><p><code>php.ini</code>的配置。</p>
 <pre><code>file_uploads = On 支持HTTP上传
 upload_max_filesize = 2M 允许上传文件的大小
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/89389181.jpg" alt=""></p>
-<h5 id="错误信息说明"><a href="#错误信息说明" class="headerlink" title="错误信息说明"></a>错误信息说明</h5><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/50712806.jpg" alt=""></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/90170854.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/89389181.jpg" alt=""></p>
+<h5 id="错误信息说明"><a href="#错误信息说明" class="headerlink" title="错误信息说明"></a>错误信息说明</h5><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/50712806.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/90170854.jpg" alt=""></p>
 <pre><code>&lt;?php
 // 通过$_FILES文件上传变量接收上传文件信息
 header(&apos;content-type:text/html;charset=utf-8&apos;);
@@ -206,9 +206,9 @@ if($error==UPLOAD_ERR_OK){
     }  
 }
 </code></pre><p><strong>客户端限制</strong></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/34019909.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/34019909.jpg" alt=""></p>
 <p>type accept允许上传的类型</p>
-<h5 id="服务器端上传限制"><a href="#服务器端上传限制" class="headerlink" title="服务器端上传限制"></a>服务器端上传限制</h5><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-10-25/73731988.jpg" alt=""></p>
+<h5 id="服务器端上传限制"><a href="#服务器端上传限制" class="headerlink" title="服务器端上传限制"></a>服务器端上传限制</h5><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/73731988.jpg" alt=""></p>
 <p>进行上传文件名的重命名以及上传路径的判定，如果不存在则新建，等上传错误的判断。</p>
 <pre><code>&lt;?php
 header(&apos;content-type:text/html;charset=utf-8&apos;);
@@ -280,7 +280,7 @@ if($fileinfo[&apos;error&apos;]==0){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/26/php-file-uploads/" data-id="cjpjt0n4r00154dxdbyiw1nh8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/26/php-file-uploads/" data-id="cjpki3m6h0012wgxdznuj2kt8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>

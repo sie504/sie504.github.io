@@ -15,23 +15,23 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="XSS 学习小游戏。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/89413805.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/13048970.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/56538391.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/19266749.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/7107866.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/33659671.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/34910933.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/72053490.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/28775489.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/34570117.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-15/91824142.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-15/44878964.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.090Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/89413805.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/13048970.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/56538391.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/19266749.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/7107866.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/33659671.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/34910933.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/72053490.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/28775489.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/34570117.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-15/91824142.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-15/44878964.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.472Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS Game -1">
 <meta name="twitter:description" content="XSS 学习小游戏。">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/89413805.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/89413805.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -115,7 +115,7 @@ echo &quot;&lt;h2 align=center&gt;欢迎用户&quot;.$str.&quot;&lt;/h2&gt;&quot
 ?&gt;
 </code></pre><p>参数<code>name</code>没有任何的过滤，直接输出了。</p>
 <pre><code>http://127.0.0.1:8000/xssgame/level1.php?name=&lt;img src=&apos;1&apos; onerror=confirm(1)&gt;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/89413805.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/89413805.jpg" alt=""></p>
 <p>源码内容</p>
 <pre><code>&lt;h2 align=center&gt;欢迎用户&lt;img src=&apos;1&apos; onerror=confirm(1)&gt;
 </code></pre><p><a href="https://www.w3schools.com/jsref/event_onerror.asp" target="_blank" rel="noopener"><code>onerror</code>事件</a></p>
@@ -147,7 +147,7 @@ echo &quot;&lt;h2 align=center&gt;没有找到和&quot;.htmlspecialchars($str).&
 </code></pre><p>源码</p>
 <pre><code>&lt;input name=keyword  value=&quot;&quot;&gt;&lt;script&gt;confirm(1)&lt;/script&gt;&quot;&gt;
 </code></pre><p><code>&lt;input&gt;</code>中的<code>value</code>代表输入的值。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/13048970.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/13048970.jpg" alt=""></p>
 <p>之前在思考一个参数点，会不会这样，即存在注入又存在XSS。好像会这样的。就像第二关这个参数的值会显示在前端，如果还会进入数据库进行查询。但是登录的时候，数据一般是在<code>&lt;input&gt;</code>里面进行输出显示的。</p>
 <p>遇到了一个问题，是在用户登录处存在xss漏洞。</p>
 <p><strong>SQL&amp;XSS</strong></p>
@@ -181,10 +181,10 @@ echo &quot;&lt;h2 align=center&gt;没有找到和&quot;.htmlspecialchars($id).&q
 </code></pre><p>可以看到<code>$id</code>参数传入数据库里面进行了数据的查询，还将其传入到了<code>&lt;input&gt;</code>里面进行输出。</p>
 <p>sql注入结果</p>
 <pre><code>http://127.0.0.1:8000/waf/test2.php?id=-1+union+select+1%2Cuser%28%29%2C3&amp;submit=%E6%8F%90%E4%BA%A4
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/56538391.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/56538391.jpg" alt=""></p>
 <p>XSS结果</p>
 <pre><code>http://127.0.0.1:8000/waf/test2.php?id=&quot;&gt;&lt;script&gt;alert(&apos;+I+am+xss&apos;)&lt;/script&gt;&amp;submit=æäº¤
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/19266749.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/19266749.jpg" alt=""></p>
 <p>所以以上思考的问题是存在的，触发的时候，一个参数触发不同漏洞的时候，其中的<code>payload</code>不同，以后测试的时候，需要对参数进行多方漏洞的测试。</p>
 <p><strong>3关</strong></p>
 <p>这一次，把在<code>&lt;input&gt;</code>里面的内容进行了<code>htmlspecialchars</code>转义。这次再用第二关的<code>payload</code>，试试，就不行了。如何绕过<code>htmlspecialchars</code>的转义，使用不含有其转义字符的<code>payload</code>，反单引号是其中的一个。</p>
@@ -205,7 +205,7 @@ echo &quot;&lt;h2 align=center&gt;没有找到和&quot;.htmlspecialchars($str).&
 <p>那就使用<code>javascript</code>事件函数。</p>
 <p>鼠标移动事件</p>
 <pre><code>http://127.0.0.1:8000/xssgame/level3.php?keyword=&apos;+onmouseover=confirm(1)
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-7/7107866.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-7/7107866.jpg" alt=""></p>
 <p>源码中可知</p>
 <pre><code>&lt;input name=keyword  value=&apos;&apos; onmouseover=confirm(1) //&apos;&gt;
 </code></pre><p>其中的<code>//</code>注释掉后面的<code>&#39;</code>。</p>
@@ -275,10 +275,10 @@ $str2=str_replace(&quot;&lt;script&quot;,&quot;&lt;scr_ipt&quot;,$str);
 <p>使用<code>&lt;a&gt;</code>标签，其中的<code>&quot;&gt;&lt;&quot;</code>是为了闭合<code>&lt;input&gt;</code></p>
 <pre><code>&quot;&gt;&lt;a href=&quot;javascript:alert(1)&quot;&gt;Clickme&lt;/a&gt;&lt;&quot; 
 </code></pre><p>点击其中的<code>Clickme</code>就可以弹窗了。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/33659671.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/33659671.jpg" alt=""></p>
 <pre><code>123456&quot;&gt;&lt;iframe src=javascript:alert(document.domain)&gt;
 &lt;input name=keyword  value=&quot;123456&quot;&gt;&lt;iframe src=javascript:alert(document.domain)&gt;&quot;&gt;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/34910933.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/34910933.jpg" alt=""></p>
 <p><strong>6关</strong></p>
 <p>通过源码，可以看到，过滤了更多，但是没有区分大小写。</p>
 <pre><code>&lt;?php 
@@ -299,7 +299,7 @@ echo &quot;&lt;h2 align=center&gt;没有找到和&quot;.htmlspecialchars($str).&
 </code></pre><p>使用包含一个大写的<code>payload</code>就可以。</p>
 <pre><code>123456&quot;&gt;&lt;iframe src=javascript:alert(document.domain)&gt;
 &lt;input name=keyword  value=&quot;123456&quot;&gt;&lt;iframe Src=javascript:alert(document.domain)&gt;&quot;&gt;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/72053490.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/72053490.jpg" alt=""></p>
 <p><strong>7关</strong></p>
 <p>这次是区分了大小写，使用了过滤。两种过滤手段，一是对输入的敏感内容，进行重新的替换，混乱其<code>payload</code>，类似于5，6关的，将<code>&lt;script</code>变换为<code>&lt;sc_ript</code>。这一种感觉很好，想绕过就得使用不含有过滤字符的<code>payload</code>。接下来，这种是将敏感内容替换为空。如何绕过呢？</p>
 <pre><code>&lt;?php 
@@ -320,10 +320,10 @@ echo &quot;&lt;h2 align=center&gt;没有找到和&quot;.htmlspecialchars($str).&
 </code></pre><p><code>script</code>–&gt;<code></code>，那<code>scscriptript</code>–&gt;<code>script</code></p>
 <pre><code>&quot;&gt;&lt;scscriptript&gt;coonnfirm(1)&lt;/scscriptript&gt;&lt;&quot;
 &lt;input name=keyword  value=&quot;&quot;&gt;&lt;script&gt;confirm(1)&lt;/script&gt;&lt;&quot;&quot;&gt;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/28775489.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/28775489.jpg" alt=""></p>
 <p>遇到这种情况，需要查看源码，看看那些被过滤了。根据输出的内容来判断，一步步的尝试。</p>
 <p>比如输入<code>&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;&quot;</code></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-9/34570117.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-9/34570117.jpg" alt=""></p>
 <p><strong>8关</strong></p>
 <p>源码</p>
 <pre><code>&lt;?php 
@@ -364,8 +364,8 @@ echo ($a);
 ?&gt;
 </code></pre><p>使用<code>html</code>实体测试这个的时候，没有成功，无弹窗。是输出点不一样吗，考虑是输出位置的原因吗？</p>
 <pre><code>t    &amp;#116;    &amp;#x74;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-15/91824142.jpg" alt=""></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//17-11-15/44878964.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-15/91824142.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-11-15/44878964.jpg" alt=""></p>
 <p><strong>9关</strong></p>
 <p>源码 </p>
 <pre><code>&lt;?php 
@@ -426,7 +426,7 @@ echo &quot;&lt;h3 align=center&gt;payload的长度:&quot;.strlen($str).&quot;&lt
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/17/XSS_Game/" data-id="cjpjt0n6400464dxds3fx1hcz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/17/XSS_Game/" data-id="cjpki3m870040wgxdu52p39fw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li></ul>

