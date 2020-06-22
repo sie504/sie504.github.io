@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>博客 | Sec-note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="信息收集第一步。">
+<meta name="keywords" content="bug_bounty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客">
+<meta property="og:url" content="http://yoursite.com/2020/05/25/信息收集一/index.html">
+<meta property="og:site_name" content="Sec-note">
+<meta property="og:description" content="信息收集第一步。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-06-22T06:40:45.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博客">
+<meta name="twitter:description" content="信息收集第一步。">
+  
+    <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sec-note</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-信息收集一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/25/信息收集一/" class="article-date">
+  <time datetime="2020-05-25T07:54:24.000Z" itemprop="datePublished">2020-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/bug-bounty/">bug_bounty</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>信息收集第一步。</p>
+<a id="more"></a>
+<p>高手们都说“信息收集”决定挖洞的效果，目标多了，自然挖到的可能就多些。有了目标之后，还需要自身技术积累是否强大，这会决定挖洞的质量。</p>
+<p>利用网上公开的脚本，自动化来获取想要的信息，这样会节省时间提高效率。</p>
+<h4 id="子域名"><a href="#子域名" class="headerlink" title="子域名"></a>子域名</h4><h5 id="Amass"><a href="#Amass" class="headerlink" title="Amass"></a>Amass</h5><p><a href="https://github.com/OWASP/Amass" target="_blank" rel="noopener">https://github.com/OWASP/Amass</a></p>
+<p>缺点：速度慢，如果对大量的域名进行子域名枚举的话，会花费几天时间。单个域名枚举的时候，可以使用。</p>
+<p> <code>amass enum -d baidu.com -o baidu_amass.txt</code></p>
+<h5 id="crt-sh"><a href="#crt-sh" class="headerlink" title="crt.sh"></a>crt.sh</h5><p><a href="https://crt.sh/" target="_blank" rel="noopener">https://crt.sh/</a></p>
+<p>HTTPS证书透明度</p>
+<p>Google 证书透明度报告项目，解决HTTPS证书系统的结构性缺陷，让所有人查看各个网站的HTTPS证书，从而发现签发了证书的子域名。</p>
+<p>HTTPS证书内置支持的域名和子域名</p>
+<p><a href="https://crt.sh/?q=baidu.com&amp;output=json" target="_blank" rel="noopener">https://crt.sh/?q=baidu.com&amp;output=json</a></p>
+<p><code>curl -s &quot;https://crt.sh/?q=baidu.com&amp;output=json&quot; | jq -r &#39;.[].name_value&#39;| sed &#39;s/\*\.//g&#39; | sort -u | tee -a baidu.txt</code></p>
+<h5 id="subfinder"><a href="#subfinder" class="headerlink" title="subfinder"></a>subfinder</h5><p><a href="https://github.com/projectdiscovery/subfinder" target="_blank" rel="noopener">https://github.com/projectdiscovery/subfinder</a></p>
+<p>Go 语言写的速度快</p>
+<p><code>subfinder -d {0} -o {1}_sub.txt</code></p>
+<h5 id="assetfinder"><a href="#assetfinder" class="headerlink" title="assetfinder"></a>assetfinder</h5><p><a href="https://github.com/tomnomnom/assetfinder" target="_blank" rel="noopener">https://github.com/tomnomnom/assetfinder</a></p>
+<p>Go 编写 </p>
+<p><code>assetfinder [--subs-only] &lt;domain&gt;</code></p>
+<h5 id="多个子域名枚举工具-子域名托管漏洞验证"><a href="#多个子域名枚举工具-子域名托管漏洞验证" class="headerlink" title="多个子域名枚举工具+ 子域名托管漏洞验证"></a>多个子域名枚举工具+ 子域名托管漏洞验证</h5><p>利用多个子域名枚举工具，将其结果汇总去重，最后检测是否存在子域名托管漏洞。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">urls = sys.argv[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(urls, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> f.readlines():</span><br><span class="line">        url = i.strip(<span class="string">'\n'</span>)</span><br><span class="line">        print(url)</span><br><span class="line"></span><br><span class="line">        a = <span class="string">'''curl -s "https://crt.sh/?q=&#123;0&#125;&amp;output=json" | jq -r '.[].name_value'| sed 's/\*\.//g' | sort -u | tee -a &#123;1&#125;_crt.txt'''</span>.format(url,url)</span><br><span class="line">        os.system(a)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># _amass.txt</span></span><br><span class="line">        b   = <span class="string">'amass enum -d &#123;0&#125; -o &#123;1&#125;_amass.txt'</span>.format(url,url)</span><br><span class="line">        os.system(b)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#_sub.txt</span></span><br><span class="line">        c = <span class="string">'subfinder -d &#123;0&#125; -o &#123;1&#125;_sub.txt'</span>.format(url,url)</span><br><span class="line">        os.system(c)</span><br><span class="line">        <span class="comment">#asset</span></span><br><span class="line">        i = <span class="string">'assetfinder &#123;0&#125; | sort -u &gt; &#123;1&#125;_asset.txt'</span>.format(url,url)</span><br><span class="line">        os.system(i)</span><br><span class="line">        d = <span class="string">'cat &#123;0&#125;_crt.txt &#123;1&#125;_amass.txt &#123;2&#125;_sub.txt &#123;3&#125;_asset.txt | sort | uniq &gt; &#123;4&#125;.txt'</span>.format(url,url,url,url,url)</span><br><span class="line"></span><br><span class="line">        os.system(d)</span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        e = <span class="string">'rm -rf &#123;0&#125;_crt.txt &#123;1&#125;_amass.txt &#123;2&#125;_sub.txt &#123;3&#125;_asset.txt'</span>.format(url,url,url,url)</span><br><span class="line">        os.system(e)</span><br><span class="line"></span><br><span class="line">       <span class="comment"># f = 'cat &#123;0&#125;.txt | aquatone -chrome-path /root/tools/craw/chrome-linux/chrome'.format(url)</span></span><br><span class="line">        <span class="comment">#os.system(f)</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># sub takeover</span></span><br><span class="line"></span><br><span class="line">        g = <span class="string">'subjack -w &#123;0&#125;.txt  -t 1000 -o takeover_&#123;1&#125;.txt -ssl'</span>.format(url,url)</span><br><span class="line">        os.system(g)</span><br></pre></td></tr></table></figure>
+<h5 id="域名存活判断"><a href="#域名存活判断" class="headerlink" title="域名存活判断"></a>域名存活判断</h5><p>HTTP&amp;HTTPS 判断去重</p>
+<p><a href="https://github.com/tomnomnom/httprobe" target="_blank" rel="noopener">https://github.com/tomnomnom/httprobe</a></p>
+<p><code>cat oppo.txt | httprobe &gt; hoppo.txt</code></p>
+<p>获取到的域名可能会有重复的，比如<code>www.abc.com</code> http/https都能访问通。</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> len(sys.argv) == <span class="number">1</span>:</span><br><span class="line">    msg = <span class="string">"""</span></span><br><span class="line"><span class="string">    unqiue http(s) domain</span></span><br><span class="line"><span class="string">    Usage: qcdomain.py input output1(http://www.abc.com) output2(www.abc.com)</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">    print(msg)</span><br><span class="line">    sys.exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">domains = sys.argv[<span class="number">1</span>]</span><br><span class="line">qdomains = sys.argv[<span class="number">2</span>]</span><br><span class="line">qdomain = sys.argv[<span class="number">3</span>]</span><br><span class="line">b = []</span><br><span class="line"><span class="keyword">with</span> open(domains,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">        domain = (i.strip(<span class="string">'\n'</span>).split(<span class="string">'//'</span>)[<span class="number">1</span>])</span><br><span class="line">        b.append(domain)</span><br><span class="line">        <span class="comment">#向列表b中添加域名，然后判断出现一次的时候，直接把 http(s)://www.abc.com输出。即使有重复的，只输出一次</span></span><br><span class="line">        <span class="keyword">if</span> b.count(domain) == <span class="number">1</span>:</span><br><span class="line">            http_domain = i.strip()</span><br><span class="line">            <span class="comment">#获取http://www.abc.com 跑敏感目录</span></span><br><span class="line">            <span class="keyword">with</span> open(qdomains, <span class="string">'a+'</span>) <span class="keyword">as</span> d:</span><br><span class="line">                d.writelines(http_domain + <span class="string">'\n'</span>)</span><br><span class="line">            <span class="comment">#获取 domain   www.abc.com  nmap 跑端口</span></span><br><span class="line">            <span class="keyword">with</span> open(qdomain, <span class="string">'a+'</span>) <span class="keyword">as</span> d:</span><br><span class="line">                d.writelines(http_domain.split(<span class="string">'//'</span>)[<span class="number">1</span>] + <span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="企业组织架构收集信息"><a href="#企业组织架构收集信息" class="headerlink" title="企业组织架构收集信息"></a><strong>企业组织架构收集信息</strong></h5><p><a href="https://xin.baidu.com/" target="_blank" rel="noopener">百度信用</a></p>
+<p><a href="https://www.tianyancha.com/" target="_blank" rel="noopener">天眼查</a></p>
+<h5 id="公众号-amp-小程序"><a href="#公众号-amp-小程序" class="headerlink" title="公众号&amp;小程序"></a>公众号&amp;小程序</h5><p><a href="https://github.com/3stoneBrother/personalTools/blob/master/scripts/gongzhonghao.py" target="_blank" rel="noopener">公众号获取</a></p>
+<p><a href="https://mp.weixin.qq.com/s/D7_VXLH1Jr3yd_cB8u1MJQ" target="_blank" rel="noopener">微信小程序的渗透</a></p>
+<h4 id="敏感信息"><a href="#敏感信息" class="headerlink" title="敏感信息"></a>敏感信息</h4><h5 id="BBScan-敏感路径探测"><a href="#BBScan-敏感路径探测" class="headerlink" title="BBScan  敏感路径探测"></a>BBScan  敏感路径探测</h5><p><a href="https://github.com/lijiejie/BBScan" target="_blank" rel="noopener">https://github.com/lijiejie/BBScan</a></p>
+<p><code>[root@vultr BBScan]# python BBScan.py -f /root/tools/domains/src/oppo/qchoop.txt</code></p>
+<p>高危漏洞爆发后，编写规则插件，全网扫描。</p>
+<h5 id="ffuf-爆破目录-参数爆破"><a href="#ffuf-爆破目录-参数爆破" class="headerlink" title="ffuf 爆破目录 参数爆破"></a>ffuf 爆破目录 参数爆破</h5><p><a href="https://github.com/ffuf/ffuf" target="_blank" rel="noopener">https://github.com/ffuf/ffuf</a></p>
+<p>可以对敏感路径以及参数进行爆破。</p>
+<p>批量的扫描。</p>
+<p>输出格式不是很好看，可以使用html格式。</p>
+<p>​    <figure class="highlight plain"><figcaption><span>-w ../dict/dict.txt -u &#123;0&#125;/FUZZ  -o &#123;1&#125;.html -of html".format(url,domain)```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">GET参数</span><br><span class="line"></span><br><span class="line">`ffuf -w /path/to/paramnames.txt -u https://target/script.php?FUZZ=test_value -fs 4242`</span><br><span class="line"></span><br><span class="line">对域名批量敏感目录爬取。</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">import os</span><br><span class="line">import sys</span><br><span class="line">domain = sys.argv[1]</span><br><span class="line">with open(domain,&apos;r&apos;) as f:</span><br><span class="line">        domains = set(f)</span><br><span class="line">        #num = 51</span><br><span class="line"></span><br><span class="line">        for i in domains:</span><br><span class="line">                url = i.strip(&apos;\n&apos;)</span><br><span class="line">                domain = url.split(&apos;//&apos;)[1] </span><br><span class="line">                a = &quot;ffuf -w ../dict/dict.txt -u &#123;0&#125;/FUZZ  -o &#123;1&#125;.html -of html&quot;.format(url,domain)</span><br><span class="line">                os.system(a)</span><br></pre></td></tr></table></figure></p>
+<h5 id="JS文件"><a href="#JS文件" class="headerlink" title="JS文件"></a>JS文件</h5><p><a href="https://mp.weixin.qq.com/s?__biz=Mzg4MzA4Nzg4Ng==&amp;mid=2247483903&amp;idx=1&amp;sn=0f8b83fb47477d863ad0fd234c7d9baa&amp;chksm=cf4d8e9ef83a0788f645e5c0142db88f05455460833cf1c64634a0e791df4b8e0d111ea8be32&amp;scene=0&amp;xtrack=1#rd" target="_blank" rel="noopener">利用js文件进行渗透</a></p>
+<p><a href="https://xz.aliyun.com/t/7745" target="_blank" rel="noopener">一次敏感信息泄露引发的逻辑漏洞挖掘</a></p>
+<p>工具：</p>
+<p><strong>JSFinder</strong></p>
+<p><a href="https://github.com/Threezh1/JSFinder" target="_blank" rel="noopener">https://github.com/Threezh1/JSFinder</a></p>
+<p><a href="https://xz.aliyun.com/t/5390" target="_blank" rel="noopener">https://xz.aliyun.com/t/5390</a></p>
+<p>-d 深度爬取，获取更多的内容。-ou, -os来指定URL和子域名所保存的文件名</p>
+<p> <code>python3 JSFinder.py -u https://www.sec-wiki.com</code></p>
+<p><code>python3 JSFinder.py -u https://www.sec-wiki.com -d -ou url.txt -os domain.txt</code></p>
+<p>缺点：速度慢，不能批量。</p>
+<p><strong>LinkFinder</strong></p>
+<p><a href="https://github.com/GerbenJavado/LinkFinder" target="_blank" rel="noopener">https://github.com/GerbenJavado/LinkFinder</a> </p>
+<p>分析整个域及其JS文件：</p>
+<p><code>python linkfinder.py -i https://example.com -d -o te.html</code></p>
+<p><strong>BurpSuite</strong></p>
+<p><a href="https://xz.aliyun.com/t/5409" target="_blank" rel="noopener">https://xz.aliyun.com/t/5409</a></p>
+<h5 id="google-搜索脚本"><a href="#google-搜索脚本" class="headerlink" title="google 搜索脚本"></a>google 搜索脚本</h5><p>将google常用的几种搜索方法集中到一个脚本里面。</p>
+<p><a href="https://github.com/IvanGlinkin/Fast-Google-Dorks-Scan/blob/master/FGDS.sh" target="_blank" rel="noopener">Fast Google Dorks Scan</a></p>
+<p><code>./FGDS.sh app.starbucks.com</code></p>
+<h5 id="脚本汇总"><a href="#脚本汇总" class="headerlink" title="脚本汇总"></a>脚本汇总</h5><p>实现的目标：输入一个域名，对其进行子域名枚举，域名存活判断和敏感目录的扫描，最后结合<a href="https://xray.cool/" target="_blank" rel="noopener">xray</a>的基本爬虫进行扫描。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">脚本编写目的：</span></span><br><span class="line"><span class="string">输入一个子域名，首先去获取子域名，去重。</span></span><br><span class="line"><span class="string">将子域名进行HTTP(S)判断，由于一个域名http(s)都可以访问。再次去重</span></span><br><span class="line"><span class="string">获取http://www.abc.com(被动扫描) www.abc.com(nmap)。</span></span><br><span class="line"><span class="string">敏感路径的扫描 BBscan</span></span><br><span class="line"><span class="string">爬取url+xray</span></span><br><span class="line"><span class="string">被动扫描 xray</span></span><br><span class="line"><span class="string">python3 sub.info.py abc.txt</span></span><br><span class="line"><span class="string">abc.txt 里面是要爬取的域名：baidu.com</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># -*-coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span>  os</span><br><span class="line"></span><br><span class="line"><span class="comment">#子域名的获取，输入域名，返回获取到的子域名(3个子域名枚举工具)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getsubdomain</span><span class="params">(domain)</span>:</span></span><br><span class="line">    <span class="comment">#crt证书</span></span><br><span class="line">    a = <span class="string">'''curl -s "https://crt.sh/?q=&#123;0&#125;&amp;output=json" | jq -r '.[].name_value'| sed 's/\*\.//g' | sort -u | tee -a &#123;1&#125;_crt.txt'''</span>.format(</span><br><span class="line">        domain, domain)</span><br><span class="line">    os.system(a)</span><br><span class="line">    <span class="comment"># _amass.txt</span></span><br><span class="line">    b = <span class="string">'amass enum -d &#123;0&#125; -o &#123;1&#125;_amass.txt'</span>.format(domain, domain)</span><br><span class="line">    os.system(b)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># _sub.txt</span></span><br><span class="line">    c = <span class="string">'subfinder -d &#123;0&#125; -o &#123;1&#125;_sub.txt'</span>.format(domain, domain)</span><br><span class="line">    os.system(c)</span><br><span class="line">    <span class="comment"># # asset</span></span><br><span class="line">    i = <span class="string">'assetfinder &#123;0&#125; | sort -u &gt; &#123;1&#125;_asset.txt'</span>.format(domain, domain)</span><br><span class="line">    os.system(i)</span><br><span class="line">    d = <span class="string">'cat &#123;0&#125;_crt.txt &#123;1&#125;_amass.txt &#123;2&#125;_sub.txt &#123;3&#125;_asset.txt | sort | uniq &gt; &#123;4&#125;.txt'</span>.format(domain, domain, domain, domain,domain)</span><br><span class="line">    <span class="comment">#d = 'cat &#123;0&#125;_crt.txt  &#123;1&#125;_asset.txt | sort | uniq &gt; &#123;2&#125;.txt'.format(domain, domain, domain)</span></span><br><span class="line">    os.system(d)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    e = <span class="string">'rm -rf &#123;0&#125;_crt.txt &#123;1&#125;_amass.txt &#123;2&#125;_sub.txt &#123;3&#125;_asset.txt'</span>.format(domain, domain, domain, domain)</span><br><span class="line">    os.system(e)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># f = 'cat &#123;0&#125;.txt | aquatone -chrome-path /root/tools/craw/chrome-linux/chrome'.format(url)</span></span><br><span class="line">    <span class="comment"># os.system(f)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># sub takeover</span></span><br><span class="line"></span><br><span class="line">    g = <span class="string">'subjack -w &#123;0&#125;.txt  -t 1000 -o takeover_&#123;1&#125;.txt -ssl'</span>.format(domain, domain)</span><br><span class="line">    os.system(g)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"&#123;0&#125;.txt"</span>.format(domain)</span><br><span class="line"></span><br><span class="line"><span class="comment">#对域名的二次处理,subdomain 子域名列表（getsubdomain 函数的输出结果）</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">http_s</span><span class="params">(target,subdomain)</span>:</span></span><br><span class="line">    <span class="comment">#subdomain = getsubdomain(target)</span></span><br><span class="line">    hp = <span class="string">'cat &#123;0&#125; | httprobe &gt; &#123;1&#125;_http.txt'</span>.format(subdomain,target)</span><br><span class="line">    os.system(hp)</span><br><span class="line">    http = <span class="string">"&#123;&#125;_http.txt"</span>.format(target)</span><br><span class="line">    <span class="comment">#b 一个空的列表，用来去重的设置</span></span><br><span class="line">    b = []</span><br><span class="line">    <span class="comment"># 获取http://www.abc.com 跑敏感目录</span></span><br><span class="line">    qchttp = <span class="string">"&#123;&#125;_qchttp.txt"</span>.format(target)</span><br><span class="line">    qcsdomain = <span class="string">"&#123;&#125;_qcsdomain.txt"</span>.format(target)</span><br><span class="line">    <span class="keyword">with</span> open(http, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">            domain = (i.strip(<span class="string">'\n'</span>).split(<span class="string">'//'</span>)[<span class="number">1</span>])</span><br><span class="line">            b.append(domain)</span><br><span class="line">            <span class="comment"># 向列表b中添加域名，然后判断出现一次的时候，直接把 http(s)://www.abc.com输出。即使有重复的，只输出一次</span></span><br><span class="line">            <span class="keyword">if</span> b.count(domain) == <span class="number">1</span>:</span><br><span class="line">                http_domain = i.strip()</span><br><span class="line"></span><br><span class="line">                <span class="keyword">with</span> open(qchttp, <span class="string">'a+'</span>) <span class="keyword">as</span> d:</span><br><span class="line">                    d.writelines(http_domain + <span class="string">'\n'</span>)</span><br><span class="line">                <span class="comment"># 获取 domain   www.abc.com  nmap 跑端口</span></span><br><span class="line">                <span class="keyword">with</span> open(qcsdomain, <span class="string">'a+'</span>) <span class="keyword">as</span> d:</span><br><span class="line">                    d.writelines(http_domain.split(<span class="string">'//'</span>)[<span class="number">1</span>] + <span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> qchttp</span><br><span class="line"></span><br><span class="line"><span class="comment">#对获取的域名进行处理，防止扫描到其他未授权的域名 从http_s获取到的结果，和之前输入的域名进行做对比。</span></span><br><span class="line"><span class="comment">#domains 获取到的子域名，dm列表域名</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">right_domain</span><span class="params">(qchttp,domain,dm)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        qqchttp = <span class="string">"&#123;0&#125;_qqchttp.txt"</span>.format(domain)</span><br><span class="line">        <span class="keyword">with</span> open(dm,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">                dms = i.strip(<span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">with</span> open(qchttp, <span class="string">'r'</span>) <span class="keyword">as</span> g:</span><br><span class="line">                    <span class="keyword">for</span> d <span class="keyword">in</span> g:</span><br><span class="line">                        domains = d.strip(<span class="string">'\n'</span>)</span><br><span class="line">                <span class="comment">#print(domains)</span></span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> dms <span class="keyword">in</span> domains:</span><br><span class="line">                            <span class="keyword">with</span> open(qqchttp, <span class="string">'a+'</span>) <span class="keyword">as</span> d:</span><br><span class="line">                                d.writelines(domains + <span class="string">'\n'</span>)</span><br><span class="line">        file = <span class="string">"python BBScan.py -f &#123;0&#125;"</span>.format(qqchttp)</span><br><span class="line">        os.system(file)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">return</span> qqchttp</span><br><span class="line"></span><br><span class="line"><span class="comment">#扫描的是获取http_s函数输出的结果，作为参数进行调用</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xray</span><span class="params">(domains)</span>:</span></span><br><span class="line">    <span class="comment">#domains = http_s(domain)</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> open(domains, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            dms = set(f)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> dms:</span><br><span class="line">                print(i)</span><br><span class="line">                url = i.strip(<span class="string">'\n\t'</span>)</span><br><span class="line">                dm = url.split(<span class="string">'//'</span>)[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    g = <span class="string">"/root/tools/xary/xray_linux_amd64 webscan --basic-crawler &#123;0&#125; --html-output &#123;1&#125;_.html"</span>.format(url,dm)</span><br><span class="line">                    os.system(g)</span><br><span class="line">                <span class="keyword">except</span>:</span><br><span class="line">                    <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) == <span class="number">1</span>:</span><br><span class="line">        msg = <span class="string">"""</span></span><br><span class="line"><span class="string">        src_info.py</span></span><br><span class="line"><span class="string">        Usage: src_info.py target</span></span><br><span class="line"><span class="string">            """</span></span><br><span class="line">        print(msg)</span><br><span class="line">        sys.exit(<span class="number">0</span>)</span><br><span class="line">    domains = sys.argv[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">with</span> open(domains,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">            domain = i.strip(<span class="string">'\n'</span>)</span><br><span class="line">            <span class="comment">#subdomain = getsubdomain(domain)</span></span><br><span class="line">            http_domain = right_domain(http_s(domain,getsubdomain(domain)),domain,sys.argv[<span class="number">1</span>])</span><br><span class="line">            <span class="comment">#http_s(domain,getsubdomain(domain))</span></span><br><span class="line">            xray(http_domain)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/25/信息收集一/" data-id="ckbq4uvf7004qlbxd4n8gzclt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bug-bounty/">bug_bounty</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/10/blog_life/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/WAF/">WAF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全资料汇集/">Web安全资料汇集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bug-bounty/">bug_bounty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全研究/">安全研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术研究/">技术研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/渗透技巧/">渗透技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与数据结构/">算法与数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jboss/">Jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Weblogic/">Weblogic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug-bounty/">bug_bounty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis-shortname/">iis-shortname</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-log/">ssh-log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/业务逻辑安全/">业务逻辑安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bypasswaf/" style="font-size: 17.5px;">Bypasswaf</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Flask/" style="font-size: 15px;">Flask</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Jboss/" style="font-size: 10px;">Jboss</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi/" style="font-size: 20px;">SQLi</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts/" style="font-size: 12.5px;">Struts</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Weblogic/" style="font-size: 12.5px;">Weblogic</a> <a href="/tags/XSS/" style="font-size: 12.5px;">XSS</a> <a href="/tags/bug-bounty/" style="font-size: 10px;">bug_bounty</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iis-shortname/" style="font-size: 10px;">iis-shortname</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssh-log/" style="font-size: 10px;">ssh-log</a> <a href="/tags/业务逻辑安全/" style="font-size: 10px;">业务逻辑安全</a> <a href="/tags/翻译/" style="font-size: 17.5px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/25/信息收集一/">博客</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/10/blog_life/">博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/22/提供推荐/">提供推荐</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/23/业务安全之密码重置和爆破/">密码重置学习</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/28/Wordpress <= 4.9.6 任意文件删除漏洞/">Wordpress 任意文件删除</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sec-note<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
