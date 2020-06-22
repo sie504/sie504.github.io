@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="信息收集第一步。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-22T07:02:14.113Z">
+<meta property="og:updated_time" content="2020-06-22T08:26:22.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信息收集第一步">
 <meta name="twitter:description" content="信息收集第一步。">
@@ -128,7 +128,11 @@
 <p>可以对敏感路径以及参数进行爆破。</p>
 <p>批量的扫描。</p>
 <p>输出格式不是很好看，可以使用html格式。</p>
-<p>​    <figure class="highlight plain"><figcaption><span>-w ../dict/dict.txt -u &#123;0&#125;/FUZZ  -o &#123;1&#125;.html -of html".format(url,domain)```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">GET参数</span><br><span class="line"></span><br><span class="line">`ffuf -w /path/to/paramnames.txt -u https://target/script.php?FUZZ=test_value -fs 4242`</span><br><span class="line"></span><br><span class="line">对域名批量敏感目录爬取。</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">import os</span><br><span class="line">import sys</span><br><span class="line">domain = sys.argv[1]</span><br><span class="line">with open(domain,&apos;r&apos;) as f:</span><br><span class="line">        domains = set(f)</span><br><span class="line">        #num = 51</span><br><span class="line"></span><br><span class="line">        for i in domains:</span><br><span class="line">                url = i.strip(&apos;\n&apos;)</span><br><span class="line">                domain = url.split(&apos;//&apos;)[1] </span><br><span class="line">                a = &quot;ffuf -w ../dict/dict.txt -u &#123;0&#125;/FUZZ  -o &#123;1&#125;.html -of html&quot;.format(url,domain)</span><br><span class="line">                os.system(a)</span><br></pre></td></tr></table></figure></p>
+<p>​<code>&quot;ffuf -w ../dict/dict.txt -u {0}/FUZZ  -o {1}.html -of html&quot;.format(url,domain)</code></p>
+<p>GET参数</p>
+<p><code>ffuf -w /path/to/paramnames.txt -u https://target/script.php?FUZZ=test_value -fs 4242</code></p>
+<p>对域名批量敏感目录爬取。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">domain = sys.argv[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">with</span> open(domain,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        domains = set(f)</span><br><span class="line">        <span class="comment">#num = 51</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> domains:</span><br><span class="line">                url = i.strip(<span class="string">'\n'</span>)</span><br><span class="line">                domain = url.split(<span class="string">'//'</span>)[<span class="number">1</span>] </span><br><span class="line">                a = <span class="string">"ffuf -w ../dict/dict.txt -u &#123;0&#125;/FUZZ  -o &#123;1&#125;.html -of html"</span>.format(url,domain)</span><br><span class="line">                os.system(a)</span><br></pre></td></tr></table></figure>
 <h5 id="JS文件"><a href="#JS文件" class="headerlink" title="JS文件"></a>JS文件</h5><p><a href="https://mp.weixin.qq.com/s?__biz=Mzg4MzA4Nzg4Ng==&amp;mid=2247483903&amp;idx=1&amp;sn=0f8b83fb47477d863ad0fd234c7d9baa&amp;chksm=cf4d8e9ef83a0788f645e5c0142db88f05455460833cf1c64634a0e791df4b8e0d111ea8be32&amp;scene=0&amp;xtrack=1#rd" target="_blank" rel="noopener">利用js文件进行渗透</a></p>
 <p><a href="https://xz.aliyun.com/t/7745" target="_blank" rel="noopener">一次敏感信息泄露引发的逻辑漏洞挖掘</a></p>
 <p>工具：</p>
@@ -155,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/25/信息收集一/" data-id="ckbq5kcyv004z1vxdiocgxxgt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/05/25/信息收集一/" data-id="ckbq8kdj6004qgbxd5wx79sas" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bug-bounty/">bug_bounty</a></li></ul>
