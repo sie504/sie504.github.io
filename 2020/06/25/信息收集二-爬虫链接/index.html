@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Sec-note">
 <meta property="og:description" content="信息收集第二步，获取urls。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-07-01T02:39:55.770Z">
+<meta property="og:updated_time" content="2020-07-01T02:52:07.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信息收集第二步">
 <meta name="twitter:description" content="信息收集第二步，获取urls。">
@@ -98,15 +98,11 @@
 <p><code>echo testphp.vulnweb.com | waybackurls</code></p>
 <p><code>echo www.abc.com | waybackurls | grep &quot;\.js&quot; | uniq | sort</code></p>
 <h5 id="Gau"><a href="#Gau" class="headerlink" title="Gau"></a><a href="https://github.com/lc/gau" target="_blank" rel="noopener">Gau</a></h5><p>简介</p>
-<blockquote>
-<p>getallurls (gau) fetches known URLs from AlienVault’s <a href="https://otx.alienvault.com/" target="_blank" rel="noopener">Open Threat Exchange</a>, the Wayback Machine, and Common Crawl for any given domain. Inspired by Tomnomnom’s <a href="https://github.com/tomnomnom/waybackurls" target="_blank" rel="noopener">waybackurls</a>.</p>
-</blockquote>
+<p><strong>getallurls (gau) fetches known URLs from AlienVault’s <a href="https://otx.alienvault.com/" target="_blank" rel="noopener">Open Threat Exchange</a>, the Wayback Machine, and Common Crawl for any given domain. Inspired by Tomnomnom’s <a href="https://github.com/tomnomnom/waybackurls" target="_blank" rel="noopener">waybackurls</a>.</strong></p>
 <p>还是和<a href="https://github.com/tomnomnom/waybackurls" target="_blank" rel="noopener">waybackurls</a>类似，从互联网上获取链接地址。</p>
 <p><code>echo testphp.vulnweb.com | gau</code></p>
 <h5 id="hakrawler"><a href="#hakrawler" class="headerlink" title="hakrawler"></a><a href="https://github.com/hakluke/hakrawler" target="_blank" rel="noopener">hakrawler</a></h5><p><code>echo testphp.vulnweb.com | hakrawler -all -depth 5 -plain</code></p>
-<h5 id="crawlergo"><a href="#crawlergo" class="headerlink" title="crawlergo"></a><a href="https://github.com/0Kee-Team/crawlergo" target="_blank" rel="noopener">crawlergo</a></h5><blockquote>
-<p>crawlergo是一个使用<code>chrome headless</code>模式进行URL入口收集的<strong>动态爬虫</strong>。 使用Golang语言开发，基于<a href="https://github.com/chromedp/chromedp" target="_blank" rel="noopener">chromedp</a> 进行一些定制化开发后操纵CDP协议，对整个页面关键点进行HOOK，灵活表单填充提交，完整的事件触发，尽可能的收集网站暴露出的入口。同时，依靠智能URL去重模块，在过滤掉了大多数伪静态URL之后，仍然确保不遗漏关键入口链接，大幅减少重复任务。</p>
-</blockquote>
+<h5 id="crawlergo"><a href="#crawlergo" class="headerlink" title="crawlergo"></a><a href="https://github.com/0Kee-Team/crawlergo" target="_blank" rel="noopener">crawlergo</a></h5><p><strong>crawlergo是一个使用<code>chrome headless</code>模式进行URL入口收集的</strong>动态爬虫<strong>。 使用Golang语言开发，基于<a href="https://github.com/chromedp/chromedp" target="_blank" rel="noopener">chromedp</a> 进行一些定制化开发后操纵CDP协议，对整个页面关键点进行HOOK，灵活表单填充提交，完整的事件触发，尽可能的收集网站暴露出的入口。同时，依靠智能URL去重模块，在过滤掉了大多数伪静态URL之后，仍然确保不遗漏关键入口链接，大幅减少重复任务。</strong></p>
 <p>可以将爬取的结果推送给被动扫描服务器。</p>
 <p><code>./crawlergo -c /root/tools/craw/chrome-linux/chrome -t 20  --push-to-proxy &quot;http://127.0.0.1:7777/</code></p>
 <h5 id="awvs"><a href="#awvs" class="headerlink" title="awvs"></a><a href="https://www.acunetix.com/vulnerability-scanner/" target="_blank" rel="noopener">awvs</a></h5><p>主要是使用awvs的爬虫功能，爬取的链接设置被动扫描代理地址。调用awvs的几个api，进行批量的添加任务，对任务设置代理，然后扫描，最后删除任务。</p>
@@ -125,7 +121,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/25/信息收集二-爬虫链接/" data-id="ckc2ri7d3004uuyxdhbiyfehq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/25/信息收集二-爬虫链接/" data-id="ckc2rl6zm004tx3xdbkaxla4q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bug-bounty/">bug_bounty</a></li></ul>
