@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>零信任网络 在不可信网络中构建安全系统_读书笔记 | Sec-note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="零信任入门。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零信任网络 在不可信网络中构建安全系统_读书笔记">
+<meta property="og:url" content="http://yoursite.com/2022/04/20/零信任网络 在不可信网络中构建安全系统/index.html">
+<meta property="og:site_name" content="Sec-note">
+<meta property="og:description" content="零信任入门。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-01%2021.03.22.png">
+<meta property="og:image" content="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-01%2021.12.39.png">
+<meta property="og:image" content="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-01%2022.03.06.png">
+<meta property="og:image" content="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-02%2008.44.51.png">
+<meta property="og:image" content="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-07%2010.14.13.png">
+<meta property="og:updated_time" content="2022-04-21T01:30:42.668Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="零信任网络 在不可信网络中构建安全系统_读书笔记">
+<meta name="twitter:description" content="零信任入门。">
+<meta name="twitter:image" content="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-01%2021.03.22.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sec-note</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-零信任网络 在不可信网络中构建安全系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/20/零信任网络 在不可信网络中构建安全系统/" class="article-date">
+  <time datetime="2022-04-20T05:20:46.000Z" itemprop="datePublished">2022-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/零信任/">零信任</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      零信任网络 在不可信网络中构建安全系统_读书笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>零信任入门。</p>
+<a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>企业物理安全边界、传统边界正在失效，这是一种新的身份认证。</p>
+<p>信任是安全的致命弱点。<strong>从来不信任，始终在校验 (Never Trust，Always Verify)</strong>是零信任的核心思想。</p>
+<p>传统的网络安全架构基于网络边界防护。企业构建网络安全体系时，首先把网络划分为外网、内网和DMZ区等不同的安全区域，然后在网络边界上通过部署防火墙、WAF和IPS等网络安全技术手段进行重重防护，构建企业业务的护城河。这种防护几乎没有对内网安全进行防护，基本都是防外，默认了内网比外网安全。</p>
+<p>企业数据泄露的两个类：一个是外部攻击，二是内部威胁。绕道而行，不攻击层层设防的外网，而是采用钓鱼攻击、水坑攻击等方法渗透到企业网络内部。由于人们对内网时可信任，攻击者进入内网后，很容易横行渗透。</p>
+<p>零信任对传统边界安全架构思想进行新的评估和审视，并对安全架构提出了建议，默认情况下不信任网络内部和外部的任何人、设备、系统和应用，应该基于<strong>认证和授权</strong>重构访问控制的信任基础，这种<strong>授权和信任</strong>不是静态的，需要给予对访问主体的风险度量进行动态调整。</p>
+<p>从网络中心化走向身份中心化。以身份为中心进行细粒度的自适应访问控制。</p>
+<p>零信任是一种全新的安全架构，其核心组件基于身份与访问管理技术、终端设备环境风险评估、基于属性的访问控制架构、基于机器学习的身份分析技术等构建。</p>
+<p>做好每条路径的访问控制措施，防护措施建立在应用层面，构建从访问主体到客体之间的端到端的、最小授权的业务应用动态访问控制机制，收缩攻击面。</p>
+<p>安全应当与系统的运营管理从根本上融为一体，不是建立在系统之上，安全应当与系统并存，安全不能成为系统运行的障碍。内生安全，在系统设计时需要考虑安全设计模式和注意事项，使得系统具备足够的安全弹性。</p>
+<p>每一个访问请求，都需要经过严格的检查，并确认其拥有合法的授权。零信任可以从根本上解决外部攻击者在网络中的横向攻击、VPN配置管理、防火墙集中安全策略管理带来的问题。</p>
+<h1 id="第一章-零信任的基本概念"><a href="#第一章-零信任的基本概念" class="headerlink" title="第一章 零信任的基本概念"></a>第一章 零信任的基本概念</h1><p>网络边界的安全防护一旦被突破，即使一台计算机被攻陷，攻击者也能够在“安全的”数据中心内部自由移动。</p>
+<p>攻击者服务器，内网渗透的话，是否存在安全域？A服务器是否可访问B服务器，一般都是站库分离，数据库的访问设置的比较严格。这个内网渗透，更是考验技术。</p>
+<h2 id="1-1-什么是零信任网络"><a href="#1-1-什么是零信任网络" class="headerlink" title="1.1 什么是零信任网络"></a>1.1 什么是零信任网络</h2><p>传统网络安全结构存在不同的区域，不同区域使用防火墙隔离，提供了纵深防御能力。</p>
+<p><img src="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-01%2021.03.22.png" alt=""></p>
+<p>传统安全模型缺点：1、缺乏网络内部的流量检查、2、主机部署缺乏物理及逻辑的灵活性 3、存在单点故障</p>
+<p>如果基于网络位置划分区域的需求消失，VPN就没用了。</p>
+<p>安全控制的实施点尽可能的推到网络边缘。</p>
+<p><img src="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-01%2021.12.39.png" alt=""></p>
+<h2 id="1-2-边界安全模型的演进"><a href="#1-2-边界安全模型的演进" class="headerlink" title="1.2 边界安全模型的演进"></a>1.2 边界安全模型的演进</h2><h3 id="1-2-1-管理全球IP地址空间"><a href="#1-2-1-管理全球IP地址空间" class="headerlink" title="1.2.1 管理全球IP地址空间"></a>1.2.1 管理全球IP地址空间</h3><p>网络的IP地址分配必须通过统一的协调，进行分配，外网IP地址的唯一性。</p>
+<h3 id="1-2-2-私有IP地址空间"><a href="#1-2-2-私有IP地址空间" class="headerlink" title="1.2.2 私有IP地址空间"></a>1.2.2 私有IP地址空间</h3><p>如果都使用公网IP，存在大量的浪费。私有互联网地址分配标准，解决这个问题。<code>10.0.0.0/8、172.16.0.0/12、192.168.0.0/16</code> 私有网络地址。私有网络其中的安全性，无法直接连接到互联网。</p>
+<h3 id="1-2-3-私有网络连接到公共网络"><a href="#1-2-3-私有网络连接到公共网络" class="headerlink" title="1.2.3 私有网络连接到公共网络"></a>1.2.3 私有网络连接到公共网络</h3><p>电子邮件是互联网较早的应用之一。</p>
+<p>私有网络中的邮件服务器一般情况下是唯一连接到互联网的服务器，两个网络接口，一个连接互联网，一个连接内部网络。通过连接到互联网的邮件服务器，私有网络内部的系统和人员可以发送和接收互联网电子邮件。这个邮件服务器开辟了一个物理通道，互联网和安全的私网络连接起来。如果服务器被攻破，借助其私网接口攻击内部网络。</p>
+<p>如何进行安全防护。检查服务器及其网络连接，需要在服务器的两侧部署防火墙，控制网络通信，阻止潜在的攻击者从互联网访问内部网络主机。受严格保护的服务器位置为DMZ，隔离区。</p>
+<h3 id="1-2-4-NAT的诞生"><a href="#1-2-4-NAT的诞生" class="headerlink" title="1.2.4 NAT的诞生"></a>1.2.4 NAT的诞生</h3><p>内部网络需要访问互联网的权限。NAT(网络地址转换)能解决这个问题。</p>
+<p>网络边界执行IP地址转换，维护一个公共IP/端口和私有IP/端口的映射关系表，使私有网络中的设备访问互联网。</p>
+<p>防火墙集成NAT功能。</p>
+<h3 id="1-2-5-现代边界安全模型"><a href="#1-2-5-现代边界安全模型" class="headerlink" title="1.2.5 现代边界安全模型"></a>1.2.5 现代边界安全模型</h3><p>通过在内部网络和互联网之间部署防火墙/NAT设备，能够清晰的划分安全区域。内网的安全区、隔离区和不可信任区域(互联网)</p>
+<p>边界防火墙设备配置特定的规则，规定不同区域之间允许或禁止哪种类型的网络流量通过。</p>
+<h2 id="1-3-威胁形势的演进"><a href="#1-3-威胁形势的演进" class="headerlink" title="1.3 威胁形势的演进"></a>1.3 威胁形势的演进</h2><p>互联网之前，用户和计算机系统可以拨入公共电话网络，将数据编码成音频信号来传输，连接到远程计算机。</p>
+<p>20世纪90年代，特洛伊木马欺骗用户安装恶意软件，然后打开一个端口等待连接请求，攻击者可以连接到这个开放的端口并远程控制目标计算机。</p>
+<p>直接攻击内网终端。</p>
+<p><img src="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-01%2022.03.06.png" style="zoom:50%;"></p>
+<h2 id="1-4-边界安全模型的缺陷"><a href="#1-4-边界安全模型的缺陷" class="headerlink" title="1.4 边界安全模型的缺陷"></a>1.4 边界安全模型的缺陷</h2><p>攻击者有无数种方法把远程访问工具(RAT)投递到内部网络中以获取远程访问权限，在内部网络中横向移动。</p>
+<p>传统安全架构设计成不同的安全域，对于例外情况，比如Web开发人员想通过SSH访问生产环境的Web服务器，可行的办法是在防火墙上配置例外规则，允许某个IP地址访问特定的服务器。</p>
+<p>APT攻击，使用钓鱼邮件给某个员工，点击邮件中的链接，黑客会在其个人计算机上安装恶意软件。恶意软件回连到黑客控制的服务器，建立连接会话之后，黑客能够控制这台个人计算机。逐步的收集信息，横向攻击。</p>
+<p><img src="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-02%2008.44.51.png" style="zoom:50%;"></p>
+<p>上面的攻击只是理想路线，但自己没有实现过。可能外面的黑客有成功攻破过，这个攻击过程中，网络中的安全防护措施发挥作用的地方在哪里？</p>
+<h2 id="1-5-信任在哪里？"><a href="#1-5-信任在哪里？" class="headerlink" title="1.5 信任在哪里？"></a>1.5 信任在哪里？</h2><p>尽可能的减少信任是更明智的做法。零信任网络就是完全不可信的网络。</p>
+<p>零信任模型认为，主机网络无论处于网络什么位置，都被视为互联网主机，它们所在的网络，无论是互联网还是内部网络，都必须被视为充满威胁的危险网络。只有认识到这一点，才能建立安全通信。</p>
+<h2 id="1-6-自动化系统的赋能"><a href="#1-6-自动化系统的赋能" class="headerlink" title="1.6 自动化系统的赋能"></a>1.6 自动化系统的赋能</h2><p>自动化系统是建设和运营零信任网络的关键组件。</p>
+<p>策略执行需要动态的更新，策略执行的自动化和速度是问题的关键。</p>
+<p>配置管理系统的广泛应用是构建零信任网络的重要基础。</p>
+<h2 id="1-7-边界安全模型与零信任模型的对比"><a href="#1-7-边界安全模型与零信任模型的对比" class="headerlink" title="1.7 边界安全模型与零信任模型的对比"></a>1.7 边界安全模型与零信任模型的对比</h2><p>边界安全模型试图在可信资源和不可信资源(本地网络和互联网)之间建一堵墙，而零信任不是，认为坏人无处不在，不是依靠墙来保护墙内柔弱的身体，而是让全民都拥有自保的能力。</p>
+<p>边界安全模型认为内部网络存在一定级别的信任，管理可能会松懈。</p>
+<p>零信任假定整个网络完全不可信，假定攻击者可以使用任意IP地址进行通信。</p>
+<p>零信任拥有3个关键组件：用户/应用程序认证、设备认证和信任。</p>
+<h2 id="1-8-云环境的应用"><a href="#1-8-云环境的应用" class="headerlink" title="1.8 云环境的应用"></a>1.8 云环境的应用</h2><p>在零信任模型中，计算资源不依赖IP地址或网络的安全性即可进行身份验证和安全通信，最大程度的把计算资源商品化。</p>
+<p>零信任主张加密所有通信数据。</p>
+<h1 id="第二章：信任管理"><a href="#第二章：信任管理" class="headerlink" title="第二章：信任管理"></a>第二章：信任管理</h1><p>信任管理是零信任网络的一个重要功能。</p>
+<p>零信任网络中的信任往往来自系统管理员。“零信任网络中的信任”，如果不存在与生俱来的信任，那么必须从某个地方产生信任并小心管理它。</p>
+<p>信任委托。</p>
+<h2 id="2-1-威胁模型"><a href="#2-1-威胁模型" class="headerlink" title="2.1 威胁模型"></a>2.1 威胁模型</h2><p>威胁模型用来描述潜在的攻击者及其能力、资源及意图攻击的目标。按照攻击者的能力高低进行排序，合理部署相应的攻击缓解措施。</p>
+<h3 id="2-1-1-常用的威胁模型"><a href="#2-1-1-常用的威胁模型" class="headerlink" title="2.1.1 常用的威胁模型"></a>2.1.1 常用的威胁模型</h3><p>STRIDE、DREAD、PASTA、Trike</p>
+<p>不同的威胁模型处理问题的视角不尽相同。有的建模工具聚焦于被攻击者视为目标的资产；有的独立地审视每一个软件组件，枚举每个组件可能的攻击。</p>
+<h3 id="2-1-2-零信任的威胁模型"><a href="#2-1-2-零信任的威胁模型" class="headerlink" title="2.1.2 零信任的威胁模型"></a>2.1.2 零信任的威胁模型</h3><p>零信任网络需要控制网络中的端点设备，对互联网威胁模型进行扩展，充分考虑端点设备被攻陷的情形。零信任网络能够防御的攻击者包括从低级别的“碰运气攻击者”到高级别的“可信内部人员”。</p>
+<h2 id="2-2-强认证"><a href="#2-2-强认证" class="headerlink" title="2.2 强认证"></a>2.2 强认证</h2><p>通常检查远程系统的IP地址，并要求对方输入口令的方式来完成身份认证。在零信任网络中，这种身份认证是不够的。零信任网络中的攻击者可以使用任意IP地址进行通信，零信任网络的每个访问请求都需要经过强身份认证。</p>
+<p>现在较广泛的身份认证机制是<strong>X.509</strong>标准。定义了数字证书的标准格式，并能够通过信任链认证身份。</p>
+<p>X.509 证书使用两个密钥：公钥和私钥。公钥发布出去，私钥严格保密。</p>
+<p>管理员更改或更新密钥/口令的行为被称为凭据轮换。</p>
+<h2 id="2-3-认证信任"><a href="#2-3-认证信任" class="headerlink" title="2.3 认证信任"></a>2.3 认证信任</h2><p><strong>公钥基础设施（PKI）</strong>定义了一组角色及其职责，能够在不可信的网络中安全地分发和验证公钥。</p>
+<p>PKI的目标是允许无特权的通信双方通过<strong>共同信任的第三方</strong>来验证对方身份的真实性。</p>
+<p>PKI利用注册中心(RA)把通信实体的身份与其公钥进行绑定，然后把这种绑定关系内嵌到数字证书，并由可信的第三方进行数字签名。只要发送方和接收方信任同一个第三方，发送方就可以使用经过第三方签名的证书证明自己的身份。</p>
+<p>PKI服务提供商有很多种类型。其中证书授权中心(CA)和信任网络(WoT)比较受欢迎。</p>
+<h3 id="2-3-1-什么是CA"><a href="#2-3-1-什么是CA" class="headerlink" title="2.3.1 什么是CA"></a>2.3.1 什么是CA</h3><p>CA作为可信的第三方，能够为客户签发并维护数字证书的有效性。</p>
+<p>数字证书：公钥私钥是配对生成的，某一私钥对应唯一公钥，某一私钥的拥有者也就是对应公钥的生成者，只需要证明公钥的生成者身份(小明)即可。这是数字证书的作用。</p>
+<p>小明将公钥及部分个人身份信息发送给某个权威公正的证书颁发机构(CA),CA机构在核实小明身份后，将颁发一个数字证书，证书内容包含小明的身份信息和其公钥数据，证明该公钥生成者的身份为小明。小明将数字证书放到互联网上，别人可以知道哪个公钥是属于小明的了。</p>
+<p>如何确保数字证书不可伪造呢？数字证书是经过CA机构签名的。 CA机构也生成一套公私钥，使用私钥对“小明身份信息及其公钥数据”这一文件内容进行数字签名，并放到数字证书(文件和数字签名)中，每个人的电脑里根证书记录了可信赖的CA机构信息及其公钥，可以 杜绝CA机构公钥被伪造的可能。</p>
+<h3 id="2-3-2-零信任模型的PKI的重要性"><a href="#2-3-2-零信任模型的PKI的重要性" class="headerlink" title="2.3.2 零信任模型的PKI的重要性"></a>2.3.2 零信任模型的PKI的重要性</h3><p>PKI是零信任模型身份认证的基石，大多数会采用PKI来证明身份的真实性。</p>
+<h3 id="2-3-3-私有PKI还是公共PKI"><a href="#2-3-3-私有PKI还是公共PKI" class="headerlink" title="2.3.3 私有PKI还是公共PKI"></a>2.3.3 私有PKI还是公共PKI</h3><p>PKI通常被部署为公共的信任系统，签发和管理互联网上使用的X.509证书。</p>
+<p>零信任会使用大量的证书，使用公共PKI，成本费用很高。公共CA不能提供可编程接口，给零信任网络的自动化管理带来巨大挑战。</p>
+<h3 id="2-3-4-公共PKI有胜于无"><a href="#2-3-4-公共PKI有胜于无" class="headerlink" title="2.3.4 公共PKI有胜于无"></a>2.3.4 公共PKI有胜于无</h3><p>无论使用哪种PKI，都需要在自动化管理方面下功夫。</p>
+<h2 id="2-4-最小特权"><a href="#2-4-最小特权" class="headerlink" title="2.4 最小特权"></a>2.4 最小特权</h2><p>最小特权原则是指一个实体应该只被授予完成任务所需要的特权。知其所需。</p>
+<p>比如UNIX，使用sudo命令时，需要提示用户输入口令验证身份，验证成功后，用户才可以以另一个角色执行操作。</p>
+<p>零信任网络的情形与之类似，用户在大多数情况下以最小特权模式访问网络资源，只在需要执行敏感操作时才提升权限。</p>
+<p>基于网络活动的风险分析主动调整访问权限的能力是零信任网络的安全特性之一。</p>
+<h2 id="2-5-可变的信任"><a href="#2-5-可变的信任" class="headerlink" title="2.5 可变的信任"></a>2.5 可变的信任</h2><p>信任管理是网络安全管理中非常困难的工作。</p>
+<p>网络参与者的信任是基于参与者过去和当前的行为而不断变化。持续监视参与者的网络活动，并据此持续更新起信任评分，使用这个评分作为授权策略判定的依据之一。</p>
+<h2 id="2-6-控制平面和数据平面"><a href="#2-6-控制平面和数据平面" class="headerlink" title="2.6 控制平面和数据平面"></a>2.6 控制平面和数据平面</h2><p>数据平面的作用是转发网络流量，需要高速处理数据包，其处理相对简单，使用专用硬件。</p>
+<p>控制平面可以看作网络设备的大脑，系统管理员用它来配置管理网络设备，控制平面会随着策略的变化而变化。</p>
+<p>数据平面由直接处理网络流量的应用程序、防火墙、代理服务器和路由器组成。</p>
+<h1 id="第三章：网络代理"><a href="#第三章：网络代理" class="headerlink" title="第三章：网络代理"></a>第三章：网络代理</h1><p>用户和设备的相互绑定称为网络代理。访问控制策略需要将用户和设备作为一个整体进行考虑。</p>
+<h2 id="3-1-什么是网络代理"><a href="#3-1-什么是网络代理" class="headerlink" title="3.1 什么是网络代理"></a>3.1 什么是网络代理</h2><p>用户、应用程序和设备信息是访问请求密不可分的上下文，将其作为整体进行授权，可以有效地应对凭证窃取等安全威胁。</p>
+<h3 id="3-1-1-网络代理的数据差异性"><a href="#3-1-1-网络代理的数据差异性" class="headerlink" title="3.1.1 网络代理的数据差异性"></a>3.1.1 网络代理的数据差异性</h3><p>网络代理中存在一些数据字段，信任评分属于动态数据字段，在授权时实时计算出来。</p>
+<h3 id="3-1-2-网络代理是什么"><a href="#3-1-2-网络代理是什么" class="headerlink" title="3.1.2 网络代理是什么"></a>3.1.2 网络代理是什么</h3><p>根据场景需求和方案的成熟度不同，网络代理包含的数据粒度可能存在较大差异。</p>
+<h2 id="3-2-如何使用网络代理"><a href="#3-2-如何使用网络代理" class="headerlink" title="3.2 如何使用网络代理"></a>3.2 如何使用网络代理</h2><p>授权的主体必须是网络代理，所有的访问控制策略都是针对网络代理制定的。</p>
+<p>用户-设备对在零信任授权决策中至关重要，网络代理将二者捆绑在一起。</p>
+<p>网络代理是进行授权，和认证无关。认证是先决条件，只有认证成功，才能产生网络代理所需的数据信息。</p>
+<p>认证是面向会话的，授权是面向请求的。授权决策极大的依赖网络代理的数据细节。</p>
+<h2 id="3-3-如何适当地暴露网络代理"><a href="#3-3-如何适当地暴露网络代理" class="headerlink" title="3.3 如何适当地暴露网络代理"></a>3.3 如何适当地暴露网络代理</h2><p>网络代理常常包含的信息是敏感的，比如姓名、地址、电话号、设备信息。</p>
+<p>策略依赖于访问代理，访问代理的数据位于控制层面。也有例外，应用中心化的场景，需要实现细粒度的应用授权，位于数据平面。</p>
+<h2 id="3-4-标准的缺失"><a href="#3-4-标准的缺失" class="headerlink" title="3.4 标准的缺失"></a>3.4 标准的缺失</h2><p>零信任由很多系统构成，都需要和网络代理交互，网络代理亟待标准化。</p>
+<h3 id="3-4-1-固化与变化并存"><a href="#3-4-1-固化与变化并存" class="headerlink" title="3.4.1 固化与变化并存"></a>3.4.1 固化与变化并存</h3><p>数据的兼容性对实现和维护零信任控制层面至关重要。按需扩展和伸缩性对一个成熟的零信任网络至关重要。</p>
+<h3 id="3-4-2-标准化值得考虑"><a href="#3-4-2-标准化值得考虑" class="headerlink" title="3.4.2 标准化值得考虑"></a>3.4.2 标准化值得考虑</h3><p>网络代理格式的标准化？</p>
+<h1 id="第四章：-授权"><a href="#第四章：-授权" class="headerlink" title="第四章： 授权"></a>第四章： 授权</h1><p>授权是零信任核心的机制和流程，授权不能忽视，所有访问请求都必须被授权。</p>
+<p>数据存储系统和其他支撑系统是授权的基石。</p>
+<h2 id="4-1-授权体系架构"><a href="#4-1-授权体系架构" class="headerlink" title="4.1 授权体系架构"></a>4.1 授权体系架构</h2><p>策略执行组件、策略引擎、信任引擎、数据存储系统</p>
+<p><img src="https://2022-1258195556.cos.ap-nanjing.myqcloud.com/iShot2022-04-07%2010.14.13.png" alt=""></p>
+<p>策略执行组件大量存在，尽可能靠近工作负载，直接影响授权决策的结果。</p>
+<p>策略引擎依据事先制定好的策略，对请求及其上下文进行比较并做出决策，根据决策结果通知策略执行点对访问请求放行还是拒绝。</p>
+<p>策略引擎调用信任引擎，利用各种数据分析并评估风险。</p>
+<p>授权决策依据的大量数据都存放在数据存储系统中。</p>
+<h2 id="4-2-策略执行组件"><a href="#4-2-策略执行组件" class="headerlink" title="4.2 策略执行组件"></a>4.2 策略执行组件</h2><p>策略执行组件，在逻辑上处于授权信息流的第一道关口，负责拦截访问请求并通过调用策略引擎完成授权决策。</p>
+<p>两大职责：第一，和策略引擎交互完成授权决策。 第二，授权决策结果的强制执行。</p>
+<h2 id="4-3-策略引擎"><a href="#4-3-策略引擎" class="headerlink" title="4.3 策略引擎"></a>4.3 策略引擎</h2><p>策略引擎是零信任授权模型中进行授权决策的组件。接收来自策略执行组件的授权请求，并和预先制定好的策略进行比较，决定请求时都被允许，并将决策结果返回策略执行组件进行强制执行。</p>
+<p>动态、实时、按需的授权决策。</p>
+<h3 id="4-3-1-策略存储系统"><a href="#4-3-1-策略存储系统" class="headerlink" title="4.3.1 策略存储系统"></a>4.3.1 策略存储系统</h3><p>策略引擎进行授权决策时所使用的规则需要被持久化存储，策略规则其制定、存储和管理独立于策略引擎。策略规则存放在版本控制系统中。</p>
+<p>策略规则的方便管理。版本控制等。</p>
+<h3 id="4-3-2-如何更好地制定策略"><a href="#4-3-2-如何更好地制定策略" class="headerlink" title="4.3.2 如何更好地制定策略"></a>4.3.2 如何更好地制定策略</h3><p>零信任网络策略使用信任评分对未知攻击向量进行预估和防护，制定策略时引入信任评分机制，管理员可以很好的缓解未知威胁。</p>
+<p>策略的制定，依赖那些属性？信任评分、访问请求包含的其余属性。</p>
+<h3 id="4-3-3-由谁定义策略"><a href="#4-3-3-由谁定义策略" class="headerlink" title="4.3.3 由谁定义策略"></a>4.3.3 由谁定义策略</h3><p>将策略定义和管理的权责开放给资源或服务的所有者，以便分担管理员的策略维护压力。</p>
+<p>权限开放给服务所有者，会不会存在内鬼。一种是需要有策略审查机制。另外一种手段是实施分层策略。</p>
+<h2 id="4-4-信任引擎"><a href="#4-4-信任引擎" class="headerlink" title="4.4 信任引擎"></a>4.4 信任引擎</h2><p>信任引擎是对特定的网络请求活动进行风险分析的系统组件。</p>
+<h3 id="4-4-1-哪些实体需要评分"><a href="#4-4-1-哪些实体需要评分" class="headerlink" title="4.4.1 哪些实体需要评分"></a>4.4.1 哪些实体需要评分</h3><p>授权的主体是网络代理。应该同时对网络代理及网络代理的构成要素(设备、用户及应用程序)进行风险评分。将风险评分同时传递给策略引擎，策略引擎根据具体的规则决定使用哪些评分参与授权决策。</p>
+<h3 id="4-4-2-信任评分的暴露存在风险"><a href="#4-4-2-信任评分的暴露存在风险" class="headerlink" title="4.4.2 信任评分的暴露存在风险"></a>4.4.2 信任评分的暴露存在风险</h3><p>信任评分是个秘密，不能被泄露出去。对于潜在的攻击者，这是一个攻击提示信号。</p>
+<h2 id="4-5-数据存储系统"><a href="#4-5-数据存储系统" class="headerlink" title="4.5 数据存储系统"></a>4.5 数据存储系统</h2><p>用于授权决策的数据库可以被视为系统当前和历史状态的权威数据源。</p>
+<p>按照功能划分的数据库，分为两大类：清单库和历史库。清单库是记录资源当前状态的权威数据源，用户清单库的所有用户信息、设备清单库记录公司所有的设备最新信息。用户清单库一般使用用户名做主键。</p>
+<h1 id="第五章：建立设备信任"><a href="#第五章：建立设备信任" class="headerlink" title="第五章：建立设备信任"></a>第五章：建立设备信任</h1><p>建立设备信任是零信任架构的基石。</p>
+<h2 id="5-1-初始信任"><a href="#5-1-初始信任" class="headerlink" title="5.1 初始信任"></a>5.1 初始信任</h2><p>采购安全厂商的设备，一定程度上对其是信任的。对供应商是社会化信任。</p>
+<p>将信任度注入设备生成数字信任度并可靠保持。</p>
+<h3 id="5-1-设备证书的生成和保护"><a href="#5-1-设备证书的生成和保护" class="headerlink" title="5.1 设备证书的生成和保护"></a>5.1 设备证书的生成和保护</h3><p>识别设备，需要为其签发设备证书。其中需要有私钥，私钥的保护是一个问题。一个简单方案对私钥的访问设置权限，另一种是对私钥进行加密。</p>
+<p>迄今最好的一种存储设备密钥的方法是使用安全的加密处理器。</p>
+<h3 id="5-1-2-静态和动态系统中的身份标示安全"><a href="#5-1-2-静态和动态系统中的身份标示安全" class="headerlink" title="5.1.2 静态和动态系统中的身份标示安全"></a>5.1.2 静态和动态系统中的身份标示安全</h3><p>动态系统中，配置和签名过程是自动化的。设备证书代表设备的身份和初始信任度，在证书签署流程中需要人工干预环节。</p>
+<h2 id="5-2-通过控制平面认证设备"><a href="#5-2-通过控制平面认证设备" class="headerlink" title="5.2 通过控制平面认证设备"></a>5.2 通过控制平面认证设备</h2><p>通过网对设备身份进行验证。</p>
+<h3 id="5-2-1-X-509"><a href="#5-2-1-X-509" class="headerlink" title="5.2.1 X.509"></a>5.2.1 X.509</h3><p>x.509 是设备身份和认证方面的重要标准，定义了公钥证书、吊销列表的证书格式和验证证书链的方法。</p>
+<p><strong>证书链及证书认证机构</strong></p>
+<p>证书必须经由可信机构进行数字签名才具备有效性，才是可信的。</p>
+<p>证书注册机构负责对证书的详细信息进行确认，只有确认过的证书信息才能被签名。</p>
+<p><strong>设备身份和X.509</strong></p>
+<p>X.509证书的首要作用是证明身份。通过公钥和私钥两个密钥可以完成这种证明/公证。</p>
+<p><strong>私钥存储</strong></p>
+<p>私钥必须被严格的保护起来。</p>
+<p>存储私钥时对其加密，使用时提供加密口令进行解密。</p>
+<p>硬件安全模块(HSM)在私钥保护中厉害，通过硬件生成密钥对并将私钥保存在安全存储区内。</p>
+<h3 id="5-2-2-TPM-可信平台模块"><a href="#5-2-2-TPM-可信平台模块" class="headerlink" title="5.2.2 TPM(可信平台模块)"></a>5.2.2 TPM(可信平台模块)</h3><p>可信平台模块(TPM)是一种嵌入到计算机设备中的特殊芯片，一般称为加密处理器。安全密钥和硬件紧密绑定！</p>
+<h3 id="5-2-3-基于硬件的零信任附件"><a href="#5-2-3-基于硬件的零信任附件" class="headerlink" title="5.2.3 基于硬件的零信任附件"></a>5.2.3 基于硬件的零信任附件</h3><p>支持传统设备的常用方案是采用认证代理。</p>
+<h2 id="5-3-设备清单管理"><a href="#5-3-设备清单管理" class="headerlink" title="5.3 设备清单管理"></a>5.3 设备清单管理</h2><p>设备的认证和完整性是零信任安全至关重要的一步。</p>
+<p>设备清单管理涉及对设备及其属性进行编目管理。</p>
+<p>零信任网络的强大之处在于系统预期的明确，什么应该发生和什么不应该发生很明确。设备清单数据库是实现这种可预期的访问控制能力的关键组件，通过各类设备属性可以推出大量有用的信息。属性信息越丰富，越准确，细粒度的行为预期和访问控制规则就越完善。</p>
+<h2 id="5-4-设备信任续租"><a href="#5-4-设备信任续租" class="headerlink" title="5.4 设备信任续租"></a>5.4 设备信任续租</h2><p>设备运行时间越长，其被攻破的可能性越高。设备轮换更新至关重要。</p>
+<p>如果设备是在云端，只需要销毁现有实例，重新构建一个新的实例。如果是物理硬件的场景，设备轮换不是那么简单！</p>
+<h2 id="5-5-软件配置管理"><a href="#5-5-软件配置管理" class="headerlink" title="5.5 软件配置管理"></a>5.5 软件配置管理</h2><p>配置管理是严格控制和记录所有软件变更的过程。</p>
+<p>配置管理数据库可以用于设备清单管理系统。</p>
+<h2 id="5-6-使用设备数据进行用户授权"><a href="#5-6-使用设备数据进行用户授权" class="headerlink" title="5.6 使用设备数据进行用户授权"></a>5.6 使用设备数据进行用户授权</h2><p>零信任网络模型强制对设备、用户设置应用程序进行认证和授权。设备认证一般在用户认证之前完成。</p>
+<p>当进行用户认证时，设备认证已经完成，网络已经知悉了设备的身份并生成大量的有用的场景信息。据此信息构建比以往更强大的用户认证手段。</p>
+<p><strong>根据这些信息来判断用户是否应该在某个类型的设备或者某个未知登陆。</strong></p>
+<h2 id="5-7-信任信号"><a href="#5-7-信任信号" class="headerlink" title="5.7 信任信号"></a>5.7 信任信号</h2><p>信任信号是在计算设备信任评分和制定授权策略方面都非常有用。</p>
+<p><strong>历史访问</strong>：一段时间没有出现过的设备显然比经常出现的设备更加可疑。</p>
+<p><strong>位置</strong>：网络位置的变更。</p>
+<p><strong>网络通信模式</strong>：网络监测和流量采集设备对流量进行分析快速检测出可能的入侵。</p>
+<h1 id="第六章：建立用户信任"><a href="#第六章：建立用户信任" class="headerlink" title="第六章：建立用户信任"></a>第六章：建立用户信任</h1><p>系统如何判断操作某台计算机的用户一定是预期中的哪位合法用户？</p>
+<p>零信任网络理念下，将用户的识别和信任要严格的区分于设备。</p>
+<h2 id="6-1-身份权威性"><a href="#6-1-身份权威性" class="headerlink" title="6.1 身份权威性"></a>6.1 身份权威性</h2><p>网络中，身份是对用户所对应数字个体的标识。</p>
+<p>现实世界中，通过身份证/驾照作为身份凭证。计算机系统中，需要一个权威中心负责用户身份管理。还需要一种机制处理用户身份遗失问题。</p>
+<h2 id="6-2-私有系统的身份初始化"><a href="#6-2-私有系统的身份初始化" class="headerlink" title="6.2 私有系统的身份初始化"></a>6.2 私有系统的身份初始化</h2><p>数字化身份的产生以及身份与人的初始化关联是非常敏感的操作。</p>
+<p><strong>人工认证的力量不可忽视</strong>：需要人工介入，但流程繁琐！</p>
+<p><strong>预期信息的确认</strong>：创建数字身份之前，有许多信息可以获取，应使用尽可能多的信息全面构建用户画像。预期信息可看作实体身份通向数字身份的关键要素。</p>
+<h2 id="6-3-身份的存储"><a href="#6-3-身份的存储" class="headerlink" title="6.3 身份的存储"></a>6.3 身份的存储</h2><p>需要将物理世界中的信息身份映射到数字世界中，将身份转换成字节。但是如何进行存储呢？</p>
+<p>最好使用几个互相隔离的数据库代替单一数据库来存储所有用户信息。</p>
+<h2 id="6-4-何时进行身份认证"><a href="#6-4-何时进行身份认证" class="headerlink" title="6.4 何时进行身份认证"></a>6.4 何时进行身份认证</h2><p>务必记住用户的体验在首位。在增强安全性的同时保证用户体验最优。</p>
+<p><strong>通过认证获取信任</strong>：系统认证实际上就是系统验证用户是否是他声称的那个人。即使用户名和密码是正确的，可能A的信息被B窃取了。</p>
+<p><strong>通过信任驱动认证机制</strong>：认证的目的是获取信任。</p>
+<p><strong>多路通道进行通信</strong>：比如登陆Web端，需要移动端的一次性密码。二次认证！</p>
+<p><strong>缓存身份及其信任等级</strong>：常见的登陆处，认证会记录在cookie中，但是在零信任中，当信任级别低时，需要及时的进行撤销授权。</p>
+<h2 id="6-5-如何认证身份"><a href="#6-5-如何认证身份" class="headerlink" title="6.5 如何认证身份"></a>6.5 如何认证身份</h2><p>可通过用户知道的信息，持有的凭证和固有特征的3个方面对用户进行识别。</p>
+<p>用户所知道的信息：只有用户本人知道的信息(如密码)</p>
+<p>用户所持有的凭证：用户可以提供的物理凭证。一次性口令！、证书、安全令牌(硬件设备)</p>
+<p>凭证/私钥本身就是由安全令牌生成的，并且凭证信息永远不会离开硬件令牌。使用特定硬件设备存储私钥时目前较安全的存储方法。</p>
+<p>用户所固有的特征：用户的固有特征。指纹、掌纹、人脸识别。</p>
+<h2 id="6-6-用户组的认证和授权"><a href="#6-6-用户组的认证和授权" class="headerlink" title="6.6 用户组的认证和授权"></a>6.6 用户组的认证和授权</h2><p>单个用户的可信度可能很低，很多个用户组合的可信度可能大有提高。针对用户组的授权认证减少风险。</p>
+<p><strong>秘密共享机制</strong>：原始秘密适当方式被拆分n部分，将拆分后的每一部分发给不同的参与者。算法的配置决定最终需要多少个参与者的协作才能恢复原始秘密。</p>
+<h2 id="6-7-积极参与、积极报告"><a href="#6-7-积极参与、积极报告" class="headerlink" title="6.7 积极参与、积极报告"></a>6.7 积极参与、积极报告</h2><p>创建一种全新的文化，安全团队与其他团队携手合作以共同维护系统安全。促进全员参与进来！</p>
+<h2 id="6-8-信任信号"><a href="#6-8-信任信号" class="headerlink" title="6.8 信任信号"></a>6.8 信任信号</h2><p>用户的历史活动为判定其当前操作可信度提供了丰富的分析素材。挖掘用户历史操作构建其行为基线。</p>
+<p>根据用户的历史操作计算一个信任评分，然后基于此信任评分决定用户是否仍然具备足够的访问敏感资源的信任度。</p>
+<p>地理位置同样是评估用户信任评分的一个很好的因素。这个对于outlook邮箱来说，它是做到了！</p>
+<h2 id="6-9-总结"><a href="#6-9-总结" class="headerlink" title="6.9 总结"></a>6.9 总结</h2><p>如何在系统中构建对用户的信任。构建用户信任的基石是身份。</p>
+<h1 id="第7章：建立应用信任"><a href="#第7章：建立应用信任" class="headerlink" title="第7章：建立应用信任"></a>第7章：建立应用信任</h1><p>任何人都期望软件能按照预期运行。</p>
+<h2 id="7-1-理解应用流水线"><a href="#7-1-理解应用流水线" class="headerlink" title="7.1 理解应用流水线"></a>7.1 理解应用流水线</h2><p>代码的创建、交付和执行构建了一个敏感的事件链。确保事件链中的每个环节的潜在破坏都能够被监测。</p>
+<p>源代码、构建/编译、分发、执行。</p>
+<h2 id="7-2-信任源代码"><a href="#7-2-信任源代码" class="headerlink" title="7.2 信任源代码"></a>7.2 信任源代码</h2><p>代码编写人员，是否会留后门。 代码的安全存储和分发问题。</p>
+<p><strong>保护代码库</strong>：最小权限原则，用户只能获得完成任务所必须的代码库访问权限。</p>
+<p><strong>验证代码和审计跟踪</strong>：版本控制系统，使用加密技术存储代码历史记录。</p>
+<p><strong>代码审查</strong>：代码审计，发现到吗中得到安全漏洞。</p>
+<h2 id="7-3-构建系统的信任"><a href="#7-3-构建系统的信任" class="headerlink" title="7.3 构建系统的信任"></a>7.3 构建系统的信任</h2><p>对服务器实施强有力的保护非常重要。</p>
+<p>输入、输出建立信任。</p>
+<h2 id="7-4-建立分发系统的信任"><a href="#7-4-建立分发系统的信任" class="headerlink" title="7.4 建立分发系统的信任"></a>7.4 建立分发系统的信任</h2><p>分发是选择交付给下游使用者的工件的过程。</p>
+<p>供应链的安全问题。如何确保上游系统/组件的安全性！</p>
+<p>软件分发主要采用散列和签名两种主要机制来维护完整性和真实性。</p>
+<h2 id="7-5-人工参与"><a href="#7-5-人工参与" class="headerlink" title="7.5 人工参与"></a>7.5 人工参与</h2><p>哪些步骤需要人工参与。将代码提交到版本控制系统是一个明确需要人工参与的关键点。</p>
+<h2 id="7-6-信任实例"><a href="#7-6-信任实例" class="headerlink" title="7.6 信任实例"></a>7.6 信任实例</h2><p>零信任网络中，了解基础设施中运行的内容很重要。</p>
+<p><strong>单向升级策略</strong>：软件版本号是判断其版本和评估其新旧的重要因素，可知道其可能包含的哪些漏洞。</p>
+<h2 id="7-7-运行时安全"><a href="#7-7-运行时安全" class="headerlink" title="7.7 运行时安全"></a>7.7 运行时安全</h2><p>应用实例的全生命周期安全。</p>
+<p><strong>安全编码实践</strong>：发现一个修一个后，又发现了两个。从根本上解决这种风险，需要应用开发人员的思维发生变化，确保编码实践的安全性。</p>
+<p>另一种是模糊测试，对线上的系统进行安全测试。</p>
+<p><strong>隔离</strong>：通过限制可访问的资源来隔离已部署的应用程序很重要。攻击者的横向移动比较难。采用哪些技术进行隔离！</p>
+<p><strong>主动监控：</strong>详细的日志记录和监测很重要。</p>
+<h1 id="第八章：建立流量信任"><a href="#第八章：建立流量信任" class="headerlink" title="第八章：建立流量信任"></a>第八章：建立流量信任</h1><p>网络流的验证和授权是零信任网络至关重要的机制。传统的网络过滤机制在零信任中仍然扮演重要的角色。</p>
+<h2 id="8-1-加密和认证"><a href="#8-1-加密和认证" class="headerlink" title="8.1 加密和认证"></a>8.1 加密和认证</h2><p>加密提供机密性，用于确保只有接收者才能读取发送的数据。</p>
+<p>认证用于确保接收者可以验证消息确实是由所声称的对象发送的。</p>
+<p><strong>消息的真实性</strong>是零信任网络的一个必选条件。</p>
+<h2 id="8-2-首包认证建立初始信任"><a href="#8-2-首包认证建立初始信任" class="headerlink" title="8.2 首包认证建立初始信任"></a>8.2 首包认证建立初始信任</h2><p>单包授权。</p>
+<h2 id="8-3-网络模型简介"><a href="#8-3-网络模型简介" class="headerlink" title="8.3 网络模型简介"></a>8.3 网络模型简介</h2><p>网络协议栈中，下层为上层提供明确的功能和保障。</p>
+<p>OSI网络模型和TCP/IP网络模型。</p>
+<p>物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。</p>
+<p>链路层、互联网层、传输层、应用层。</p>
+<h2 id="8-4-零信任应该在网络模型中的哪个位置"><a href="#8-4-零信任应该在网络模型中的哪个位置" class="headerlink" title="8.4 零信任应该在网络模型中的哪个位置"></a>8.4 零信任应该在网络模型中的哪个位置</h2><p>目前的两大主流网络安全套件：TLS和IPSec。TLS(传输层安全)</p>
+<p>许多应用层协议支持通过TLS来保护流量；IPSec是一种替代协议，通常用于VPN场景。</p>
+<p><strong>IPSec</strong>通常在主机的内核中实现的。</p>
+<p>零信任的目标是保证所有流量的安全通信，实现目标的方式是构建默认安全通信的系统，作为一种底层服务，IPSec能够很好的提供这种默认服务。</p>
+<p>将其配置为仅允许建立了安全通道之后再进行数据包传输。接收方只处理通过安全通道发来的数据包。</p>
+<p>仅保护两个设备之间的通信不够，还需要确保每个单独的网络流都是经过授权的。</p>
+<p><strong>网络支持问题</strong>：不是所有的场所都对IPsec流量支持</p>
+<p>对于客户端/服务器的交互，需要使用双向认证的TLS协议是一种合理的网络安全方案。</p>
+<h2 id="8-5-协议"><a href="#8-5-协议" class="headerlink" title="8.5 协议"></a>8.5 协议</h2><p>因特网密钥交换协议(Internet Key Exchange IKE) 用于执行IPSec认证和密钥交换，以后台守护进程的方式实现，使用预共享密钥或X.509证书来认证对端并创建一个安全会话。</p>
+<p><strong>IPSec</strong>是一系列协议的组合，IKE是其协议套件中的一部分。核心的IPSec协议内嵌在IP协议中。</p>
+<p>传输层TLS是用来保护Web流量的常见协议，是一种成熟、易于理解的协议。</p>
+<h2 id="8-6-过滤"><a href="#8-6-过滤" class="headerlink" title="8.6 过滤"></a>8.6 过滤</h2><p>过滤是数据包被网络上的系统接受或拒绝的过程。</p>
+<p>防火墙位于网络和应用程序之间，过滤流入和流出该设备的流量，防火墙不但提供过滤功能，还提供网络地址转换、流量控制和VPN隧道服务。</p>
+<p><strong>主机过滤</strong>：过滤主机上的流量</p>
+<p><strong>双向过滤</strong>：同时过滤主机的出入流量。</p>
+<p><strong>中间过滤</strong>：通过两个主机间的设备过滤流量。</p>
+<p>SDN 软件定义网络 不会盲目的将数据包路由到目的地址，而是根据预期和允许的流量，积极管理交换和路由策略。</p>
+<h2 id="8-7-总结"><a href="#8-7-总结" class="headerlink" title="8.7 总结"></a>8.7 总结</h2><p>业务流量如何在零信任网络中获得信任，梳理了加密和完整性之间的区别。</p>
+<p>TLS适用于客户端/服务器端交互场景。 IPSec适合于数据中心。</p>
+<h1 id="第九章：零信任网络的实现"><a href="#第九章：零信任网络的实现" class="headerlink" title="第九章：零信任网络的实现"></a>第九章：零信任网络的实现</h1><p>零信任可能是基于现有的网络和系统构建的。零信任不是可以拿来就用的产品，而是一组基于网络需求和约束的架构理念与原则。</p>
+<h2 id="9-1-确定实现范围"><a href="#9-1-确定实现范围" class="headerlink" title="9.1 确定实现范围"></a>9.1 确定实现范围</h2><p>刚开始构建零信任网络时不需要满足满足全部需求，应当在实现过程中逐步完善。思考哪些组件是必不可少，哪些组件是锦上添花。</p>
+<p><strong>实际需求</strong></p>
+<ul>
+<li>所有网络流量在处理前必须经过<strong>认证</strong></li>
+<li>所有网络流量在传输前应当加密</li>
+<li>必须由网络中的端点系统执行认证和加密</li>
+<li>必须枚举所有网络流量，这样系统才可以执行强制访问控制</li>
+<li>应当使用网络中安全强度最高的认证和加密算法套件</li>
+<li>应当使用私有PKI系统</li>
+<li>应当定期执行设备扫描、为设备安装补丁以及轮换设备</li>
+</ul>
+<h2 id="9-2-建立系统框图"><a href="#9-2-建立系统框图" class="headerlink" title="9.2 建立系统框图"></a>9.2 建立系统框图</h2><p>系统拓扑图。了解内部网络和外部网络间的通信模式。</p>
+<h2 id="9-3-理解网络流量"><a href="#9-3-理解网络流量" class="headerlink" title="9.3 理解网络流量"></a>9.3 理解网络流量</h2><p>捕获现有生产网络中的所有流量是现有网络系统向零信任模型转变的第一步。</p>
+<p>流量的捕获、分类。</p>
+<p>可以先选择现有的一个网络区域开始构建零信任网络，再逐步扩展到其他领域。</p>
+<h2 id="9-4-无控制器架构"><a href="#9-4-无控制器架构" class="headerlink" title="9.4 无控制器架构"></a>9.4 无控制器架构</h2><p>成熟零信任网络的核心又几个控制平面系统构成。</p>
+<h3 id="9-4-1-从配置管理系统入手"><a href="#9-4-1-从配置管理系统入手" class="headerlink" title="9.4.1 从配置管理系统入手"></a>9.4.1 从配置管理系统入手</h3><p>配置管理工具来管理IT中的基础设施。</p>
+<h3 id="9-4-2-应用认证和授权"><a href="#9-4-2-应用认证和授权" class="headerlink" title="9.4.2 应用认证和授权"></a>9.4.2 应用认证和授权</h3><p>每项服务都必须具备认证和授权的能力。</p>
+<h2 id="9-5-定义和安装策略"><a href="#9-5-定义和安装策略" class="headerlink" title="9.5 定义和安装策略"></a>9.5 定义和安装策略</h2><p>利用配置管理系统，基于策略数据库生成策略的实施配置。</p>
+<h2 id="9-6-零信任代理"><a href="#9-6-零信任代理" class="headerlink" title="9.6 零信任代理"></a>9.6 零信任代理</h2><p>零信任代理是应用级代理服务器，用来保护零信任网络，是处理认证、授权以及加密的基础设施。代理的部署方式是保证零信任网络安全的关键所在。</p>
+<p>反向代理，代理接收来自零信任客户端的连接请求，并接受不了初始化连接，校验此连接是否被授权，授权通过后，把客户端请求传递给后端的应用系统处理。</p>
+<h2 id="9-7-客户端与服务端迁移"><a href="#9-7-客户端与服务端迁移" class="headerlink" title="9.7 客户端与服务端迁移"></a>9.7 客户端与服务端迁移</h2><p>从哪里开始着手零信任呢？客户端的移动设备或者来自受控网络的访问服务。设备类型多，需要兼容多种操作系统。</p>
+<p>从服务器-服务器之间的交互构造零信任简单一些！服务器安装了自动化工具、服务器供应商数量比较少！</p>
+<h2 id="9-8-案例研究"><a href="#9-8-案例研究" class="headerlink" title="9.8 案例研究"></a>9.8 案例研究</h2><p>零信任网络的实际架构和企业的网络架构细节密切相关。</p>
+<h2 id="9-9-Google-BeyondCorp"><a href="#9-9-Google-BeyondCorp" class="headerlink" title="9.9 Google BeyondCorp"></a>9.9 Google BeyondCorp</h2><p><a href="https://cloud.google.com/beyondcorp?hl=zh-cn" target="_blank" rel="noopener">BeyondCorp</a></p>
+<p>Google体量大。先进的安全策略–基于用户身份而不是网络位置的访问控制体系，用于控制对应用、数据和服务的访问。 </p>
+<p>重构企业的安全架构！内网和外网一样充满威胁。</p>
+<p>所有对企业资源的访问都要基于设备状态和用户凭证进行认证、授权和加密，并且针对不同的企业资源进行细粒度的访问控制。可以从任何网络访问企业资源，无需传统的VPN接入企业的特权网络。本地访问和远程访问的用户体验基本一致。</p>
+<p><strong>基于用户和设备身份进行访问控制</strong></p>
+<h3 id="9-9-1-BeyondCorp-主要组件"><a href="#9-9-1-BeyondCorp-主要组件" class="headerlink" title="9.9.1 BeyondCorp 主要组件"></a>9.9.1 BeyondCorp 主要组件</h3><p><strong>安全地识别设备</strong></p>
+<p>使用设备清单库和设备证书安全地标识和追踪所有受控设备。</p>
+<p><strong>设备清单库</strong>：由企业采购并妥善管理的设备。只有“受控”的设备才能访问企业应用。</p>
+<p><strong>设备身份</strong>：所有受控设备都要具备唯一的标识，用于索引设备清单库相关设备的信息。</p>
+<p><strong>安全地识别用户</strong></p>
+<p>追踪并管理用户数据库和群组数据库中的所有用户。管理所有用户的岗位分类、用户名和群组成员关系。</p>
+<p><strong>外化应用和工作流： 访问代理</strong></p>
+<p>所有的企业应用都通过面向互联网的访问代理开放给外部和内部客户端。代理对通信数据进行加密处理。</p>
+<p><strong>实施基于清单库的访问控制</strong></p>
+<p>访问权限级别是动态的。信任级别动态调整。不应该是人为调整的，应该是人工智能分析吧！</p>
+<p>访问控制引擎！</p>
+<h3 id="9-9-2-使用和扩展GRE"><a href="#9-9-2-使用和扩展GRE" class="headerlink" title="9.9.2 使用和扩展GRE"></a>9.9.2 使用和扩展GRE</h3><p>通过前端的访问代理提供几种花的策略强制执行机制，用来处理粗粒度的企业安全策略。</p>
+<h3 id="9-9-3-多平台设备认证面临的挑战"><a href="#9-9-3-多平台设备认证面临的挑战" class="headerlink" title="9.9.3 多平台设备认证面临的挑战"></a>9.9.3 多平台设备认证面临的挑战</h3><h3 id="9-9-4-迁移到BeyondCorp"><a href="#9-9-4-迁移到BeyondCorp" class="headerlink" title="9.9.4 迁移到BeyondCorp"></a>9.9.4 迁移到BeyondCorp</h3><p>分批进行纳入零信任网络。</p>
+<p>这个过程是长期的，要探索一步步进行。</p>
+<h3 id="9-9-5-教训"><a href="#9-9-5-教训" class="headerlink" title="9.9.5 教训"></a>9.9.5 教训</h3><p><strong>沟通</strong>：安全基础设施的根本性改变会对整个公司的生产力产生负面影响。沟通很重要，需要找到平衡点。</p>
+<p>新技术新业务使用时，对用户可能会造成或多或少的影响，其中的沟通很重要了。</p>
+<p><strong>工程师需要支持</strong>：迁移到新的网络架构是一项系统工程，很难一蹴而就。兼容问题及未知问题，需要高层的支持！</p>
+<h2 id="9-1-P-agerDuty-云平台无关网络"><a href="#9-1-P-agerDuty-云平台无关网络" class="headerlink" title="9.1 P agerDuty 云平台无关网络"></a>9.1 P agerDuty 云平台无关网络</h2><p>零信任架构实施方案。</p>
+<p><strong>配置管理系统作为自动化平台</strong></p>
+<p><strong>动态配置本地防火墙</strong></p>
+<p><strong>用户管理的去中心化</strong></p>
+<h2 id="9-11-总结"><a href="#9-11-总结" class="headerlink" title="9.11 总结"></a>9.11 总结</h2><p>网络系统架构、网络流量、用户、设备、认证、代理、加密。</p>
+<h1 id="第10章：攻击者视图"><a href="#第10章：攻击者视图" class="headerlink" title="第10章：攻击者视图"></a>第10章：攻击者视图</h1><p>零信任自身潜在的陷阱、危险和攻击向量。</p>
+<h2 id="10-1-身份窃取"><a href="#10-1-身份窃取" class="headerlink" title="10.1 身份窃取"></a>10.1 身份窃取</h2><p>零信任网络，几乎所有的判定和操作都是基于认证后的身份进行的。</p>
+<p>计算机系统授予实体权威身份的方式和政府部门颁发身份的信息是类似的，既然政府颁发的权威身份可能被盗窃，那么和计算机系统有关的身份也会发生。</p>
+<p>零信任同时认证设备和用户/应用。攻击者要访问某些资源需要同时窃取两种身份，光是获取了你的账号密码还不行，还需要获取你的设备。</p>
+<h2 id="10-2-DDoS"><a href="#10-2-DDoS" class="headerlink" title="10.2 DDoS"></a>10.2 DDoS</h2><p>不可避免。</p>
+<h2 id="10-3-枚举终端"><a href="#10-3-枚举终端" class="headerlink" title="10.3 枚举终端"></a>10.3 枚举终端</h2><p>零信任保证网络的机密性非隐私性。</p>
+<h2 id="10-4-不可信的计算平台"><a href="#10-4-不可信的计算平台" class="headerlink" title="10.4 不可信的计算平台"></a>10.4 不可信的计算平台</h2><p>底层计算平台的可信性对零信任模型至关重要。 云硬件、虚拟机管理程序等。</p>
+<h2 id="10-5-社会工程学"><a href="#10-5-社会工程学" class="headerlink" title="10.5 社会工程学"></a>10.5 社会工程学</h2><h1 id="技术分享-零信任"><a href="#技术分享-零信任" class="headerlink" title="技术分享-零信任"></a>技术分享-零信任</h1><p><a href="https://www.bilibili.com/video/BV17V411n7Lv" target="_blank" rel="noopener">京麒沙龙第4期-零信任专题</a></p>
+<p>架构部署在云上。</p>
+<p>远程办公如何接入内网。</p>
+<p>数据不落地，减少数据泄露。应用沙箱。</p>
+<p><a href="https://mp.weixin.qq.com/s/UErZqmD0ANL-D_VoN_h6XQ" target="_blank" rel="noopener">零信任——解决当下企业面临的信息安全问题</a></p>
+<p><strong>产品</strong></p>
+<p><a href="https://mmbiz.qpic.cn/mmbiz_jpg/kuIKKC9tNkD0uViaDAlD6h4Hticuclf3EEXksF4VWzrTWgcl60L7iaQWIzKdLpsmeBYMDWur1ALnjibnhJ1cWh9oJA/640?wx_fmt=jpeg&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" target="_blank" rel="noopener">身份与访问安全</a></p>
+<p><a href="https://mmbiz.qpic.cn/mmbiz_jpg/kuIKKC9tNkD0uViaDAlD6h4Hticuclf3EE8LffsjLf0jx2KkR3eBW7kSE5W9CqNODH0DRuGQ52lGyFEFTUxF2ibwg/640?wx_fmt=jpeg&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" target="_blank" rel="noopener">安全支撑技术与体系-零信任</a></p>
+<h1 id="零信任相关知识"><a href="#零信任相关知识" class="headerlink" title="零信任相关知识"></a>零信任相关知识</h1><p>1、<a href="https://www.zhihu.com/question/366296380" target="_blank" rel="noopener">有哪些做零信任安全的厂商？</a></p>
+<p>看了书籍，也在思考这个零信任产品和VPN的区别在哪里？客户曾经使用某厂商的零信任，由于其产品本身存在漏洞，因为缺少设备认证可攻破！</p>
+<p>2、<a href="https://cloud.google.com/beyondcorp?hl=zh-cn" target="_blank" rel="noopener">BeyondCorp</a></p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>细粒度访问控制</p>
+<p>零信任和VPN的区别？</p>
+<p>传统网络安全结构是什么样的？</p>
+<p>NAT实现原理</p>
+<p>防火墙的工作原理</p>
+<p>配置管理系统</p>
+<p><strong>X.509</strong>标准</p>
+<p>控制层面、数据层面不懂。</p>
+<p>永不信任、始终验证、管控分离。</p>
+<p>是一种架构。身份识别和管理、软件定义边界、微隔离。</p>
+<p>分支+总部。</p>
+<p>串联部署和旁路部署的区别。。等</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/20/零信任网络 在不可信网络中构建安全系统/" data-id="cl5kfy6ir006qo8itawz5afj8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/05/27/数据安全法释义/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据安全释义
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/27/数据治理和数据安全_总概括/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据治理与数据安全_读书笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/WAF/">WAF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全资料汇集/">Web安全资料汇集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bug-bounty/">bug_bounty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全合规/">安全合规</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全研究/">安全研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术研究/">技术研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据安全/">数据安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/渗透技巧/">渗透技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与数据结构/">算法与数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/零信任/">零信任</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jboss/">Jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Weblogic/">Weblogic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug-bounty/">bug_bounty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis-shortname/">iis-shortname</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-log/">ssh-log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/业务逻辑安全/">业务逻辑安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全合规/">安全合规</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据安全/">数据安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bypasswaf/" style="font-size: 17.5px;">Bypasswaf</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Flask/" style="font-size: 15px;">Flask</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Jboss/" style="font-size: 10px;">Jboss</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi/" style="font-size: 20px;">SQLi</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts/" style="font-size: 12.5px;">Struts</a> <a href="/tags/Tomcat/" style="font-size: 12.5px;">Tomcat</a> <a href="/tags/Weblogic/" style="font-size: 12.5px;">Weblogic</a> <a href="/tags/XSS/" style="font-size: 12.5px;">XSS</a> <a href="/tags/bug-bounty/" style="font-size: 15px;">bug_bounty</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iis-shortname/" style="font-size: 10px;">iis-shortname</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssh-log/" style="font-size: 10px;">ssh-log</a> <a href="/tags/业务逻辑安全/" style="font-size: 10px;">业务逻辑安全</a> <a href="/tags/安全合规/" style="font-size: 10px;">安全合规</a> <a href="/tags/数据安全/" style="font-size: 10px;">数据安全</a> <a href="/tags/翻译/" style="font-size: 17.5px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/27/数据安全法释义/">数据安全释义</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/20/零信任网络 在不可信网络中构建安全系统/">零信任网络 在不可信网络中构建安全系统_读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/27/数据治理和数据安全_总概括/">数据治理与数据安全_读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/14/Data_security_Security_architecture/">数据安全第一部分 安全架构</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/18/Cyber_Security_Law/">需要熟知的几项安全法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Sec-note<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
