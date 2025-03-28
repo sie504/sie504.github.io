@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>密码重置学习 | Sec-note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="业务逻辑安全">
+<meta name="keywords" content="业务逻辑安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="密码重置学习">
+<meta property="og:url" content="http://yoursite.com/2018/09/23/业务安全之密码重置和爆破/index.html">
+<meta property="og:site_name" content="Sec-note">
+<meta property="og:description" content="业务逻辑安全">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-11T11:32:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="密码重置学习">
+<meta name="twitter:description" content="业务逻辑安全">
+  
+    <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sec-note</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-业务安全之密码重置和爆破" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/23/业务安全之密码重置和爆破/" class="article-date">
+  <time datetime="2018-09-23T10:13:23.000Z" itemprop="datePublished">2018-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/安全研究/">安全研究</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      密码重置学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>业务逻辑安全</p>
+<a id="more"></a>
+<p>最近在看《Web攻防业务安全实战指南》，接合一些漏洞，先总结一下密码重置和爆破方面的知识，做一个记录。希望对你有帮助。</p>
+<p>关于密码重置，之前钉钉培训中，有一位大佬讲的很透彻，也可以学习一下。</p>
+<h3 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h3><p>暴力破解：逐个的对应用程序登录处进行账号和密码的穷举，直到找到正确的用户名和密码。</p>
+<ol>
+<li>知道用户名，破解密码</li>
+<li>使用弱密码，爆破用户名</li>
+<li><p>用户名和密码的混合爆破</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><h5 id="无验证码"><a href="#无验证码" class="headerlink" title="无验证码"></a>无验证码</h5><p>登录框没有验证码和登录次数限制。使用弱密码<code>123456</code>爆破用户名。<br><a href="https://bugs.shuimugan.com/bug/view?bug_no=223897" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=223897</a></p>
+<h5 id="有验证码"><a href="#有验证码" class="headerlink" title="有验证码"></a>有验证码</h5><p>验证码一直不会变<br><a href="https://bugs.shuimugan.com/bug/view?bug_no=58751" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=58751</a><br><a href="https://bugs.shuimugan.com/bug/view?bug_no=203629" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=203629</a></p>
+</li>
+</ol>
+<h5 id="文章聚合"><a href="#文章聚合" class="headerlink" title="文章聚合"></a>文章聚合</h5><p><a href="https://bbs.ichunqiu.com/thread-45640-1-1.html" target="_blank" rel="noopener">https://bbs.ichunqiu.com/thread-45640-1-1.html</a><br><a href="https://bbs.ichunqiu.com/thread-16539-1-1.html" target="_blank" rel="noopener">https://bbs.ichunqiu.com/thread-16539-1-1.html</a><br><a href="https://t0data.gitbooks.io/burpsuite/content/chapter8.html" target="_blank" rel="noopener">https://t0data.gitbooks.io/burpsuite/content/chapter8.html</a><br><a href="https://www.secbug.net/websec/164.html" target="_blank" rel="noopener">https://www.secbug.net/websec/164.html</a></p>
+<h3 id="密码重置"><a href="#密码重置" class="headerlink" title="密码重置"></a>密码重置</h3><h4 id="1-修改返回包"><a href="#1-修改返回包" class="headerlink" title="1: 修改返回包"></a>1: 修改返回包</h4><p>在本地验证服务端的返回信息——修改返回包绕过验证</p>
+<p>在修改密码处，有的时候要求输入验证码或者设置的安全问题。随便输入，然后抓返回包，修改其中的值。<br> 如果知道正常的修改密码的返回包，对比一下，来修改。测试的时候，根据返回包的内容，比如false修改true之类的。</p>
+<h5 id="原理和方法"><a href="#原理和方法" class="headerlink" title="原理和方法"></a>原理和方法</h5><p><strong>Response状态值修改测试，即修改请求的响应结果来达到密码重置的目的，存在这样漏洞的网站或者手机App往往因为校验不严格而导致非常严重的密码重置操作。</strong></p>
+<p><strong>这种漏洞的利用方式通常在服务端发送某个密码重置的凭证请求后，出现特定的响应值，比如true，1，ok，success等，网站看到回显内容为特定值后修改密码。通常这种漏洞的回显值校验是在客户端进行的，所以只需修改回显即可。</strong></p>
+<h5 id="案例-1"><a href="#案例-1" class="headerlink" title="案例"></a>案例</h5><p><a href="https://bugs.shuimugan.com/bug/view?bug_no=207115" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=207115</a><br><a href="https://bugs.shuimugan.com/bug/view?bug_no=204835" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=204835</a></p>
+<h5 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h5><p>注意不要在前端利用服务端返回值判断是否可以修改密码，要把整个校验环节交给服务端验证。</p>
+<h4 id="2-爆破验证码"><a href="#2-爆破验证码" class="headerlink" title="2: 爆破验证码"></a>2: 爆破验证码</h4><p>密码找回的时候，会发送到手机或者邮箱一个验证码。当这个凭证的验证次数没有进行限制或限制不严格的话，可被绕过。</p>
+<h5 id="原理和方法-1"><a href="#原理和方法-1" class="headerlink" title="原理和方法"></a>原理和方法</h5><p><strong>找回密码功能模块中通常会将用户凭证(一般为验证码或者链接)发送到用户的手机或者邮箱中，只要用户不泄漏自己的验证码就不会被攻击者利用。如果应用程序的验证码发送模块中验证码位数及复杂性较弱，也没有对验证码的次数进行限制可被暴力破解。</strong></p>
+<p><strong>观察验证码的发送规律，比如四位或者六位纯数字。</strong></p>
+<h5 id="案例-2"><a href="#案例-2" class="headerlink" title="案例"></a>案例</h5><p><a href="https://bugs.shuimugan.com/bug/view?bug_no=205795" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=205795</a><br><a href="https://bugs.shuimugan.com/bug/view?bug_no=203274" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=203274</a><br><a href="https://bugs.shuimugan.com/bug/view?bug_no=021722" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=021722</a><br><a href="https://bbs.ichunqiu.com/forum.php?mod=viewthread&amp;tid=3212&amp;fromuid=222307" target="_blank" rel="noopener">https://bbs.ichunqiu.com/forum.php?mod=viewthread&amp;tid=3212&amp;fromuid=222307</a></p>
+<h5 id="修复建议-1"><a href="#修复建议-1" class="headerlink" title="修复建议"></a>修复建议</h5><p>为了避免验证码被暴力破解，建议对用户输入的验证码校验采取错误次数限制和验证码有效时间。</p>
+<h4 id="3-验证码回显在客户端"><a href="#3-验证码回显在客户端" class="headerlink" title="3 验证码回显在客户端"></a>3 验证码回显在客户端</h4><p>有时候在响应包中，直接可以看到验证码的，这个时候就不需要爆破了，直接利用。</p>
+<h5 id="原理和方法-2"><a href="#原理和方法-2" class="headerlink" title="原理和方法"></a>原理和方法</h5><p><strong>找回密码测试要注意验证码是否会在响应包中。</strong></p>
+<h5 id="案例-3"><a href="#案例-3" class="headerlink" title="案例"></a>案例</h5><p><a href="https://bugs.shuimugan.com/bug/view?bug_no=205365" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=205365</a></p>
+<h5 id="修复建议-2"><a href="#修复建议-2" class="headerlink" title="修复建议"></a>修复建议</h5><p>避免返回验证码到响应包中，验证码一定要放在服务端校验。</p>
+<h4 id="4-修改接收验证码的手机-邮箱"><a href="#4-修改接收验证码的手机-邮箱" class="headerlink" title="4: 修改接收验证码的手机/邮箱"></a>4: 修改接收验证码的手机/邮箱</h4><p>攻击者用自己手机号码收到的重置用短信验证码可以重置其它用户的密码。没有验证手机号或者邮箱的对应身份导致该漏洞。</p>
+<h5 id="原理和方法-3"><a href="#原理和方法-3" class="headerlink" title="原理和方法"></a>原理和方法</h5><p><strong>找回密码功能逻辑中通常会在用户修改密码接口提交参数中存在传递用户账号的参数，比如是邮箱或者手机号。抓包修改其中的参数为自己的手机号，就能收到验证码，达到重置密码的效果。</strong></p>
+<h5 id="案例-4"><a href="#案例-4" class="headerlink" title="案例"></a>案例</h5><p><a href="https://bugs.shuimugan.com/bug/view?bug_no=205445" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=205445</a><br><a href="https://www.secpulse.com/archives/20787.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/20787.html</a><br><a href="https://bugs.shuimugan.com/bug/view?bug_no=021771" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=021771</a></p>
+<h5 id="修复建议-3"><a href="#修复建议-3" class="headerlink" title="修复建议"></a>修复建议</h5><p>在找回密码的Token做一对一的校验，一个Token只能修改一个用户，同时一定保证Token不泄漏。</p>
+<h4 id="5-重置步骤未进行校验"><a href="#5-重置步骤未进行校验" class="headerlink" title="5: 重置步骤未进行校验"></a>5: 重置步骤未进行校验</h4><p>重置密码的步骤一般为：</p>
+<p><strong><code>1.输入账户名2.验证身份3.重置密码4.完成。</code></strong></p>
+<p>有时候当你进行了1之后，直接去修改URL或者前端代码去进行3步骤从而也能成功的绕过了2的验证去重置密码。这种一般是由于没有对关键的身份验证的参数进行追踪导致的。</p>
+<p>从前端找到步骤3的URL，直接访问，跳过2的验证身份。</p>
+<h5 id="案例-5"><a href="#案例-5" class="headerlink" title="案例"></a>案例</h5><p><a href="https://bugs.shuimugan.com/bug/view?bug_no=211505" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=211505</a><br><a href="https://bugs.shuimugan.com/bug/view?bug_no=054890" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=054890</a></p>
+<h5 id="修复建议-4"><a href="#修复建议-4" class="headerlink" title="修复建议"></a>修复建议</h5><p>防止跳过验证步骤一定在后端逻辑校验中确认上一步流程是否已经完成。</p>
+<h4 id="6-Session-覆盖"><a href="#6-Session-覆盖" class="headerlink" title="6: Session 覆盖"></a>6: Session 覆盖</h4><p>在某些网站中的找回密码功能中，业务逻辑是：由用户使用手机进行注册，然后服务端向手机发送验证码短信，用户输入验证码提交后，进入密码重置页面。</p>
+<p>对网站的session覆盖的测试为：</p>
+<p>使用A账户正常进入重置页面，这个时候在浏览器页面中重新打开密码找回页面，输入B用户的账户，这个时候再来到A账户重置密码页面，此时Session会被覆盖，可重置B用户的密码。</p>
+<h5 id="案例-6"><a href="#案例-6" class="headerlink" title="案例"></a>案例</h5><p><a href="https://bugs.shuimugan.com/bug/view?bug_no=225958" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=225958</a></p>
+<h5 id="修复建议-5"><a href="#修复建议-5" class="headerlink" title="修复建议"></a>修复建议</h5><p>在重置密码请求中，对账户和凭证是否一致要做进一步的校验。</p>
+<h4 id="7-其他"><a href="#7-其他" class="headerlink" title="7: 其他"></a>7: 其他</h4><p>找回密码链接中敏感参数的替换。<br><a href="https://bugs.shuimugan.com/bug/view?bug_no=206447" target="_blank" rel="noopener">https://bugs.shuimugan.com/bug/view?bug_no=206447</a></p>
+<p>通过查看之前的漏洞，可以学习一些姿势。<br><a href="https://bugs.shuimugan.com/?BugSearch%5Bbug_no%5D=&amp;BugSearch%5Btitle%5D=%E9%87%8D%E7%BD%AE&amp;BugSearch%5Bvendor%5D=&amp;BugSearch%5Bauthor%5D=&amp;BugSearch%5Bbug_type%5D=&amp;BugSearch%5Bbug_level_by_whitehat%5D=&amp;BugSearch%5Bbug_level_by_vendor%5D=&amp;BugSearch%5Brank_by_whitehat%5D=&amp;BugSearch%5Bbug_date%5D=" target="_blank" rel="noopener">https://bugs.shuimugan.com/?BugSearch%5Bbug_no%5D=&amp;BugSearch%5Btitle%5D=%E9%87%8D%E7%BD%AE&amp;BugSearch%5Bvendor%5D=&amp;BugSearch%5Bauthor%5D=&amp;BugSearch%5Bbug_type%5D=&amp;BugSearch%5Bbug_level_by_whitehat%5D=&amp;BugSearch%5Bbug_level_by_vendor%5D=&amp;BugSearch%5Brank_by_whitehat%5D=&amp;BugSearch%5Bbug_date%5D=</a></p>
+<h4 id="文章聚合-1"><a href="#文章聚合-1" class="headerlink" title="文章聚合"></a>文章聚合</h4><p><a href="http://www.freebuf.com/author/yangyangwithgnu" target="_blank" rel="noopener">http://www.freebuf.com/author/yangyangwithgnu</a><br><a href="http://www.freebuf.com/articles/web/21214.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/21214.html</a><br><a href="https://www.ichunqiu.com/course/59045" target="_blank" rel="noopener">https://www.ichunqiu.com/course/59045</a><br><a href="https://blkstone.github.io/2017/10/11/common-password-reset-vuln/" target="_blank" rel="noopener">https://blkstone.github.io/2017/10/11/common-password-reset-vuln/</a><br><a href="https://wps2015.org/drops/drops/%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E6%95%B4%E7%90%86.html" target="_blank" rel="noopener">https://wps2015.org/drops/drops/%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E6%95%B4%E7%90%86.html</a><br><a href="http://www.nxadmin.com/web/1642.html" target="_blank" rel="noopener">http://www.nxadmin.com/web/1642.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/23/业务安全之密码重置和爆破/" data-id="cm8s5r6vr0022rhitz1g74ym6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/业务逻辑安全/">业务逻辑安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/22/提供推荐/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          提供推荐
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/21/Tomcat2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Tomcat 安全问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/WAF/">WAF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全资料汇集/">Web安全资料汇集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bug-bounty/">bug_bounty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全合规/">安全合规</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全研究/">安全研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术研究/">技术研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据安全/">数据安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/渗透技巧/">渗透技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与数据结构/">算法与数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/零信任/">零信任</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jboss/">Jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Weblogic/">Weblogic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug-bounty/">bug_bounty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis-shortname/">iis-shortname</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-log/">ssh-log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/业务逻辑安全/">业务逻辑安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全合规/">安全合规</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据安全/">数据安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bypasswaf/" style="font-size: 17.5px;">Bypasswaf</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Flask/" style="font-size: 15px;">Flask</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Jboss/" style="font-size: 10px;">Jboss</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi/" style="font-size: 20px;">SQLi</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts/" style="font-size: 12.5px;">Struts</a> <a href="/tags/Tomcat/" style="font-size: 12.5px;">Tomcat</a> <a href="/tags/Weblogic/" style="font-size: 12.5px;">Weblogic</a> <a href="/tags/XSS/" style="font-size: 12.5px;">XSS</a> <a href="/tags/bug-bounty/" style="font-size: 15px;">bug_bounty</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iis-shortname/" style="font-size: 10px;">iis-shortname</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssh-log/" style="font-size: 10px;">ssh-log</a> <a href="/tags/业务逻辑安全/" style="font-size: 10px;">业务逻辑安全</a> <a href="/tags/安全合规/" style="font-size: 10px;">安全合规</a> <a href="/tags/数据安全/" style="font-size: 10px;">数据安全</a> <a href="/tags/翻译/" style="font-size: 17.5px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/27/数据安全法释义/">数据安全释义</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/20/零信任网络 在不可信网络中构建安全系统/">零信任网络 在不可信网络中构建安全系统_读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/27/数据治理和数据安全_总概括/">数据治理与数据安全_读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/14/Data_security_Security_architecture/">数据安全第一部分 安全架构</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/18/Cyber_Security_Law/">需要熟知的几项安全法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Sec-note<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

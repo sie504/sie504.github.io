@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>HTTP 学习 | Sec-note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTTP学习，持续补充中。">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 学习">
+<meta property="og:url" content="http://yoursite.com/2017/11/07/HTTP/index.html">
+<meta property="og:site_name" content="Sec-note">
+<meta property="og:description" content="HTTP学习，持续补充中。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-11T11:32:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP 学习">
+<meta name="twitter:description" content="HTTP学习，持续补充中。">
+  
+    <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sec-note</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HTTP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/07/HTTP/" class="article-date">
+  <time datetime="2017-11-07T10:13:23.000Z" itemprop="datePublished">2017-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTTP 学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>HTTP</code>学习，持续补充中。</p>
+<a id="more"></a>
+<h4 id="HTTP-概述"><a href="#HTTP-概述" class="headerlink" title="HTTP 概述"></a>HTTP 概述</h4><p>记录《HTTP权威指南》学习笔记。</p>
+<h5 id="Web客户端和服务器"><a href="#Web客户端和服务器" class="headerlink" title="Web客户端和服务器"></a>Web客户端和服务器</h5><p>Web内容都存储在Web服务器上的。Web服务器使用的是HTTP协议，因此经常被称为HTTP服务器。这些HTTP服务器存储了因特网中的数据，如果客户端发出请求，它们会提供数据。客户端向服务器发送HTTP请求，服务器会在HTTP响应中回送所请求的数据。</p>
+<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p>HTTP支持几种不同的请求命令，这些命令被称为HTTP方法。每条HTTP请求报文包含一个方法。这个方法告诉服务器执行什么动作。</p>
+<pre><code>GET   从服务器向客户端发送命名资源
+PUT   将来自客户端的数据存储到一个命名的服务器资源中去
+DELETE 从服务器删除命名资源
+POST   将客户端数据发送到一个服务器网关应用程序
+HEAD  仅发送命名资源响应中的HTTP首部
+</code></pre><h5 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank" rel="noopener">状态码</a></h5><p>每条HTTP响应报文返回时都会携带一个状态码。状态码是一个三位数字的代码，告知客户端是否请求成功或者是否需要其他动作。</p>
+<h5 id="报文"><a href="#报文" class="headerlink" title="报文"></a>报文</h5><p>HTTP报文是由一行一行的简单字符串组成的。HTTP报文都是纯文本，不是二进制代码，所以人们可以很方便的对其进行读写。</p>
+<h5 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h5><p>HTTP协议位于TCP之上，HTTP使用TCP来传输其报文数据。</p>
+<p>比如对一个<code>www.sec-note.com</code>发送请求。</p>
+<ol>
+<li>浏览器从URL中解析出服务器的主机名</li>
+<li>DNS 获取域名的IP地址 151.101.25.147</li>
+<li>获取 IP端口号</li>
+<li>TCP/IP 建立连接 IP:PORT</li>
+<li>发送一条HTTP GET请求</li>
+<li>从服务器读取HTTP响应</li>
+<li>关闭连接。浏览器显示文档。</li>
+</ol>
+<h4 id="URL和资源"><a href="#URL和资源" class="headerlink" title="URL和资源"></a>URL和资源</h4><h5 id="URL"><a href="#URL" class="headerlink" title="URL"></a><a href="https://www.oschina.net/translate/what-every-web-developer-must-know-about-url-encoding" target="_blank" rel="noopener">URL</a></h5><pre><code>http://www.sec-note.com/index.html
+方案     主机                 路径
+</code></pre><p>所有出现在不应出现位置的 保留符（例如路径片段——以文件名为例——可能包含”?”）必须被URL 编码。</p>
+<h5 id="编码机制"><a href="#编码机制" class="headerlink" title="编码机制"></a>编码机制</h5><p>编码机制，用来在URL中表示各种不安全的字符。编码机制是通过转义表示法表示不安全的字符，这种转义表示法包含一个百分号(%)，后面跟着两个表示字符ASCII码的十六进制数。</p>
+<h4 id="HTTP-报文"><a href="#HTTP-报文" class="headerlink" title="HTTP 报文"></a><a href="https://blog.csdn.net/u010256388/article/details/68491509" target="_blank" rel="noopener">HTTP 报文</a></h4><p>报文包括：</p>
+<ol>
+<li>起始行</li>
+<li>首部</li>
+<li>主体</li>
+</ol>
+<p>请求报文格式</p>
+<pre><code>&lt;method 方法&gt; &lt;request-URL 请求URL&gt; &lt;version&gt;版本
+&lt;headers&gt;   首部
+
+&lt;entity-body&gt; 请求体
+</code></pre><p>响应报文格式</p>
+<pre><code>&lt;version版本&gt; &lt;status 状态码&gt; &lt;reason-phrase 原因短语&gt;
+&lt;headers&gt;       首部
+
+&lt;entity-body&gt; 主体
+</code></pre><p><strong>HEAD</strong></p>
+<p>HEAD方法和GET方法的行为类似，但服务器在响应中只返回首部。不会返回实体的主体部分。</p>
+<ol>
+<li>在不获取资源的情况下了解资源的情况</li>
+<li>通过查看响应中的状态吗，查看某个对象是否存在</li>
+<li>通过查看首部，看资源是否被修改</li>
+</ol>
+<p><strong>TARCE</strong></p>
+<p>客户端发起一个请求时，这个请求可能会经过防火墙/代理/网关/或其他一些应用程序。每个中间节点都有可能修改原始的HTTP请求。TRACE方法允许客户端最终将请求发送给服务器时，看它变成什么样子。</p>
+<p><strong>OPTIONS</strong></p>
+<p>OPTIONS方法请求Web服务器告知其支持的功能。可以询问服务器支持那些方法。</p>
+<p><strong>通用首部</strong></p>
+<p>客户端和服务器端都可以使用的通用首部。比如Date首部就是一个通用首部，每一端都可以用它来说明构建报文的时间和日期。</p>
+<p><strong>请求首部</strong></p>
+<pre><code>Client-IP     提供了运行客户端的机器IP
+From            提供了客户端用户的E-mail地址
+Host          给出了接受请求的服务器的主机名和端口号
+Referer         提供了包含当前URI的文档的URL
+</code></pre><p><strong>Accept首部</strong></p>
+<pre><code>Accept     告诉服务器能够发送那些媒体类型
+Accept-Charset    告诉服务器发送那些字符集
+Accept-Encoding  告诉服务器发送那些编码方式
+Accept-Language  告诉服务器发送那些语言
+</code></pre><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://blog.csdn.net/u010256388/article/details/68491509" target="_blank" rel="noopener">HTTP请求行、请求头、请求体详解</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/07/HTTP/" data-id="cm8s5r6uy0008rhitq6ke8pxm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/13/Java学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          java 基础知识学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/01/文件上传漏洞分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PHP文件上传漏洞浅析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/WAF/">WAF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全资料汇集/">Web安全资料汇集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bug-bounty/">bug_bounty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全合规/">安全合规</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全研究/">安全研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术研究/">技术研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据安全/">数据安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/渗透技巧/">渗透技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与数据结构/">算法与数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/零信任/">零信任</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jboss/">Jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Weblogic/">Weblogic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug-bounty/">bug_bounty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis-shortname/">iis-shortname</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-log/">ssh-log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/业务逻辑安全/">业务逻辑安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全合规/">安全合规</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据安全/">数据安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bypasswaf/" style="font-size: 17.5px;">Bypasswaf</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Flask/" style="font-size: 15px;">Flask</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Jboss/" style="font-size: 10px;">Jboss</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi/" style="font-size: 20px;">SQLi</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts/" style="font-size: 12.5px;">Struts</a> <a href="/tags/Tomcat/" style="font-size: 12.5px;">Tomcat</a> <a href="/tags/Weblogic/" style="font-size: 12.5px;">Weblogic</a> <a href="/tags/XSS/" style="font-size: 12.5px;">XSS</a> <a href="/tags/bug-bounty/" style="font-size: 15px;">bug_bounty</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iis-shortname/" style="font-size: 10px;">iis-shortname</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssh-log/" style="font-size: 10px;">ssh-log</a> <a href="/tags/业务逻辑安全/" style="font-size: 10px;">业务逻辑安全</a> <a href="/tags/安全合规/" style="font-size: 10px;">安全合规</a> <a href="/tags/数据安全/" style="font-size: 10px;">数据安全</a> <a href="/tags/翻译/" style="font-size: 17.5px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/27/数据安全法释义/">数据安全释义</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/20/零信任网络 在不可信网络中构建安全系统/">零信任网络 在不可信网络中构建安全系统_读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/27/数据治理和数据安全_总概括/">数据治理与数据安全_读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/14/Data_security_Security_architecture/">数据安全第一部分 安全架构</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/18/Cyber_Security_Law/">需要熟知的几项安全法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Sec-note<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

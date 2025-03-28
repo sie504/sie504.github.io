@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>PHP 文件处理 | Sec-note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习一下PHP中文件上传的基本方法。">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 文件处理">
+<meta property="og:url" content="http://yoursite.com/2017/10/26/php-file-uploads/index.html">
+<meta property="og:site_name" content="Sec-note">
+<meta property="og:description" content="学习一下PHP中文件上传的基本方法。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/27422064.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/89389181.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/50712806.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/90170854.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/34019909.jpg">
+<meta property="og:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/73731988.jpg">
+<meta property="og:updated_time" content="2018-12-11T11:32:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP 文件处理">
+<meta name="twitter:description" content="学习一下PHP中文件上传的基本方法。">
+<meta name="twitter:image" content="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/27422064.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Sec-note" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sec-note</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-php-file-uploads" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/26/php-file-uploads/" class="article-date">
+  <time datetime="2017-10-26T05:20:46.000Z" itemprop="datePublished">2017-10-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程学习/">编程学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP 文件处理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习一下<code>PHP</code>中文件上传的基本方法。</p>
+<a id="more"></a>
+<h5 id="文件上传原理"><a href="#文件上传原理" class="headerlink" title="文件上传原理"></a>文件上传原理</h5><p>将客户端的文件上传到服务器端，在将服务器端的临时文件移动到指定目录中。</p>
+<h5 id="文件上传设置"><a href="#文件上传设置" class="headerlink" title="文件上传设置"></a>文件上传设置</h5><p><strong>客户端配置</strong></p>
+<ol>
+<li>表单页面</li>
+<li>表单的发送方式</li>
+<li>添加 <code>enctype = &quot;multipart/form-data&quot;</code></li>
+</ol>
+<p>前端页面</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;File uploads&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form action=&quot;dofile.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    请选择上传的文件:
+    &lt;input type=&quot;file&quot; name=&quot;myfile&quot; /&gt;&lt;br/&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;上传文件&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>后端接收代码</p>
+<pre><code>&lt;?php
+
+//$_FILE: 文件上传变量
+print_r($_FILES);
+</code></pre><p>打印出的参数，一个二维数组</p>
+<pre><code>Array
+(
+    [myfile] =&gt; Array
+        (
+            [name] =&gt; 3.drupal_attacks.conf.app
+            [type] =&gt; application/octet-stream
+            [tmp_name] =&gt; C:\Windows\Temp\php204A.tmp
+            [error] =&gt; 0
+            [size] =&gt; 37430
+        )
+
+)
+</code></pre><h5 id="FILES-HTTP文件上传变量"><a href="#FILES-HTTP文件上传变量" class="headerlink" title="$FILES:HTTP文件上传变量"></a>$FILES:HTTP文件上传变量</h5><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/27422064.jpg" alt></p>
+<p>将临时文件移动到指定目录下</p>
+<p><code>move_uploaded_file</code></p>
+<p><code>copy()</code></p>
+<pre><code>&lt;?php
+
+//$_FILE: 文件上传变量
+print_r($_FILES);
+$filename = $_FILES[&apos;myfile&apos;][&apos;name&apos;];
+$type = $_FILES[&apos;myfile&apos;][&apos;type&apos;];
+$tmp_name = $_FILES[&apos;myfile&apos;][&apos;tmp_name&apos;];
+$size = $_FILES[&apos;myfile&apos;][&apos;size&apos;];
+$error = $_FILES[&apos;myfile&apos;][&apos;error&apos;];
+
+//将服务器上的临时文件移动到指定目录下
+// move_uploaded_file($tmp_name,$destination):将服务器上的临时文件移动到中指定目录下
+move_uploaded_file($tmp_name,&quot;uploads/&quot;.$filename);
+</code></pre><h5 id="文件上传配置以及解析"><a href="#文件上传配置以及解析" class="headerlink" title="文件上传配置以及解析"></a>文件上传配置以及解析</h5><p><code>php.ini</code>的配置。</p>
+<pre><code>file_uploads = On 支持HTTP上传
+upload_max_filesize = 2M 允许上传文件的大小
+</code></pre><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/89389181.jpg" alt></p>
+<h5 id="错误信息说明"><a href="#错误信息说明" class="headerlink" title="错误信息说明"></a>错误信息说明</h5><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/50712806.jpg" alt></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/90170854.jpg" alt></p>
+<pre><code>&lt;?php
+// 通过$_FILES文件上传变量接收上传文件信息
+header(&apos;content-type:text/html;charset=utf-8&apos;);
+$fileinfo = $_FILES[&apos;myfile&apos;];
+$filename = $fileinfo[&apos;name&apos;];
+$type = $fileinfo[&apos;type&apos;];
+$tmp_name = $fileinfo[&apos;tmp_name&apos;];
+$size = $fileinfo[&apos;size&apos;];
+$error = $fileinfo[&apos;error&apos;];
+
+//判断错误号
+if($error==UPLOAD_ERR_OK){
+    if(move_uploaded_file($tmp_name,&quot;uploads/&quot;.$filename)){
+        echo &apos;文件&apos;.$filename.&apos;上传成功&apos;;
+    }else{
+        echo &apos;文件&apos;.$filename.&apos;上传失败&apos;;
+    }
+
+}else{
+    //匹配错误信息
+    switch($error){
+    case 1:
+        echo &apos;上传文件超过PHP配置大小&apos;;
+        break;
+    case 2:
+        echo &apos;超过了表单限制的大小&apos;;
+        break;
+    case 3:
+        echo &apos;文件部分上传&apos;;
+        break;
+    case 4:
+        echo &apos;没有选择上传文件&apos;;
+        break;
+    case 6:
+        echo &apos;没有找到临时目录&apos;;
+        break;
+    case 7:
+    case 8:
+        echo &apos;系统错误&apos;;
+        break;
+    }  
+}
+</code></pre><p><strong>客户端限制</strong></p>
+<p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/34019909.jpg" alt></p>
+<p>type accept允许上传的类型</p>
+<h5 id="服务器端上传限制"><a href="#服务器端上传限制" class="headerlink" title="服务器端上传限制"></a>服务器端上传限制</h5><p><img src="https://image-1258195556.cos.ap-shanghai.myqcloud.com/qiniu/17-10-25/73731988.jpg" alt></p>
+<p>进行上传文件名的重命名以及上传路径的判定，如果不存在则新建，等上传错误的判断。</p>
+<pre><code>&lt;?php
+header(&apos;content-type:text/html;charset=utf-8&apos;);
+$fileinfo = @$_FILES[&apos;myfile&apos;];
+$maxSize=2097152;
+$allowExt=array(&apos;jpg&apos;,&apos;png&apos;,&apos;gif&apos;);
+//判断错误号
+if($fileinfo[&apos;error&apos;]==0){
+    //判断上传文件的大小
+    if($fileinfo[&apos;size&apos;]&gt;$maxSize){
+        exit(&apos;上传文件过大&apos;);
+    }
+    //获取文件扩展名
+    //$ext = strtolower(end(explode(&apos;.&apos;,$fileinfo[&apos;name&apos;])));
+    $ext = pathinfo($fileinfo[&apos;name&apos;],PATHINFO_EXTENSION);
+    if(!in_array($ext,$allowExt)){
+        exit(&apos;非法文件类型&apos;);
+    }
+    //判断文件是否通过HTTP POST的方式上传来的
+    if(!is_uploaded_file($fileinfo[&apos;tmp_name&apos;])){
+        exit(&apos;文件不是通过HTTP POST方式上传来的&apos;);
+    }
+    //检测是否为真实的文件类型
+
+    $path = &apos;uploads&apos;;
+    //判断上传路径是否存在,不存在的话就创建目录
+    if(!file_exists($path)){
+        mkdir($path,0777,true);
+        chmod($path,0777);
+    }
+
+    //确保文件名唯一，防止重命名产生覆盖
+    $uniName=md5(uniqid(microtime(true),true)).&apos;.&apos;.$ext;
+    //echo $uniName;exit;
+    $destination=$path.&apos;/&apos;.$uniName;
+    if(move_uploaded_file($fileinfo[&apos;tmp_name&apos;],$destination)){
+        echo &apos;文件上传成功&apos;;
+    }else{
+        echo &apos;文件上传失败&apos;;
+    }
+
+}else{
+    //匹配错误信息
+    switch($fileinfo[&apos;error&apos;]){
+    case 1:
+        echo &apos;上传文件超过PHP配置大小&apos;;
+        break;
+    case 2:
+        echo &apos;超过了表单限制的大小&apos;;
+        break;
+    case 3:
+        echo &apos;文件部分上传&apos;;
+        break;
+    case 4:
+        echo &apos;没有选择上传文件&apos;;
+        break;
+    case 6:
+        echo &apos;没有找到临时目录&apos;;
+        break;
+    case 7:
+    case 8:
+        echo &apos;系统错误&apos;;
+        break;
+}
+}
+</code></pre><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://www.imooc.com/learn/219" target="_blank" rel="noopener">PHP实现文件上传与下载</a></p>
+<p><a href="http://blog.csdn.net/u012275531/article/details/16802127" target="_blank" rel="noopener">php 怎样实现单个文件上传</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/26/php-file-uploads/" data-id="cm8s5r6vk001arhitdwbt37qj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/01/文件上传漏洞分析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PHP文件上传漏洞浅析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/17/php_cookie/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PHP 会话控制</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/WAF/">WAF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web安全资料汇集/">Web安全资料汇集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bug-bounty/">bug_bounty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全合规/">安全合规</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全研究/">安全研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术研究/">技术研究</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据安全/">数据安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/渗透技巧/">渗透技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与数据结构/">算法与数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程学习/">编程学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/零信任/">零信任</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bypasswaf/">Bypasswaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jboss/">Jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/">SQLi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts/">Struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Weblogic/">Weblogic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug-bounty/">bug_bounty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis-shortname/">iis-shortname</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-log/">ssh-log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/业务逻辑安全/">业务逻辑安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全合规/">安全合规</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据安全/">数据安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bypasswaf/" style="font-size: 17.5px;">Bypasswaf</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/Flask/" style="font-size: 15px;">Flask</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Jboss/" style="font-size: 10px;">Jboss</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi/" style="font-size: 20px;">SQLi</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts/" style="font-size: 12.5px;">Struts</a> <a href="/tags/Tomcat/" style="font-size: 12.5px;">Tomcat</a> <a href="/tags/Weblogic/" style="font-size: 12.5px;">Weblogic</a> <a href="/tags/XSS/" style="font-size: 12.5px;">XSS</a> <a href="/tags/bug-bounty/" style="font-size: 15px;">bug_bounty</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iis-shortname/" style="font-size: 10px;">iis-shortname</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssh-log/" style="font-size: 10px;">ssh-log</a> <a href="/tags/业务逻辑安全/" style="font-size: 10px;">业务逻辑安全</a> <a href="/tags/安全合规/" style="font-size: 10px;">安全合规</a> <a href="/tags/数据安全/" style="font-size: 10px;">数据安全</a> <a href="/tags/翻译/" style="font-size: 17.5px;">翻译</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/27/数据安全法释义/">数据安全释义</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/20/零信任网络 在不可信网络中构建安全系统/">零信任网络 在不可信网络中构建安全系统_读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/27/数据治理和数据安全_总概括/">数据治理与数据安全_读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/14/Data_security_Security_architecture/">数据安全第一部分 安全架构</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/18/Cyber_Security_Law/">需要熟知的几项安全法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Sec-note<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
